@@ -23,6 +23,9 @@
 		<input id='Name' onkeyup='SearchInfo_Name()'>
 		<div id='Name_Result'>이름을 입력하면 이전 기록들을 모두 표시</div>
 		
+		<h3>●동적 검색 테스트</h3>
+		<input onkeyup="filter()" type="text" id="Dynamic_Search" placeholder="Type to Search">
+		
 		<h3>●검색하면 검색기록 남기기 </h3>
 		<input id='Visitor_History' onchange='Record_SearchHistory()'>
 		<div id='History_Result'>이름을 검색하면 시간과 함께 기록하고 저장</div>
