@@ -1,14 +1,16 @@
-function printName1()  {
-  const name = document.getElementById('name1').value;
-  document.getElementById("result1").innerText = name;  
+function printTest1()  {
+  const name = document.getElementById('Test1').value;
+  document.getElementById("Result1").innerText = name;  
 }
 
-function printName2()  {
-  var name = document.getElementById('name2').value;
-  document.getElementById("result2").innerText = name;
+function printTest2()  {
+  var name = document.getElementById('Test2').value;
+  document.getElementById("Result2").innerText = name;
 }
-function printName3() {//입력한 비고정출입자명단을 자동으로 객체 배열의 형식으로 출력
- const visitor_info = document.getElementById("name3").value;
+
+//비고정출입자명단을 일일히 바꿔야 할까?
+function Change_VisitorList() {//입력한 비고정출입자명단을 자동으로 객체 배열의 형식으로 출력
+ const visitor_info = document.getElementById("VisitorList").value;
  const split_arr1 = visitor_info.split("~");//입력받은 값을 ~ 기준으로 분할하여 split_arr1에 저장
  var final_arr = [];
  for(var i=0;i<split_arr1.length ; i++){//split_arr1의 배열을 2차로 작업하기 위한 루프
@@ -16,25 +18,30 @@ function printName3() {//입력한 비고정출입자명단을 자동으로 객�
 	var obj_arr = `\n { name: "${split_arr2[0]}", birth:"${split_arr2[1]}", bs:"${split_arr2[2]}",car:"${split_arr2[3]}", car_color:"${split_arr2[4]}", car_num:"${split_arr2[5]}",address:"${split_arr2[6]}", phone:"${split_arr2[7]}", count:"${split_arr2[8]}" }`;
 	final_arr.push(obj_arr);
  }	
- document.getElementById("result3").innerText = final_arr;//작업완료된 데이터를 Text 형태로 출력
+ document.getElementById("VisitorList_Result").innerText = final_arr;//작업완료된 데이터를 Text 형태로 출력
 }
 
 
-
-function searchInfo_carNum1(){//차 번호를 검색하면 해당 차 번호에 해당하는 기록들 모두 출력
-	const visitor_info = document.getElementById("car_num").value;
+//차번호를 검색했을때 이전 방문기록이 있는지?
+function SearchInfo_carNum(){//차 번호를 검색하면 해당 차 번호에 해당하는 기록들 모두 출력
+	const visitor_info = document.getElementById("CarNum").value;
 	var index = visitor_Array.findIndex(e=> e.car_num === visitor_info );
 	if(index != -1){
 		visitor_Array[index].count += 1;
-		document.getElementById("result4").innerHTML = `이름:${visitor_Array[index].name} ,생년월일:${visitor_Array[index].birth} ,용무:${visitor_Array[index].bs} ,차:${visitor_Array[index].car} ,차색:${visitor_Array[index].car_color} ,차번호:${visitor_Array[index].car_num} ,주소:${visitor_Array[index].address} ,폰:${visitor_Array[index].phone} ,카운트:${visitor_Array[index].count} `;
+		document.getElementById("CarNum_Result").innerHTML = `이름:${visitor_Array[index].name} ,생년월일:${visitor_Array[index].birth} ,용무:${visitor_Array[index].bs} ,차:${visitor_Array[index].car} ,차색:${visitor_Array[index].car_color} ,차번호:${visitor_Array[index].car_num} ,주소:${visitor_Array[index].address} ,폰:${visitor_Array[index].phone} ,카운트:${visitor_Array[index].count} `;
 		
 	}else 
-		document.getElementById("result4").innerText = "Not Found";
+		document.getElementById("CarNum_Result").innerText = "Not Found";
 }
+//차번호를 검색했는데 방문기록이 여러개이고 동승자가 있다면?
+//차번호가 `12가3456`일때 뒷자리만 검색해도 결과가 출력되게끔 하고 싶다면?
+//해당 차에 동승자가 여러명이 있다면 어떻게 입력하게 할까?
 
 
-function searchInfo_carName1(){//이름을 검색하면 해당 이름과 일치하는 기록을 모두 출력
-	const visitor_info = document.getElementById("visitor_name1").value;
+
+//이름을 검색했는데 해당 인원이 여러번 방문한 기록이 있다면? 
+function SearchInfo_Name(){//이름을 검색하면 해당 이름과 일치하는 기록을 모두 출력
+	const visitor_info = document.getElementById("Name").value;
 	var Result_arr =  [];
 	for(var i=0;i<visitor_Array.length; i++){//DB 객체 배열의 이름과 입력한 이름의 값이 있으면 Result_arr에 푸쉬
 		if(visitor_info == visitor_Array[i].name){
@@ -43,11 +50,36 @@ function searchInfo_carName1(){//이름을 검색하면 해당 이름과 일치�
 	}
 	
 	if(Result_arr <= 0){//만약 Result_arr에 아무값이 없으면 Null 출력
-		document.getElementById("result5").innerText = "Not Found";
+		document.getElementById("Name_Result").innerText = "Not Found";
 	} else//Result_arr 값이 있다면 화면에 출력
-		document.getElementById("result5").innerText = Result_arr;
+		document.getElementById("Name_Result").innerText = Result_arr;
+}
+//만약 이름을 검색했는데 이전 기록이 없다면? >  처음 방문자라 판단하고 데이터를 넣을 수 있는 창 생성
+
+
+
+var History_arr =  [];
+
+//검색하는 것만으로도 기록되게 하려면 어떻게 할까? 이름 검색하면 해당 배열 출력
+function Record_SearchHistory(){//차 번호를 검색하면 해당 차 번호에 해당하는 기록들 모두 출력
+	const visitor_name = document.getElementById("Visitor_History").value;
+	var index = visitor_Array.findIndex(e=> e.name === visitor_name );
+	var times = new Date();
+	console.log("1");
+	if(index != -1){
+		visitor_Array[index].count += 1;
+		var History_var = times.toLocaleString() + ` 이름:${visitor_Array[index].name} ,생년월일:${visitor_Array[index].birth} ,용무:${visitor_Array[index].bs} ,차:${visitor_Array[index].car} ,차색:${visitor_Array[index].car_color} ,차번호:${visitor_Array[index].car_num} ,주소:${visitor_Array[index].address} ,폰:${visitor_Array[index].phone} ,카운트:${visitor_Array[index].count} `;
+		History_arr.push(History_var);
+		document.getElementById("History_Result").innerHTML = History_var;
+		
+	}else 
+		document.getElementById("History_Result").innerText = "Not Found";
 }
 
+
+function View_History(){//기록된 이전 기록을 모두 출력
+	document.getElementById("History_All").innerHTML = History_arr;
+}
 
 //민간인 출입통제
 //이름 검색을 통해 이전 기록을 파악

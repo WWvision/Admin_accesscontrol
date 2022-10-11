@@ -5,15 +5,30 @@
 	</head>
 
 	<body>
-		<input id='name1' onkeyup='printName1()'>
-		<div id='result1'>결과1</div>
-		<input id='name2' onchange='printName2()'/>
-		<div id='result2'>결과2</div>
-		<input id='name3' onchange='printName3()'/>
-		<div id='result3'>결과3</div>
-		<input id='car_num1' onkeyup='searchInfo_carNum1()'>
-		<div id='result4'>결과4 : 차 번호를 입력하면 해당 사용자 정보 표시</div>
-		<input id='visitor_name1' onkeyup='searchInfo_carName1()'>
-		<div id='result5'>결과5 : 이름을 입력하면 이전 기록들을 모두 표시</div>
+		<h2>input값 html에 표시하기 실습 </h2>
+		<input id='Test1' onkeyup='printTest1()' placeholder='Onkeyup'>
+		<div id='Result1'>Onkeyup 결과</div>
+		
+		<input id='Test2' onchange='printTest2()' placeholder='Onchange'/>
+		<div id='Result2'>Onchange 결과</div>
+		
+		<h2>민간인출입자명단 넣으면 객체 배열 형태로 출력 </h2>
+		<input id='VisitorList' onchange='Change_VisitorList()'/>
+		<div id='VisitorList_Result'>비고정 출입자 명단 변환</div>
+		
+		<h2>저장되어 있는 DB에서 검색하기</h2>
+		<input id='CarNum' onkeyup='SearchInfo_carNum()'>
+		<div id='CarNum_Result'>차 번호를 입력하면 해당 사용자 정보 표시</div>
+		
+		<input id='Name' onkeyup='SearchInfo_Name()'>
+		<div id='Name_Result'>이름을 입력하면 이전 기록들을 모두 표시</div>
+		
+		<h3>●검색하면 검색기록 남기기 </h3>
+		<input id='Visitor_History' onchange='Record_SearchHistory()'>
+		<div id='History_Result'>이름을 검색하면 시간과 함께 기록하고 저장</div>
+		
+		<h4>-버튼 누르면 히스토리 확인</h4>
+		<input type="button" value="기록보기"onclick="View_History()"/>
+		<div id='History_All'>[히스토리]</div> 
 	</body>
 </html>
