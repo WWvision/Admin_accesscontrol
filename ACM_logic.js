@@ -1,3 +1,5 @@
+
+
 function printTest1()  {
   const name = document.getElementById('Test1').value;
   document.getElementById("Result1").innerText = name;  
@@ -22,11 +24,12 @@ function Change_VisitorList() {//입력한 비고정출입자명단을 자동으
 }
 
 var History_arr =  [];//사용자가 이름 또는 번호판을 검색할때마다 기록하여 저장하는 배열
-
+var NewCarNum_arr = [];//새로운 차 번호 등록
 
 
 //A. 차번호를 검색했을때 이전 방문기록이 있는지? > 모두 표시 
-//A. 차번호를 검색했는데 방문기록이 여러개이고 동승자가 있다면? > 해당 결과 다 출력
+//A. 차번호를 검색했는데 방문기록이 여러개이고 동승자가 있다면? > 해당 결과 다 출력    
+//A. 차번호가 `12가3456`일때 뒷자리만 검색해도 결과가 출력되게끔 하고 싶다면? > datalist를 활용하고 동적태그 생성을 통해 자동으로 검색 할 수 있게끔 구현
 function SearchInfo_carNum(){//차 번호를 검색하면 해당 차 번호에 해당하는 기록들 모두 출력
 	const visitor_info = document.getElementById("CarNum").value;
 	var NumResult_arr =  [];
@@ -35,13 +38,45 @@ function SearchInfo_carNum(){//차 번호를 검색하면 해당 차 번호에 �
 			NumResult_arr.push(`\n 이름:${visitor_Array[i].name} ,생년월일:${visitor_Array[i].birth} ,용무:${visitor_Array[i].bs} ,차:${visitor_Array[i].car} ,차색:${visitor_Array[i].car_color} ,차번호:${visitor_Array[i].car_num} ,주소:${visitor_Array[i].address} ,폰:${visitor_Array[i].phone} ,카운트:${visitor_Array[i].count}`);
 		}
 	}
-	if(NumResult_arr <= 0){//만약 Result_arr에 아무값이 없으면 Null 출력
-		document.getElementById("CarNum_Result").innerText = "Not Found";
+	if(NumResult_arr <= 0){//이전 기록이 없다면 새로운 정보 입력
+		newVisitor_Info();
 	} else//Result_arr 값이 있다면 화면에 출력
 		document.getElementById("CarNum_Result").innerText = NumResult_arr;
 }
 
-//Q. 차번호가 `12가3456`일때 뒷자리만 검색해도 결과가 출력되게끔 하고 싶다면? > 정규표현식이용? / 차량번호 뒷자리 4개만 따로 변수 생성
+
+function newVisitor_Info(){//새로운 정보 입력 폼 생성
+	console.log("!");
+	var newVisitor_Input_Area = document.getElementById('CarNum_Result');
+	var newVisitor_form = document.createElement('form');
+	
+	var input_info = document.createElement('input');
+	input_info.setAttribute("type", "text");
+	input_info.setAttribute("id", "newCarNum");
+	input_info.setAttribute("name", "formtest");
+	input_info.setAttribute("placeholder", "차 번호");
+	newVisitor_form.appendChild(input_info);
+	
+	input_info = document.createElement('input');
+	input_info.setAttribute("type", "submit");
+	input_info.setAttribute("value", "입력");
+	newVisitor_form.appendChild(input_info);
+	
+	newVisitor_Input_Area.setAttribute("id", "newCarNum_form");
+	newVisitor_Input_Area.innerText = "이전 기록이 없다면 정보를 입력하세요 : ";
+	newVisitor_Input_Area.appendChild(newVisitor_form);	
+	
+	document.getElementById("newCarNum_form").onsubmit = function(){
+		var CarNum = document.getElementById("newCarNum").value;
+		Record_NewCarNum(CarNum);
+		return false;
+	}
+}
+
+
+
+
+
 //Q. 해당 차에 동승자가 여러명이 있다면 어떻게 입력하게 할까?
 //Q. 기존 방문자가 새로운 차를 타고 오거나 동승자가 많아진다면?
 //Q. 만약 이름을 검색했는데 이전 기록이 없다면? >  처음 방문자라 판단하고 데이터를 넣을 수 있는 창 생성
@@ -82,15 +117,17 @@ function Record_SearchHistory(){//차 번호를 검색하면 해당 차 번호�
 		document.getElementById("History_Result").innerText = "Not Found";
 }
 
+function Record_NewCarNum(data){
+	NewCarNum_arr.push(data);
+	console.log(NewCarNum_arr);
+}
+
 
 function View_History(){//기록된 이전 기록을 모두 출력
 	document.getElementById("History_All").innerHTML = History_arr;
 }
 
 
-function filter(){//동적 검색 테스트
-	//고민중
-}
 
 //민간인 출입통제
 //이름 검색을 통해 이전 기록을 파악
