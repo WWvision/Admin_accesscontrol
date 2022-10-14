@@ -38,16 +38,26 @@
 		
 		
 		<script>
+			var CarNum_arr = [];//datalist에 들어갈 차번호 배열
+			var CarNum_filtered = [];
+			
+			function testArr(){
+				for(var i=0;i<visitor_Array.length;i++){//visitor_Array에서 CarNum_arr로 car_num값 이동 
+					CarNum_arr.push(visitor_Array[i].car_num);
+				}
+				CarNum_filtered = CarNum_arr.reduce((ac, v) => ac.includes(v) ? ac : [...ac, v], []);//중복값 제거하고 CarNum_final배열에 입력
+			}
+			
 			function CarNum_datalist(){//datalist 동적 태그 이용한 차번호 세팅
-				for(var i=0;i<visitor_Array.length; i++){
+				for(var i=0;i<CarNum_filtered.length; i++){
 					var datalist_Area = document.getElementById('CarNumList');
 					var datalist_Value = document.createElement('option');
-					datalist_Value.setAttribute('value', visitor_Array[i].car_num);
+					datalist_Value.setAttribute('value', CarNum_filtered[i]);
 					datalist_Area.appendChild(datalist_Value);
-				}
-				
+				}	
 			}
-
+			
+			testArr();
 			CarNum_datalist();
 		</script>
 	</body>

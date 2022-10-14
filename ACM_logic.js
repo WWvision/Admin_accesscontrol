@@ -1,15 +1,5 @@
-
-
-function printTest1()  {
-  const name = document.getElementById('Test1').value;
-  document.getElementById("Result1").innerText = name;  
-}
-
-function printTest2()  {
-  var name = document.getElementById('Test2').value;
-  document.getElementById("Result2").innerText = name;
-}
-
+//민간인 출입통제 기능 테스트,구현 
+// https://code-projects.org/simple-note-app-in-javascript-with-source-code/ 여기 참고해서 동승자 어떻게 구현할지 생각
 //A. 비고정출입자명단을 일일히 바꿔야 할까? > 자동으로 바꾸자
 function Change_VisitorList() {//입력한 비고정출입자명단을 자동으로 객체 배열의 형식으로 출력
  const visitor_info = document.getElementById("VisitorList").value;
