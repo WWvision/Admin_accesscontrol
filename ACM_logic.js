@@ -1,6 +1,8 @@
 //민간인 출입통제 기능 테스트,구현 
 // https://code-projects.org/simple-note-app-in-javascript-with-source-code/ 여기 참고해서 동승자 어떻게 구현할지 생각
+// https://7942yongdae.tistory.com/m/66 닫기 전 정보 저장
 //A. 비고정출입자명단을 일일히 바꿔야 할까? > 자동으로 바꾸자
+
 function Change_VisitorList() {//입력한 비고정출입자명단을 자동으로 객체 배열의 형식으로 출력
  const visitor_info = document.getElementById("VisitorList").value;
  const split_arr1 = visitor_info.split("~");//입력받은 값을 ~ 기준으로 분할하여 split_arr1에 저장
@@ -17,15 +19,18 @@ var History_arr =  [];//사용자가 이름 또는 번호판을 검색할때마�
 var NewCarNum_arr = [];//새로운 차 번호 등록
 
 
-//A. 차번호를 검색했을때 이전 방문기록이 있는지? > 모두 표시 
-//A. 차번호를 검색했는데 방문기록이 여러개이고 동승자가 있다면? > 해당 결과 다 출력    
+    //A. 차번호를 검색했는데 방문기록이 여러개이고 동승자가 있다면? > 해당 결과 다 출력    
 //A. 차번호가 `12가3456`일때 뒷자리만 검색해도 결과가 출력되게끔 하고 싶다면? > datalist를 활용하고 동적태그 생성을 통해 자동으로 검색 할 수 있게끔 구현
 function SearchInfo_carNum(){//차 번호를 검색하면 해당 차 번호에 해당하는 기록들 모두 출력
 	const visitor_info = document.getElementById("CarNum").value;
-	var NumResult_arr =  [];
+	var NumResult_arr = [];
+	var times = new Date(),
+		str_info;
 	for(var i=0;i<visitor_Array.length; i++){//DB 객체 배열의 이름과 입력한 이름의 값이 있으면 Result_arr에 푸쉬
 		if(visitor_info == visitor_Array[i].car_num){
-			NumResult_arr.push(`\n 이름:${visitor_Array[i].name} ,생년월일:${visitor_Array[i].birth} ,용무:${visitor_Array[i].bs} ,차:${visitor_Array[i].car} ,차색:${visitor_Array[i].car_color} ,차번호:${visitor_Array[i].car_num} ,주소:${visitor_Array[i].address} ,폰:${visitor_Array[i].phone} ,카운트:${visitor_Array[i].count}`);
+			str_info = `\n 이름:${visitor_Array[i].name} ,생년월일:${visitor_Array[i].birth} ,용무:${visitor_Array[i].bs} ,차:${visitor_Array[i].car} ,차색:${visitor_Array[i].car_color} ,차번호:${visitor_Array[i].car_num} ,주소:${visitor_Array[i].address} ,폰:${visitor_Array[i].phone} ,카운트:${visitor_Array[i].count}`;
+			NumResult_arr.push(str_info);
+			History_arr.push(str_info);//검색해서 결과가 나오면 기록 테스트
 		}
 	}
 	if(NumResult_arr <= 0){//이전 기록이 없다면 새로운 정보 입력
@@ -114,7 +119,8 @@ function Record_NewCarNum(data){
 
 
 function View_History(){//기록된 이전 기록을 모두 출력
-	document.getElementById("History_All").innerHTML = History_arr;
+	console.log(History_arr);
+	document.getElementById("History_All").innerText = History_arr;
 }
 
 
