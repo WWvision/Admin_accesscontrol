@@ -1,0 +1,158 @@
+<html>
+	<head>
+		<script src='./ACM_Visitor_logic.js'></script>
+		<link rel="stylesheet" href="./Visitor_style.css">
+	</head>
+
+	<body>
+		<h2>외래인 출입통제</h2>
+		이름:
+		<input type='text' id='name_search' onchange='Search_Name()' placeholder='방문자' size='3'>
+		차량:
+		<input type='text' id='carNum_search' onchange='Search_carNum()' placeholder='차량번호' size='6'>
+		<div id='today_visithistory'>
+			<div id='div_title'>
+				※ 입퇴영 기록
+			</div>
+			
+			<div id='visithistory'>
+				<a>0810</a>
+				<a href='javascript:carNumInfo(차량번호1);'>차량번호1</a> 
+				<input type='button' onclick='outing(해당 배열 인덱스)' value='외출' style='float:right;'>
+				<input type='button' onclick='going(해당 배열 인덱스)' value='퇴영' style='float:right;'>
+				<input type='button' onclick='coming(해당 배열 인덱스)' value='입영' style='float:right;'>
+				<br>
+				<a href='javascript:VisitorInfo(이름1);'>이름1</a>
+				<a href='javascript:VisitorInfo(이름2);'>이름2</a>
+				<a href='javascript:VisitorInfo(이름3);'>이름3</a>
+				<!-- 퇴영 및 외출에 대한 시간 표시 고민 -->
+			</div>
+			
+			<div id='visithistory'>
+				<a>0815</a>
+				<a href='javascript:carNumInfo(차량번호2);'>차량번호2</a> 
+				<input type='button' onclick='outing(해당 배열 인덱스)' value='외출' style='float:right;'>
+				<input type='button' onclick='going(해당 배열 인덱스)' value='퇴영' style='float:right;'>
+				<input type='button' onclick='coming(해당 배열 인덱스)' value='입영' style='float:right;'>
+				<br>
+				<a href='javascript:VisitorInfo(이름5);'>이름5</a>
+			</div>
+			
+			<div id='visithistory'>
+				<a>0829</a>
+				<a href='javascript:carNumInfo(차량번호3);'>차량번호3</a> 
+				<input type='button' onclick='outing(해당 배열 인덱스)' value='외출' style='float:right;'>
+				<input type='button' onclick='going(해당 배열 인덱스)' value='퇴영' style='float:right;'>
+				<input type='button' onclick='coming(해당 배열 인덱스)' value='입영' style='float:right;'>
+				<br>
+				<a href='javascript:VisitorInfo(이름7);'>이름7</a>
+				<a href='javascript:VisitorInfo(이름8);'>이름8</a>
+			</div>
+			
+			<div id='visithistory'>
+				<a>0810</a>
+				<a href='javascript:carNumInfo(차량번호1);'>차량번호1</a> 
+				<input type='button' onclick='outing(해당 배열 인덱스)' value='외출' style='float:right;'>
+				<input type='button' onclick='going(해당 배열 인덱스)' value='퇴영' style='float:right;'>
+				<input type='button' onclick='coming(해당 배열 인덱스)' value='입영' style='float:right;'>
+				<br>
+				<a href='javascript:VisitorInfo(이름1);'>이름1</a>
+				<a href='javascript:VisitorInfo(이름2);'>이름2</a>
+				<a href='javascript:VisitorInfo(이름3);'>이름3</a>
+			</div>
+			
+			<div id='visithistory'>
+				<a>0815</a>
+				<a href='javascript:carNumInfo(차량번호2);'>차량번호2</a> 
+				<input type='button' onclick='outing(해당 배열 인덱스)' value='외출' style='float:right;'>
+				<input type='button' onclick='going(해당 배열 인덱스)' value='퇴영' style='float:right;'>
+				<input type='button' onclick='coming(해당 배열 인덱스)' value='입영' style='float:right;'>
+				<br>
+				<a href='javascript:VisitorInfo(이름5);'>이름5</a>
+			</div>
+			
+			<div id='visithistory'>
+				<a>0829</a>
+				<a href='javascript:carNumInfo(차량번호3);'>차량번호3</a> 
+				<input type='button' onclick='outing(해당 배열 인덱스)' value='외출' style='float:right;'>
+				<input type='button' onclick='going(해당 배열 인덱스)' value='퇴영' style='float:right;'>
+				<input type='button' onclick='coming(해당 배열 인덱스)' value='입영' style='float:right;'>
+				<br>
+				<a href='javascript:VisitorInfo(이름7);'>이름7</a>
+				<a href='javascript:VisitorInfo(이름8);'>이름8</a>
+			</div>
+		</div>
+		<br>
+		<div id='search_result' style='float:left'>
+			<div id='div_title'>
+				※ 검색 결과 
+			</div>
+			
+		</div>
+		
+		<input type='button' value='방문기록 추가' onclick='javascript:toggleRecordVisit();'/><br>
+		<input type='button' value='신규 방문자 추가' onclick="javascript:toggleAddNewVisitor();" />
+		
+		<!-- 신규 방문자 정보 입력하는 기능 -->
+		<div id='newvisitor_add' style='display:none;'>
+			<p>[처음 방문하여 서약서를 작성한 인원 정보 입력]</p>
+			<form id='newvisitor_form'>
+				<label>이름* : <input type='text' name='name' size='3'></label>
+				<label>생년월일* : <input type='date' name='birth' ></label><br>
+				<label>소속 : <input type='text' name='department' size='6'></label>
+				<label>용무* : <input type='text' name='bs' size='9'></label>
+				<label>전화번호: <input type='phone' name='phone' size='12'></label><br>
+				<label>주소 : <input type='text' name='address'></label>
+				<label> 출입신청: <input type='checkbox' name='access_permission'></label><br>
+				<input type='submit' value='기록하기' style='float:right;'>
+			</form>
+		</div>
+
+		<!-- 방문기록 추가하는 기능 -->
+		<div id='visit_record' style='display:none;'>
+			<div id='search_history'> 
+				<!-- 오늘의 검색기록을 이곳에다 표현 -->
+				<p>0810 김승주</p>
+				<p>0810 김승주</p>
+				<p>0810 김승주</p>
+			</div>
+			
+			<input type='button' value='▶' onclick='movetoTeam()'>  <br>
+			<input type='button' value='◀' onclick='movetoHistory()'>
+			
+			<div id='record_team'>
+				<form id='team_form'>
+					차량번호 : <input type='text' name='carNum' size='6'> 
+					차종 : <input type='text' name='car' size='4'>
+					차색상 : <input type='text' name='carColor' size='2'>
+					<div id='team_list'>
+						<!-- 해당 차량에 동승자 모두 입력 -->
+					</div>
+					<input type='submit' value='저장'>
+				</form>
+			</div>
+		</div>
+			
+		
+	</body>
+	
+	<script type='text/javascript'>
+		function toggleAddNewVisitor(){
+			var con = document.getElementById("newvisitor_add");
+			if(con.style.display == "none"){
+				con.style.display = "block";
+			} else {
+				con.style.display = "none" ;
+				}
+		}
+		function toggleRecordVisit(){
+			var con = document.getElementById("visit_record");
+			if(con.style.display == "none"){
+				con.style.display = "block";
+			} else {
+				con.style.display = "none" ;
+				}
+		}
+	</script>
+	
+</html>
