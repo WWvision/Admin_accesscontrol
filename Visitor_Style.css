@@ -22,7 +22,8 @@
 
 
 #newvisitor_add, #visit_record {
-	width:500px;
+	width:700px;
+	height: flex;
 	padding: 3px;
 	margin: 10px;
 	background-color: rgba(129,193,71,0.3);
@@ -30,12 +31,39 @@
 	border: 1px solid black;
 	
 }
+#search_history_box {
+	padding: 3px;
+	margin: 10px;
+	border-radius: 10px;
+	border: 1px solid black;
+	float:left;
+}
 
-#visithistory {
+#record_team {
+	padding: 3px;
+	margin: 10px;
+	border-radius: 10px;
+	border: 1px solid black;
+	float:right;
+}
+.visithistory {
 	margin: 15px;
 	background-color: rgba();
 	border: 1px solid gray;
 	padding: 3px;
+}
+.search_history {
+	margin: 5px;
+	padding: 3px;
+}
+.team_box{
+	height: 200px;
+	margin: 10px;
+	border: 1px solid black;
+	padding: 3px;
+}
+.team_list{
+
 }
 
 #div_title {

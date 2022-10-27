@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<script src='./ACM_Visitor_logic.js'></script>
+		<script src='./ACM_DB.js'></script>
 		<link rel="stylesheet" href="./Visitor_style.css">
 	</head>
 
@@ -15,12 +16,13 @@
 				※ 입퇴영 기록
 			</div>
 			
-			<div id='visithistory'>
+			<div id='history1' class='visithistory'>
 				<a>0810</a>
 				<a href='javascript:carNumInfo(차량번호1);'>차량번호1</a> 
-				<input type='button' onclick='outing(해당 배열 인덱스)' value='외출' style='float:right;'>
-				<input type='button' onclick='going(해당 배열 인덱스)' value='퇴영' style='float:right;'>
-				<input type='button' onclick='coming(해당 배열 인덱스)' value='입영' style='float:right;'>
+				<input type='button' onclick='outing()' value='외출' style='float:right;'>
+				<input type='button' onclick='going()' value='퇴영' style='float:right;'>
+				<input type='button' onclick='coming()' value='입영' style='float:right;'>
+				<!-- 입영:초록색 / 퇴영:빨간색 / 외출:노란색 으로 버튼을 누르면 해당 칸 배경이 다 바뀌게 -->
 				<br>
 				<a href='javascript:VisitorInfo(이름1);'>이름1</a>
 				<a href='javascript:VisitorInfo(이름2);'>이름2</a>
@@ -28,55 +30,55 @@
 				<!-- 퇴영 및 외출에 대한 시간 표시 고민 -->
 			</div>
 			
-			<div id='visithistory'>
+			<div id='history2' class='visithistory'>
 				<a>0815</a>
 				<a href='javascript:carNumInfo(차량번호2);'>차량번호2</a> 
-				<input type='button' onclick='outing(해당 배열 인덱스)' value='외출' style='float:right;'>
-				<input type='button' onclick='going(해당 배열 인덱스)' value='퇴영' style='float:right;'>
-				<input type='button' onclick='coming(해당 배열 인덱스)' value='입영' style='float:right;'>
+				<input type='button' onclick='outing()' value='외출' style='float:right;'>
+				<input type='button' onclick='going()' value='퇴영' style='float:right;'>
+				<input type='button' onclick='coming()' value='입영' style='float:right;'>
 				<br>
 				<a href='javascript:VisitorInfo(이름5);'>이름5</a>
 			</div>
 			
-			<div id='visithistory'>
+			<div id='history3' class='visithistory'>
 				<a>0829</a>
 				<a href='javascript:carNumInfo(차량번호3);'>차량번호3</a> 
-				<input type='button' onclick='outing(해당 배열 인덱스)' value='외출' style='float:right;'>
-				<input type='button' onclick='going(해당 배열 인덱스)' value='퇴영' style='float:right;'>
-				<input type='button' onclick='coming(해당 배열 인덱스)' value='입영' style='float:right;'>
+				<input type='button' onclick='outing()' value='외출' style='float:right;'>
+				<input type='button' onclick='going()' value='퇴영' style='float:right;'>
+				<input type='button' onclick='coming()' value='입영' style='float:right;'>
 				<br>
 				<a href='javascript:VisitorInfo(이름7);'>이름7</a>
 				<a href='javascript:VisitorInfo(이름8);'>이름8</a>
 			</div>
 			
-			<div id='visithistory'>
+			<div id='history4' class='visithistory'>
 				<a>0810</a>
 				<a href='javascript:carNumInfo(차량번호1);'>차량번호1</a> 
-				<input type='button' onclick='outing(해당 배열 인덱스)' value='외출' style='float:right;'>
-				<input type='button' onclick='going(해당 배열 인덱스)' value='퇴영' style='float:right;'>
-				<input type='button' onclick='coming(해당 배열 인덱스)' value='입영' style='float:right;'>
+				<input type='button' onclick='outing()' value='외출' style='float:right;'>
+				<input type='button' onclick='going()' value='퇴영' style='float:right;'>
+				<input type='button' onclick='coming()' value='입영' style='float:right;'>
 				<br>
 				<a href='javascript:VisitorInfo(이름1);'>이름1</a>
 				<a href='javascript:VisitorInfo(이름2);'>이름2</a>
 				<a href='javascript:VisitorInfo(이름3);'>이름3</a>
 			</div>
 			
-			<div id='visithistory'>
+			<div id='history5' class='visithistory'>
 				<a>0815</a>
 				<a href='javascript:carNumInfo(차량번호2);'>차량번호2</a> 
-				<input type='button' onclick='outing(해당 배열 인덱스)' value='외출' style='float:right;'>
-				<input type='button' onclick='going(해당 배열 인덱스)' value='퇴영' style='float:right;'>
-				<input type='button' onclick='coming(해당 배열 인덱스)' value='입영' style='float:right;'>
+				<input type='button' onclick='outing()' value='외출' style='float:right;'>
+				<input type='button' onclick='going()' value='퇴영' style='float:right;'>
+				<input type='button' onclick='coming()' value='입영' style='float:right;'>
 				<br>
 				<a href='javascript:VisitorInfo(이름5);'>이름5</a>
 			</div>
 			
-			<div id='visithistory'>
+			<div id='history6' class='visithistory'>
 				<a>0829</a>
 				<a href='javascript:carNumInfo(차량번호3);'>차량번호3</a> 
-				<input type='button' onclick='outing(해당 배열 인덱스)' value='외출' style='float:right;'>
-				<input type='button' onclick='going(해당 배열 인덱스)' value='퇴영' style='float:right;'>
-				<input type='button' onclick='coming(해당 배열 인덱스)' value='입영' style='float:right;'>
+				<input type='button' onclick='outing()' value='외출' style='float:right;'>
+				<input type='button' onclick='going()' value='퇴영' style='float:right;'>
+				<input type='button' onclick='coming()' value='입영' style='float:right;'>
 				<br>
 				<a href='javascript:VisitorInfo(이름7);'>이름7</a>
 				<a href='javascript:VisitorInfo(이름8);'>이름8</a>
@@ -87,6 +89,7 @@
 			<div id='div_title'>
 				※ 검색 결과 
 			</div>
+			<div id='search_result_view'></div>
 			
 		</div>
 		
@@ -110,23 +113,54 @@
 
 		<!-- 방문기록 추가하는 기능 -->
 		<div id='visit_record' style='display:none;'>
-			<div id='search_history'> 
-				<!-- 오늘의 검색기록을 이곳에다 표현 -->
-				<p>0810 김승주</p>
-				<p>0810 김승주</p>
-				<p>0810 김승주</p>
+			<div id='search_history_box'> 
+				<div id='div_title'>※ 검색 기록</div>
+				<div id='history_list'>
+					<div id='sh1' class='search_history'>
+						<a>0810</a>
+						<a>김승주</a>
+					</div>
+					<div id='sh1' class='search_history'>
+						<a>0815</a>
+						<a>김승주</a>
+					</div>
+					<div id='sh1' class='search_history'>
+						<a>0830</a>
+						<a>김승주</a>
+					</div>
+					
+				</div>
 			</div>
 			
-			<input type='button' value='▶' onclick='movetoTeam()'>  <br>
+			<div style='float:center'>
+			<input type='button' value='▶' onclick='movetoTeam()' >  <br>
 			<input type='button' value='◀' onclick='movetoHistory()'>
+			</div>
 			
 			<div id='record_team'>
+				<div id='div_title'>※ 동승자 기록</div>
 				<form id='team_form'>
-					차량번호 : <input type='text' name='carNum' size='6'> 
-					차종 : <input type='text' name='car' size='4'>
-					차색상 : <input type='text' name='carColor' size='2'>
-					<div id='team_list'>
-						<!-- 해당 차량에 동승자 모두 입력 -->
+					<div class='car_title'>
+						차량번호 : <input type='text' name='carNum' size='6'> 
+						차종 : <input type='text' name='car' size='4'>
+						차색상 : <input type='text' name='carColor' size='2'>
+					</div>
+					<div id='team_box' class='team_box'>
+						<div id='team_visitor1' class='team_list'>
+							<a>김승주</a>
+							<a>991001</a>
+							<a> O </a>
+						</div>
+						<div id='team_visitor2' class='team_list'>
+							<a>김승주</a>
+							<a>991001</a>
+							<a> O </a>
+						</div>
+						<div id='team_visitor3' class='team_list'>
+							<a>김승주</a>
+							<a>991001</a>
+							<a> O </a>
+						</div>
 					</div>
 					<input type='submit' value='저장'>
 				</form>
