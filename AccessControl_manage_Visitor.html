@@ -10,7 +10,12 @@
 		이름:
 		<input type='text' id='name_search' onchange='Search_Name()' placeholder='방문자' size='3'>
 		차량:
-		<input type='text' id='carNum_search' onchange='Search_carNum()' placeholder='차량번호' size='6'>
+		<input type='text' id='carNum_search' onchange='Search_carNum()' placeholder='차량번호' size='9' list='CarNumList'>
+		
+		<datalist id='CarNumList' >
+			<option value='없는 번호'></option>
+		</datalist>
+		
 		<div id='today_visithistory'>
 			<div id='div_title'>
 				※ 입퇴영 기록
@@ -171,6 +176,28 @@
 	</body>
 	
 	<script type='text/javascript'>
+		var CarNum_arr = [];//datalist에 들어갈 차번호 배열
+		var CarNum_filtered = [];
+			
+		function testArr(){
+			for(var i=0;i<visitor_Array.length;i++){//visitor_Array에서 CarNum_arr로 car_num값 이동 
+				CarNum_arr.push(visitor_Array[i].car_num);
+			}
+			CarNum_filtered = CarNum_arr.reduce((ac, v) => ac.includes(v) ? ac : [...ac, v], []);//중복값 제거하고 CarNum_final배열에 입력
+		}
+			
+		function CarNum_datalist(){//datalist 동적 태그 이용한 차번호 세팅
+			for(var i=0;i<CarNum_filtered.length; i++){
+				var datalist_Area = document.getElementById('CarNumList');
+				var datalist_Value = document.createElement('option');
+				datalist_Value.setAttribute('value', CarNum_filtered[i]);
+				datalist_Area.appendChild(datalist_Value);
+			}	
+		}
+			
+		testArr();
+		CarNum_datalist();
+		
 		function toggleAddNewVisitor(){
 			var con = document.getElementById("newvisitor_add");
 			if(con.style.display == "none"){
