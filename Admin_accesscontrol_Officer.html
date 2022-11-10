@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<script src='./OC_logic.js'></script>
+		<style>
+			td {
+				height: 40px;
+			}
+			.form_data{
+				border:0 solid black; 
+				height:30px;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<h2>대대간부 출입통제</h2>
+		
+		<div id='test' style="width:600;">
+		<input type='button' value="추가하기" onclick="addrow()">				
+		<input type='button' value="삭제하기" onclick="deleterow()">
+		<form id='Operate_Car'>
+			<!-- input type="date" id="OC_date"><br -->
+			<table border="1">
+				<th>순번</th>
+				<th width="86" height="40">차량번호</th>
+				<th width="86" height="40">목적지</th>
+				<th width="86" height="40">용무</th>
+				<th width="86" height="40">운행책임자</th>
+				<th width="86" height="40">운행종류</th>
+				<th width="86" height="40">비고</th>
+				
+				
+				<tbody id="OC_table">
+				<tr>
+					<td>예시</td>
+					<td>1</td>
+					<td>작계지역</td>
+					<td>지휘업무</td>
+					<td>김승주</td>
+					<td>선탑</td>
+					<td></td>
+				</tr>
+				</tbody>
+			</table>
+			
+			<input type='button' value="제출" onclick="send_data()">	
+		</form>
+		</div>
+		
+		<div id="view_text">
+		
+	</body>
+	
+	<script>
+
+	</script>
+</html>
