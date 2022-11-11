@@ -14,8 +14,9 @@ var car_obj_arr = [
 	{ key: '151', val: '(마이티, 1685-151)' },
 	{ key: '5562', val: '(중형버스, 10육5562)' }
 ];
+var TodayOfficeList = new Array();
 
-
+//console.log(car_obj_arr);
 
 function addrow(){
 	var OCtable = document.getElementById('OC_table');
@@ -53,6 +54,14 @@ function send_data(){ //https://codingmoonkwa.tistory.com/12 참고해서 구현
 	var count;
 	var data_arr=[];
 	var counting_six = 0;
+	var myObj = {
+		carInfo: '',
+		name: '',
+		destination: '',
+		business: '',
+		type: '',
+		remark: ''
+	};
 	
 	for(count=0;count< table.length; count++){
 		counting_six++;
@@ -61,30 +70,48 @@ function send_data(){ //https://codingmoonkwa.tistory.com/12 참고해서 구현
 		}
 		switch(counting_six){
 			case 1: 
-				var carNum_Result = search_carNum(table.elements[count].value);
-				data_arr.push(carNum_Result);
+				myObj.carInfo = search_carNum(table.elements[count].value);
+				//var carNum_Result = search_carNum(table.elements[count].value);
+				//data_arr.push(carNum_Result);
+				break;
+			case 2: 
+				myObj.destination =  table.elements[count].value;
+				break;
+			case 3:
+				myObj.business = table.elements[count].value;
+				break;
+			case 4:
+				myObj.name = table.elements[count].value;
+				break;
+			case 5:
+				myObj.type = table.elements[count].value;
 				break;
 			case 6: 
 				counting_six = 0;
-				data_arr.push(table.elements[count].value + "~");
+				myObj.remark = table.elements[count].value;
+				TodayOfficeList.push(myObj);
 				break;
 			default: 
-				data_arr.push(table.elements[count].value);
+				console.log("error!: " + table.elements[count].value);
+				break;
+				
+		//!!! 지금 문제 6개씩 딱딱 알아서 객체배열에 할당하고 싶은데 그게 안되고 자꾸 중복으로만 들어감 > 문제 해결 필요ㅍ ㅠ
 		}
 	}
 	var con = document.getElementById("test");
 	con.style.display = "none";
-	console.log(data_arr);
+	console.log(TodayOfficeList);
 	//document.getElementById("view_text").innerText = data_arr;
 }
 
-function search_carNum(val){
+function search_carNum(val){//key값에 맞는 차량 번호를 리턴 
 	var returned = false;
 	for(var i=0;i<car_obj_arr.length;i++){
 		if(val == car_obj_arr[i].key){
 			returned = true;
 			return car_obj_arr[i].val;
 		}
+		console.log("!");
 	}
 	if(returned == false) return "없는 번호";
 

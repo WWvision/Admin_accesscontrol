@@ -9,9 +9,10 @@ function toggleAddnewList(){
 
 function make_officerList(){
 	var OfficerList_Input_Area = document.getElementById('view_box');
+	
+	//for(var 
 	var OfficerList_div = document.createElement('div');
 	var num = "1";
-	
 	OfficerList_div.setAttribute("id",eval("'officerList"+num+"'")); //officerList1
 	OfficerList_div.setAttribute("class","view_officerList");
 	//OfficerList_div.setAttribute('style',');
