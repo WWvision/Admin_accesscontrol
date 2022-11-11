@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<script src='./OC_logic.js'></script>
+		<script src='./OC_logic1.js'></script>
 		<style>
 			td {
 				height: 40px;
@@ -9,13 +9,63 @@
 				border:0 solid black; 
 				height:30px;
 			}
+			#div_title {
+				margin:10px;
+				font-weight:bold;
+				border-bottom: 1px solid gray;
+				padding-bottom: 1px;
+			}
+			#view_box {
+				width: 800px;
+				height: 700px;
+				overflow-y:auto;
+				background-color: rgba(211,211,211,0.1);
+				border-radius: 10px;
+				border: 1px solid black;
+				padding: 3px;
+				margin: 10px;
+				float: center;
+			}
+			.view_officerList {
+				margin: 15px;
+				background-color: rgba();
+				border: 1px solid gray;
+				padding: 3px;
+				height: 50px;
+			}
+			.div_cells{
+				float:left;
+				width:100px;
+				height:50px;
+				margin: auto;
+				text-align: center;
+			}
+			#div_access_button {
+				float:left;
+				width:140px;
+				height:50px;
+				margin: auto;
+				text-align: center;
+			}
+			
+			.div_input{
+				float:right;
+				text-align:center;
+				width:100px;
+				height:50px;
+				border: none;
+				background-color:transparent;
+				overflow: visible;
+			}
 		</style>
 	</head>
 	
 	<body>
 		<h2>대대간부 출입통제</h2>
 		
-		<div id='test' style="width:600;">
+		<input type='button' value='배차명령서 입력' onclick='toggleAddnewList()'>
+		
+		<div id='test' style="width:600;display:none;" >
 		<input type='button' value="추가하기" onclick="addrow()">				
 		<input type='button' value="삭제하기" onclick="deleterow()">
 		<form id='Operate_Car'>
@@ -47,11 +97,17 @@
 		</form>
 		</div>
 		
-		<div id="view_text">
-		
+		<!-- div id="view_text" -->
+		<div id="view_box">
+			<div id='div_title'>
+				※ 입퇴영 기록
+			</div>
+			
+			<!-- 표에서 입력받고 여기에 div형태로 출력하는 곳 -->
+			
+		</div>
 	</body>
 	
-	<script>
-
-	</script>
+	<script></script>
+	<script src='./OC_logic2.js'></script>
 </html>
