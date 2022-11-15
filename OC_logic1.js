@@ -1,18 +1,18 @@
 var rowcount=1;
 var rowdata_Arr =  [];
 var car_obj_arr = [
-	{ key: '1', val: '(렉스턴, 1685-1)' },
-	{ key: '5561', val: '(스타렉스, 10육5561)' },
-	{ key: '5510', val: '(코란도, 10육5510)' },
-	{ key: '5511', val: '(렉스턴, 10육5511)' },
-	{ key: '19', val: '(닷지, 1685-19)' },
-	{ key: '31', val: '(마이티, 1685-31)' },
-	{ key: '318', val: '(닷지, 1685-318)' },
-	{ key: '36', val: '(더블캡, 1685-36)' },
-	{ key: '33', val: '(더블캡, 1685-33)' },
-	{ key: '251', val: '(마이티, 1685-251)' },
-	{ key: '151', val: '(마이티, 1685-151)' },
-	{ key: '5562', val: '(중형버스, 10육5562)' }
+	{ key: '1', val: '렉스턴, 1685-1' },
+	{ key: '5561', val: '스타렉스, 10육5561' },
+	{ key: '5510', val: '코란도, 10육5510' },
+	{ key: '5511', val: '렉스턴, 10육5511' },
+	{ key: '19', val: '닷지, 1685-19' },
+	{ key: '31', val: '마이티, 1685-31' },
+	{ key: '318', val: '닷지, 1685-318' },
+	{ key: '36', val: '더블캡, 1685-36' },
+	{ key: '33', val: '더블캡, 1685-33' },
+	{ key: '251', val: '마이티, 1685-251' },
+	{ key: '151', val: '마이티, 1685-151' },
+	{ key: '5562', val: '중형버스, 10육5562' }
 ];
 var TodayOfficeList = new Array();
 
@@ -49,79 +49,84 @@ function deleterow(){
 	}
 }
 
+var final_arr = [];
+
 function send_data(){ //https://codingmoonkwa.tistory.com/12 참고해서 구현
 	var table = document.getElementById("Operate_Car");
-	var count;
-	var data_arr=[];
+	console.log("Operate_Car 값은 :" + table);
 	var counting_six = 0;
-	var myObj = {
-		carInfo: '',
-		name: '',
-		destination: '',
-		business: '',
-		type: '',
-		remark: ''
-	};
-	
-	for(count=0;count< table.length; count++){
+	var data_arr=[];
+	var myObj = {};
+	console.log("테이블 요소 길이는 : " + table.length);
+	for(var count=0;count< table.length; count++){
+		console.log(count + "번째 테이블 요소 값은 : " + table.elements[count].value);
 		counting_six++;
-		if(table.elements[count].value == "제출"){
-			break;
-		}
-		switch(counting_six){
-			case 1: 
-				myObj.carInfo = search_carNum(table.elements[count].value);
-				//var carNum_Result = search_carNum(table.elements[count].value);
-				//data_arr.push(carNum_Result);
-				break;
-			case 2: 
-				myObj.destination =  table.elements[count].value;
-				break;
-			case 3:
-				myObj.business = table.elements[count].value;
-				break;
-			case 4:
-				myObj.name = table.elements[count].value;
-				break;
-			case 5:
-				myObj.type = table.elements[count].value;
-				break;
-			case 6: 
-				counting_six = 0;
-				myObj.remark = table.elements[count].value;
-				TodayOfficeList.push(myObj);
-				break;
-			default: 
-				console.log("error!: " + table.elements[count].value);
-				break;
-				
-		//!!! 지금 문제 6개씩 딱딱 알아서 객체배열에 할당하고 싶은데 그게 안되고 자꾸 중복으로만 들어감 > 문제 해결 필요ㅍ ㅠ
+		
+		if(table.elements[count].value == "제출"){//table.elements 값에는 제출이라는 값이 있는데 이것은 제외시키기 위함
+			;
+		} else {
+			if((count+1)%6 == 0){
+				console.log("나머지 0!" + count);
+				data_arr += table.elements[count].value + "~";
+			} else 
+				data_arr += table.elements[count].value + "/";
 		}
 	}
-	var con = document.getElementById("test");
+	var split_arr1 = data_arr.split("~");
+	//console.log("~을 기준으로 쪼개면:  "  + split_arr1);
+	for(var i=0;i<split_arr1.length-1;i++){
+		var split_arr2 = split_arr1[i].split("/");
+		var obj_arr = {};
+		for(var k=0;k<split_arr2.length;k++){
+			//obj_arr.push(split_arr2[k]);
+			switch(k){
+				case 0://carInfo
+					obj_arr.carInfo = search_carNum(split_arr2[k]);
+					break;
+				case 1://destination
+					obj_arr.destination = split_arr2[k];
+					break;
+				case 2://business
+					obj_arr.business = split_arr2[k];
+					break;
+				case 3://name
+					obj_arr.name = split_arr2[k];
+					break;
+				case 4://type
+					obj_arr.type = split_arr2[k];
+					break;
+				case 5://remark
+					obj_arr.remark = split_arr2[k];
+					break;
+				default:
+					console.log("error! :" + split_arr2[k]);
+			}
+		}
+		final_arr.push(obj_arr);
+	}
+	var con = document.getElementById("input_box");
 	con.style.display = "none";
-	console.log(TodayOfficeList);
-	//document.getElementById("view_text").innerText = data_arr;
+	console.log(final_arr);
+	make_officerList();
 }
 
 function search_carNum(val){//key값에 맞는 차량 번호를 리턴 
 	var returned = false;
 	for(var i=0;i<car_obj_arr.length;i++){
 		if(val == car_obj_arr[i].key){
+			console.log("번호값을 찾았습니다");
 			returned = true;
 			return car_obj_arr[i].val;
 		}
-		console.log("!");
 	}
 	if(returned == false) return "없는 번호";
-
 }
 
 function Going(div_id, button_id){
 	document.getElementById(eval("'"+div_id+"'")).style.backgroundColor = "pink";
 	const btnElement = document.getElementById(eval("'"+button_id+"'"));
 	const times = new Date();
-	btnElement.value = "퇴영: " + times.toLocaleTimeString('ko-kr');
+	btnElement.value = "퇴영: " + times.toLocaleTimeString('ko-kr');  
 };
 function Coming(div_id, button_id){
 	document.getElementById(eval("'"+div_id+"'")).style.backgroundColor = "lightgreen";

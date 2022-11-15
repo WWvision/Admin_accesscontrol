@@ -1,5 +1,5 @@
 function toggleAddnewList(){
-	var con = document.getElementById("test");
+	var con = document.getElementById("input_box");
 	if(con.style.display == "none"){
 		con.style.display = "block";
 	} else {
@@ -8,12 +8,14 @@ function toggleAddnewList(){
 }
 
 function make_officerList(){
+	for(var list_index = 0; list_index < final_arr.length ; list_index++){
+	
 	var OfficerList_Input_Area = document.getElementById('view_box');
 	
 	//for(var 
 	var OfficerList_div = document.createElement('div');
-	var num = "1";
-	OfficerList_div.setAttribute("id",eval("'officerList"+num+"'")); //officerList1
+	//var num = "1"; num 대신에 list_index
+	OfficerList_div.setAttribute("id",eval("'officerList"+list_index+"'")); //officerList1
 	OfficerList_div.setAttribute("class","view_officerList");
 	//OfficerList_div.setAttribute('style',');
 	OfficerList_Input_Area.appendChild(OfficerList_div);
@@ -21,12 +23,12 @@ function make_officerList(){
 	var access_button = document.createElement('div');
 	access_button.setAttribute("id","div_access_button");
 	
-		var val1 = 'Coming("officerList' + num + '","coming_' + num + '")';
-		var val2 = 'Going("officerList' + num + '","going_' + num + '")';
+		var val1 = 'Coming("officerList' + list_index + '","coming_' + list_index + '")';
+		var val2 = 'Going("officerList' + list_index + '","going_' + list_index + '")';
 	
 		var button1 = document.createElement('input');
 		button1.setAttribute('type','button');
-		button1.setAttribute('id', eval("'coming_"+num+"'"));//coming_1
+		button1.setAttribute('id', eval("'coming_"+list_index+"'"));//coming_1
 		button1.setAttribute('onclick',eval("'"+ val1 +"'"));//Coming("officerList1","coming_1")
 		button1.setAttribute('value','입영');
 		button1.setAttribute('style','display :inline-block;');
@@ -37,7 +39,7 @@ function make_officerList(){
 		
 		var button2 = document.createElement('input');
 		button2.setAttribute('type','button');
-		button2.setAttribute('id', eval("'going_"+num+"'"));//going_1
+		button2.setAttribute('id', eval("'going_"+list_index+"'"));//going_1
 		button2.setAttribute('onclick',eval("'"+ val2 +"'"));//Going("officerList1","going_1")
 		button2.setAttribute('value','퇴영');
 		button2.setAttribute('style','display: inline-block;');
@@ -52,7 +54,7 @@ function make_officerList(){
 		input1.setAttribute('type','text');
 		input1.setAttribute('class','div_input');
 		input1.setAttribute('size','6');
-		input1.setAttribute('value','김승주');
+		input1.setAttribute('value',final_arr[list_index].name);
 		cell1.appendChild(input1);
 	OfficerList_div.appendChild(cell1);
 	
@@ -63,7 +65,7 @@ function make_officerList(){
 		input2.setAttribute('type','text');
 		input2.setAttribute('class','div_input');
 		input2.setAttribute('size','6');
-		input2.setAttribute('value','선탑');
+		input2.setAttribute('value',final_arr[list_index].type);
 		cell2.appendChild(input2);
 	OfficerList_div.appendChild(cell2);
 	
@@ -74,7 +76,7 @@ function make_officerList(){
 		input3.setAttribute('type','text');
 		input3.setAttribute('class','div_input');
 		input3.setAttribute('size','6');
-		input3.setAttribute('value','렉스턴, 1685-1');
+		input3.setAttribute('value',final_arr[list_index].carInfo);
 		cell3.appendChild(input3);
 	OfficerList_div.appendChild(cell3);
 	
@@ -85,7 +87,7 @@ function make_officerList(){
 		input4.setAttribute('type','text');
 		input4.setAttribute('class','div_input');
 		input4.setAttribute('size','6');
-		input4.setAttribute('value','횡성시내');
+		input4.setAttribute('value',final_arr[list_index].destination);
 		cell4.appendChild(input4);
 	OfficerList_div.appendChild(cell4);
 
@@ -96,7 +98,7 @@ function make_officerList(){
 		input5.setAttribute('type','text');
 		input5.setAttribute('class','div_input');
 		input5.setAttribute('size','6');
-		input5.setAttribute('value','물품구매');
+		input5.setAttribute('value',final_arr[list_index].business);
 		cell5.appendChild(input5);
 	OfficerList_div.appendChild(cell5);
 	
@@ -107,8 +109,9 @@ function make_officerList(){
 		input6.setAttribute('type','text');
 		input6.setAttribute('class','div_input');
 		input6.setAttribute('size','6');
-		input6.setAttribute('value','없음');
+		input6.setAttribute('value',final_arr[list_index].remark);
 		cell6.appendChild(input6);
 	OfficerList_div.appendChild(cell6);
+	}
 }
-make_officerList();
+//make_officerList();
