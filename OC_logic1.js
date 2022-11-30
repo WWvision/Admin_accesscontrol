@@ -14,8 +14,8 @@ var car_obj_arr = [
 	{ key: '151', val: '마이티, 1685-151' },
 	{ key: '5562', val: '중형버스, 10육5562' }
 ];
-var TodayOfficeList = new Array();
-
+var TodayOfficeList = new Array();//히스토리를 위한 배열?
+//var TodayOfficeList_history = new Array();
 //console.log(car_obj_arr);
 
 function addrow(){
@@ -30,12 +30,12 @@ function addrow(){
 	var cell7 = row.insertCell(6);
 	
 	cell1.innerText =  rowcount;
-	cell2.innerHTML ='<input type="text" name="OC_carNum['+rowcount+']"  class="form_data" size="7">';
+	cell2.innerHTML ='<input type="text" name="OC_carInfo['+rowcount+']"  class="form_data" size="7">';
 	cell3.innerHTML ='<input type="text" name="OC_destination['+rowcount+']"  class="form_data" size="7">';
-	cell4.innerHTML ='<input type="text" name="OC_purpose['+rowcount+']"  class="form_data" size="7">';
-	cell5.innerHTML ='<input type="text" name="OC_responsible['+rowcount+']"  class="form_data" size="7">';
+	cell4.innerHTML ='<input type="text" name="OC_business['+rowcount+']"  class="form_data" size="7">';
+	cell5.innerHTML ='<input type="text" name="OC_name['+rowcount+']"  class="form_data" size="7">';
 	cell6.innerHTML ='<input type="text" name="OC_type['+rowcount+']" class="form_data"size="7">';
-	cell7.innerHTML ='<input type="text" name="OC_etc['+rowcount+']" value="없음" class="form_data" size="7">';
+	cell7.innerHTML ='<input type="text" name="OC_remark['+rowcount+']" value="없음" class="form_data" size="7">';
 	rowcount++;
 }
 
@@ -122,16 +122,34 @@ function search_carNum(val){//key값에 맞는 차량 번호를 리턴
 	if(returned == false) return "없는 번호";
 }
 
-function Going(div_id, button_id){
+function Going(div_id, button_id, index){
 	document.getElementById(eval("'"+div_id+"'")).style.backgroundColor = "pink";
 	const btnElement = document.getElementById(eval("'"+button_id+"'"));
-	const times = new Date();
-	btnElement.value = "퇴영: " + times.toLocaleTimeString('ko-kr');  
+	const times = new Date().toLocaleTimeString('ko-kr');
+	btnElement.value = "퇴영: " + times;
+	Save_ListData(index, times, "퇴영");
 };
-function Coming(div_id, button_id){
+function Coming(div_id, button_id, index){
 	document.getElementById(eval("'"+div_id+"'")).style.backgroundColor = "lightgreen";
 	const btnElement = document.getElementById(eval("'"+button_id+"'"));
-	const times = new Date();
-	btnElement.value = "입영: " + times.toLocaleTimeString('ko-kr');
+	const times = new Date().toLocaleTimeString('ko-kr');
+	btnElement.value = "입영: " + times;
+	Save_ListData(index, times, "입영");
 };
 
+function Save_ListData(index, recordedTime, bool_type){
+	console.log("실행!");
+	var ListData = new Object();
+	
+	ListData.bool = bool_type;//입퇴영
+	ListData.time = recordedTime;//기록된 시간
+	ListData.name = document.getElementById(eval("'ofc_name_"+index+"'")).value;
+	ListData.type = document.getElementById(eval("'ofc_type_"+index+"'")).value;
+	ListData.carInfo = document.getElementById(eval("'ofc_carInfo_"+index+"'")).value;
+	ListData.destination = document.getElementById(eval("'ofc_destination_"+index+"'")).value;
+	ListData.business = document.getElementById(eval("'ofc_business_"+index+"'")).value;
+	ListData.remark = document.getElementById(eval("'ofc_remark_"+index+"'")).value;
+
+	TodayOfficeList.push(ListData);
+	console.log(TodayOfficeList);
+}
