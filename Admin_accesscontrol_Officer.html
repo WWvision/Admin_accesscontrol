@@ -68,12 +68,24 @@
 			}
 			#div_access_button {
 				float:left;
-				width:140px;
+				width:130px;
 				height:50px;
 				margin: auto;
 				text-align: center;
 			}
-			
+			#div_close_button {
+				float: right;
+			}
+			.closebutton_style {
+				display:inline-block; 
+				font-size:13px;
+				font-weight: bold;
+				background-color: transparent;
+				border: none;
+			}
+			.closebutton_style:hover{
+				color: red;
+			}
 			.div_input{
 				float:right;
 				text-align:center;
@@ -85,11 +97,17 @@
 			}
 		</style>
 	</head>
-	
+	<script>
+		/*window.addEventListener('beforeunload', (event) => {
+  				// 표준에 따라 기본 동작 방지
+  			event.preventDefault();
+  			// Chrome에서는 returnValue 설정이 필요함
+  			event.returnValue = '진짜 감?';
+		});*/
+	</script>
 	<body>
 	<h2>대대간부 출입통제</h2>
 	<div id="Officer_part_div">
-			
 		
 		<input type='button' value='배차명령서 입력' onclick='toggleAddnewList()'>
 		<input type="button" value="입퇴영기록" onclick="toggleViewHistory()" style="float:right;">
@@ -150,7 +168,5 @@
 	<script src='./OC_logic2.js'></script>
 </html>
 
-<!-- 첫번째 입퇴영 기록 view box 만들기 -->
-<!-- 두번째 배차명령서 입력받으면 데이터 저장하기 -->
-<!-- 입퇴영 현황에서 배차 목록 제거하는 버튼 만들기 -->
+<!-- 세션 초기값 불러오기 > 세션 나타내기에서 div 배경색도 같이 딸려오게끔 만들기-->
 <!-- 기존 데이터가 있으면 기존 폼이 아니라 추가 할 수 있는 폼이 보이게 만들기-->
