@@ -1,0 +1,118 @@
+td {
+    height: 40px;
+}
+#Officer_part_div {
+    width: 790px;
+    height: 1000px;
+    border: 10px;
+}
+
+#div_title {
+    margin:10px;
+    font-weight:bold;
+    border-bottom: 1px solid gray;
+    padding-bottom: 1px;
+}
+#view_box, #history_box {
+    width: 790px;
+    height: 700px;
+    overflow-y:auto;
+    background-color: rgba(211,211,211,0.1);
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 3px;
+    margin: 5px;
+    float: center;
+}
+#input_add_box {
+    width: 790px;
+    height: 110px;
+    overflow-y:auto;
+    background-color: rgba(211,211,211,0.1);
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 3px;
+    margin: 5px;
+    float: center;
+}
+#div_access_button {
+    float:left;
+    width:130px;
+    height:50px;
+    margin: auto;
+    text-align: center;
+}
+#div_close_button {
+    float: right;
+}
+#Add_carList_div {
+    margin: 10px;
+    border: 1px solid gray;
+    padding: 3px;
+    height: 50px;
+}
+.form_data{
+    border:0 solid black; 
+    height:30px;
+}
+.view_officerList {
+    margin: 15px;
+    background-color: rgba();
+    border: 1px solid gray;
+    padding: 3px;
+    height: 50px;
+}
+.view_historyList_coming {
+    margin: 8px;
+    background-color: lightgreen;
+    border: 1px solid gray;
+    padding: 3px;
+    height: 25px;
+}
+.view_historyList_going {
+    margin: 8px;
+    background-color: pink;
+    border: 1px solid gray;
+    padding: 3px;
+    height: 25px;
+}
+.div_cells{
+    float:left;
+    /*width:100px;*/
+    height:50px;
+    margin: auto;
+    text-align: center;
+}
+.div_h_cells {
+    float:left;
+    /*width:70px;*/
+    height:20px;
+    /*padding: 10px;*/
+    text-align: center;
+}
+.closebutton_style {
+    display:inline-block; 
+    font-size:13px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+}
+.closebutton_style:hover {
+    color: red;
+}
+.div_input{
+    text-align:center;
+    width:100px;
+    height:50px;
+    border: none;
+    background-color:transparent;
+    overflow: visible;
+}
+.div_input_addList{
+    text-align:center;
+    width:110px;
+    height:50px;
+    border: none;
+    background-color:transparent;
+    overflow: visible;
+}
