@@ -1,115 +1,15 @@
 <html>
 	<head>
 		<script src='./OC_logic1.js'></script>
-		<style>
-			td {
-				height: 40px;
-			}
-			#Officer_part_div {
-				width: 830px;
-				height: 1000px;
-				border: 10px;
-			}
-			.form_data{
-				border:0 solid black; 
-				height:30px;
-			}
-			#div_title {
-				margin:10px;
-				font-weight:bold;
-				border-bottom: 1px solid gray;
-				padding-bottom: 1px;
-			}
-			#view_box, #history_box {
-				width: 800px;
-				height: 700px;
-				overflow-y:auto;
-				background-color: rgba(211,211,211,0.1);
-				border-radius: 10px;
-				border: 1px solid black;
-				padding: 3px;
-				margin: 10px;
-				float: center;
-			}
-			.view_officerList {
-				margin: 15px;
-				background-color: rgba();
-				border: 1px solid gray;
-				padding: 3px;
-				height: 50px;
-			}
-			.view_historyList_coming {
-				margin: 8px;
-				background-color: lightgreen;
-				border: 1px solid gray;
-				padding: 3px;
-				height: 25px;
-			}
-			.view_historyList_going {
-				margin: 8px;
-				background-color: pink;
-				border: 1px solid gray;
-				padding: 3px;
-				height: 25px;
-			}
-			.div_cells{
-				float:left;
-				width:100px;
-				height:50px;
-				margin: auto;
-				text-align: center;
-			}
-			.div_h_cells {
-				float:left;
-				/*width:70px;*/
-				height:20px;
-				/*padding: 10px;*/
-				text-align: center;
-			}
-			#div_access_button {
-				float:left;
-				width:130px;
-				height:50px;
-				margin: auto;
-				text-align: center;
-			}
-			#div_close_button {
-				float: right;
-			}
-			.closebutton_style {
-				display:inline-block; 
-				font-size:13px;
-				font-weight: bold;
-				background-color: transparent;
-				border: none;
-			}
-			.closebutton_style:hover{
-				color: red;
-			}
-			.div_input{
-				float:right;
-				text-align:center;
-				width:100px;
-				height:50px;
-				border: none;
-				background-color:transparent;
-				overflow: visible;
-			}
-		</style>
+		<link rel="stylesheet" href="./Officer_part1_style.css">
 	</head>
-	<script>
-		/*window.addEventListener('beforeunload', (event) => {
-  				// 표준에 따라 기본 동작 방지
-  			event.preventDefault();
-  			// Chrome에서는 returnValue 설정이 필요함
-  			event.returnValue = '진짜 감?';
-		});*/
-	</script>
+
 	<body>
 	<h2>대대간부 출입통제</h2>
 	<div id="Officer_part_div">
 		
-		<input type='button' value='배차명령서 입력' onclick='toggleAddnewList()'>
+		<input type='button' id="New_carList" abled value='배차명령서 입력' onclick='toggleNewList()'>
+		<input type='button' id="Add_carList" disabled value='배차명령서 추가' onclick='toggleAddList()'>
 		<input type="button" value="입퇴영기록" onclick="toggleViewHistory()" style="float:right;">
 		
 		<div id='input_box' style="width:600;display:none;" >
@@ -144,6 +44,19 @@
 			</form>
 		</div>
 		
+		<div id="input_add_box" >
+			<div id="Add_carList_div" class="Add_carList">
+				<input type="text" id="add_carList_name" class="div_input" size="6" placeholder="선탑자">
+				<input type="text" id="add_carList_type" class="div_input" size="6" placeholder="운행종류">
+				<input type="text" id="add_carList_carInfo" class="div_input" size="6" placeholder="차량번호">
+				<input type="text" id="add_carList_destination" class="div_input" size="8" placeholder="목적지">
+				<input type="text" id="add_carList_business" class="div_input" size="8" placeholder="용무">
+				<input type="text" id="add_carList_remark" class="div_input" size="6" placeholder="비고">
+			</div>
+
+			<input type='button' value="제출" style="float: right; margin-right: 10px;" onclick="Add_data()">
+		</div>
+
 		<!-- div id="view_text" -->
 		<div id="view_box">
 			<div id='div_title'>
@@ -166,6 +79,7 @@
 	</body>
 	
 	<script src='./OC_logic2.js'></script>
+	<script src='./OC_logic3.js'></script>
 </html>
 
 <!-- 세션 초기값 불러오기 > 세션 나타내기에서 div 배경색도 같이 딸려오게끔 만들기-->

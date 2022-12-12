@@ -15,18 +15,7 @@ var car_obj_arr = [//차량 정보 저장 배열
 	{ key: '5562', val: '중형버스, 10육5562' }
 ];
 var TodayOfficeList_arr = new Array();//히스토리를 위한 객체 배열
-/*var TodayOfficeList_arr = [{
-	bool: '여부',
-	time: '입퇴영시간',
-	name: '선탑자',
-	type: '운행종류',
-	carInfo: '차량정보',
-	destination: '목적지',
-	business: '용무',
-	remark: '비고'
-}];*/
 var final_arr = [];//입력폼에 있는 데이터를 가공한 뒤 저장하는 객체 배열
-//var Created_OfficerList_count=0;//입퇴영 현황에 생성된 div 갯수 > 자동저장하기 위함
 
 function addrow(){//입력 폼 행 추가
 	var OCtable = document.getElementById('OC_table');
@@ -61,6 +50,7 @@ function deleterow(){//입력 폼 행 삭제
 
 function send_data(){//입력 폼에 있는 데이터를 모두 불러와 원하는 정보로 가공
 	//https://codingmoonkwa.tistory.com/12 참고해서 구현
+	
 	var table = document.getElementById("Operate_Car");
 	console.log("Operate_Car 값은 :" + table);
 	var counting_six = 0;
@@ -81,12 +71,10 @@ function send_data(){//입력 폼에 있는 데이터를 모두 불러와 원하
 		}
 	}
 	var split_arr1 = data_arr.split("~");
-	//console.log("~을 기준으로 쪼개면:  "  + split_arr1);
 	for(var i=0;i<split_arr1.length-1;i++){
 		var split_arr2 = split_arr1[i].split("/");
 		var obj_arr = {};
 		for(var k=0;k<split_arr2.length;k++){
-			//obj_arr.push(split_arr2[k]);
 			switch(k){
 				case 0://carInfo
 					obj_arr.carInfo = search_carNum(split_arr2[k]);
@@ -118,7 +106,8 @@ function send_data(){//입력 폼에 있는 데이터를 모두 불러와 원하
 	console.log(final_arr);
 	make_officerList(final_arr);//현재는 제출 폼밖에 없으므로 제출을 누르면 자동 실행
 	//이후엔 초기값이 설정되었는지 확인하고 안되어있으면 실행 & 추가하기만 실행되게끔
-	autoSave_InputForm();//배차명령서 데이터 저장
+	//autoSave_InputForm();//배차명령서 데이터 저장
+	Disabled_btn();
 }
 
 function search_carNum(val){//key값에 맞는 차량 번호를 리턴 
@@ -140,7 +129,7 @@ function Going(div_id, button_id, index){//입퇴영 현황의 퇴영 버튼
 	btnElement.value = "퇴영: " + times;
 	Save_ListData(index, times, "퇴영");
 	reloading_History();
-	autoSave_ViewBox();
+	//autoSave_ViewBox();
 };
 function Coming(div_id, button_id, index){//입퇴영 현황의 입영 버튼
 	document.getElementById(eval("'"+div_id+"'")).style.backgroundColor = "lightgreen";
@@ -149,7 +138,7 @@ function Coming(div_id, button_id, index){//입퇴영 현황의 입영 버튼
 	btnElement.value = "입영: " + times;
 	Save_ListData(index, times, "입영");
 	reloading_History();
-	autoSave_ViewBox();
+	//autoSave_ViewBox();
 };
 
 function Save_ListData(index, recordedTime, bool_type){//입영, 퇴영 버튼을 누르면 해당 정보 저장
@@ -168,7 +157,7 @@ function Save_ListData(index, recordedTime, bool_type){//입영, 퇴영 버튼�
 	copyClipboard(ListData);//입력된 객체의 정보를 클립보드에 복사시키는 함수
 	TodayOfficeList_arr.push(ListData);//입퇴영 기록에 추가
 	console.log(TodayOfficeList_arr);
-	autoSave_HistoryList();
+	//autoSave_HistoryList();
 }
 
 function copyClipboard(obj){//입영, 퇴영 버튼을 누르면 자동으로 해당 내용이 복사
@@ -198,7 +187,7 @@ function delete_OfficerDiv(div_id, index){//입퇴영현황 Div 삭제 할 수 �
 		var parent = document.getElementById("view_box");
 		var child = document.getElementById(eval("'"+ div_id +"'"));
 		parent.removeChild(child);
-		autoSave_ViewBox();
+		//autoSave_ViewBox();
 	} else ;
 }
 
@@ -218,6 +207,8 @@ function loadData_InputForm(){//초기값 불러오기 - 배차명령서 입력�
 		//make_officerList(final_arr);
 	}
 }
+
+
 function autoSave_HistoryList(){//자동저장 - 히스토리 데이터
 	localStorage.setItem("HistoryList_data", JSON.stringify(TodayOfficeList_arr));
 	console.log("입퇴영기록 데이터가 저장되었습니다");
