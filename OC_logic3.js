@@ -11,8 +11,10 @@ function toggleAddList(){//배차명령서 추가 토글 버튼
 	var con = document.getElementById("input_add_box");
 	if(con.style.display == "none"){
 		con.style.display = "block";
+		start_AddcarList_div();
 	} else {
 		con.style.display = "none" ;
+		finish_AddcarList_div();
 		}
 }
 
@@ -26,6 +28,11 @@ function toggleViewHistory(){//입퇴영기록 토글 버튼
 		}
 }
 
+function Add_data(){
+	save_AddcarList_div();
+	finish_AddcarList_div();
+	start_AddcarList_div();
+}
 
 //loadData_InputForm();//초기실행 - 배차명령서 데이터
 //loadData_HistoryList();//초기실행 - 입퇴영기록 데이터
@@ -34,7 +41,7 @@ function toggleViewHistory(){//입퇴영기록 토글 버튼
 function Disabled_btn(){//###나중에 데이터 저장이 정상적으로 돌아간다면 입퇴영현황에 기존 리스트가 있으면 비활성화시키게끔
 	var btn_new = document.getElementById('New_carList');
 	var btn_add = document.getElementById('Add_carList');
-	if(final_arr.length == 0){//배차명령서 입력/추가 버튼 활성화
+	if(final_arr.length == 0 || SessionDiv_arr.length == 0){//배차명령서 입력/추가 버튼 활성화
 		//배차명령서에 데이터가 아무것도 없다면
 		btn_new.disabled = false;
 		btn_add.disabled = true;
@@ -44,4 +51,3 @@ function Disabled_btn(){//###나중에 데이터 저장이 정상적으로 돌�
 		btn_add.disabled = false;
 	}
 }
-Disabled_btn();

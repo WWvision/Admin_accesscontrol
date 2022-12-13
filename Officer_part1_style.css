@@ -6,6 +6,11 @@ td {
     height: 1000px;
     border: 10px;
 }
+#TodayDate_val {
+    position: relative; 
+    left: 50px; 
+    display:inline;
+}
 
 #div_title {
     margin:10px;

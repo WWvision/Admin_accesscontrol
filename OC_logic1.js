@@ -14,8 +14,14 @@ var car_obj_arr = [//차량 정보 저장 배열
 	{ key: '151', val: '마이티, 1685-151' },
 	{ key: '5562', val: '중형버스, 10육5562' }
 ];
-var TodayOfficeList_arr = new Array();//히스토리를 위한 객체 배열
-var final_arr = [];//입력폼에 있는 데이터를 가공한 뒤 저장하는 객체 배열
+
+/**  @param object - 배차명령서값이 저장된 객체 배열 */
+var final_arr = new Array();
+/**  @param object - 입퇴영현황 세션값이 저장된 배열 */
+var SessionDiv_arr = new Array();
+/**  @param object - 입퇴영기록값이 저장된 객체 배열 */
+var TodayOfficeList_arr = new Array();
+
 
 function addrow(){//입력 폼 행 추가
 	var OCtable = document.getElementById('OC_table');
@@ -191,69 +197,3 @@ function delete_OfficerDiv(div_id, index){//입퇴영현황 Div 삭제 할 수 �
 	} else ;
 }
 
-
-
-
-//저장해야 되는거 - 배차명령서 입력폼 데이터 /입퇴영현황 세션/히스토리 데이터
-function autoSave_InputForm(){//자동저장 - 배차명령서 입력폼
-	localStorage.setItem("AllocateCar_data", JSON.stringify(final_arr));
-	console.log("배차명령서 데이터가 저장되었습니다");
-}
-function loadData_InputForm(){//초기값 불러오기 - 배차명령서 입력폼
-	console.log("배차명령서 데이터 불러오기");
-	var InputForm_data = localStorage.getItem("AllocateCar_data");
-	if(InputForm_data != null){
-		final_arr = JSON.parse(InputForm_data);
-		//make_officerList(final_arr);
-	}
-}
-
-
-function autoSave_HistoryList(){//자동저장 - 히스토리 데이터
-	localStorage.setItem("HistoryList_data", JSON.stringify(TodayOfficeList_arr));
-	console.log("입퇴영기록 데이터가 저장되었습니다");
-}
-function loadData_HistoryList(){//초기값 불러오기 - 히스토리 데이터  
-	var History_data = localStorage.getItem("HistoryList_data");
-	if(History_data != null){
-		TodayOfficeList_arr = JSON.parse(History_data);
-		console.log("입퇴영기록 데이터 불러오기");
-		console.log(TodayOfficeList_arr);
-		make_historyList();
-	}
-}
-
-var SessionDiv_arr = new Array();//세션 배열
-function autoSave_ViewBox(){//자동저장 - 입퇴영현황 세션
-	var MaxCount = document.getElementById('view_box').childElementCount - 1;
-	if(SessionDiv_arr != 0){
-		SessionDiv_arr = [];
-	}
-	for(var count=0; count < MaxCount;count++){
-		var Session_obj = {};
-		//%%Session_obj.div_color = document.getElementById(eval("'officerList"+count+"'")).value;
-		Session_obj.coming_btn = document.getElementById(eval("'coming_"+count+"'")).value;
-		Session_obj.going_btn = document.getElementById(eval("'going_"+count+"'")).value;
-		Session_obj.name_inp = document.getElementById(eval("'ofc_name_"+count+"'")).value;
-		Session_obj.type_inp = document.getElementById(eval("'ofc_type_"+count+"'")).value;
-		Session_obj.carInfo_inp = document.getElementById(eval("'ofc_carInfo_"+count+"'")).value;
-		Session_obj.destination_inp = document.getElementById(eval("'ofc_destination_"+count+"'")).value;
-		Session_obj.business_inp = document.getElementById(eval("'ofc_business_"+count+"'")).value;
-		Session_obj.remark_inp = document.getElementById(eval("'ofc_remark_"+count+"'")).value;
-		console.log(count + "번째 세션 :");
-		console.log(Session_obj);
-		SessionDiv_arr.push(Session_obj);
-	}
-	localStorage.setItem("SessionDiv_data", JSON.stringify(SessionDiv_arr));
-	console.log("현재 세션 데이터가 저장되었습니다");
-}
-
-function loadData_ViewBox(){//초기값 불러오기 - 입퇴영현황 세션 
-	var Session_data = localStorage.getItem("SessionDiv_data");
-	if(Session_data != null){
-		SessionDiv_arr = JSON.parse(Session_data);
-		console.log("세션 데이터 불러오기");
-		console.log(SessionDiv_arr);
-		make_officerList(SessionDiv_arr);
-	}
-}

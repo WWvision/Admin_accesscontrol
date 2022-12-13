@@ -5,7 +5,9 @@
 	</head>
 
 	<body>
-	<h2>대대간부 출입통제</h2>
+	<h2 id="Page_Title" style="display:inline;">대대간부 출입통제</h2>
+	<input type="date" id="TodayDate_val">
+
 	<div id="Officer_part_div">
 		
 		<input type='button' id="New_carList" abled value='배차명령서 입력' onclick='toggleNewList()'>
@@ -44,17 +46,10 @@
 			</form>
 		</div>
 		
-		<div id="input_add_box" >
-			<div id="Add_carList_div" class="Add_carList">
-				<input type="text" id="add_carList_name" class="div_input" size="6" placeholder="선탑자">
-				<input type="text" id="add_carList_type" class="div_input" size="6" placeholder="운행종류">
-				<input type="text" id="add_carList_carInfo" class="div_input" size="6" placeholder="차량번호">
-				<input type="text" id="add_carList_destination" class="div_input" size="8" placeholder="목적지">
-				<input type="text" id="add_carList_business" class="div_input" size="8" placeholder="용무">
-				<input type="text" id="add_carList_remark" class="div_input" size="6" placeholder="비고">
-			</div>
+		<div id="input_add_box" style="display: none;" >
+			
 
-			<input type='button' value="제출" style="float: right; margin-right: 10px;" onclick="Add_data()">
+			<input type='button' value="제출" style="float: right; margin-right: 10px; position: relative; top:80px;" onclick="Add_data()">
 		</div>
 
 		<!-- div id="view_text" -->
@@ -80,7 +75,9 @@
 	
 	<script src='./OC_logic2.js'></script>
 	<script src='./OC_logic3.js'></script>
+	<script src='./OC_logic_starting.js'></script>
 </html>
 
 <!-- 세션 초기값 불러오기 > 세션 나타내기에서 div 배경색도 같이 딸려오게끔 만들기-->
 <!-- 기존 데이터가 있으면 기존 폼이 아니라 추가 할 수 있는 폼이 보이게 만들기-->
+<!-- 날짜별로 총 10일치 저장할 수 있게하기  저장: 세션데이터/히스토리데이터 -->

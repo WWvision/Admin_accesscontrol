@@ -242,3 +242,81 @@ function reloading_History(){//새로운 기록이 추가되면 입퇴영 기록
 	}
 }
 
+function start_AddcarList_div(){//배차명령서 추가 페이지 생성
+	var add_box_Area = document.getElementById("input_add_box");
+	var add_box_div = document.createElement('div');
+	add_box_div.setAttribute("id", "Add_carList_div");
+	add_box_div.setAttribute("class", "Add_carList");
+	add_box_div.setAttribute('style', 'float: top;');
+
+		var input1 = document.createElement('input');//이름
+		input1.setAttribute('type', 'text');
+		input1.setAttribute('id', 'add_carList_name');
+		input1.setAttribute('class', 'div_input');
+		input1.setAttribute('style', 'width: 100px;');
+		input1.setAttribute('placeholder', '선탑자');
+		add_box_div.appendChild(input1);
+
+		var input2 = document.createElement('input');//운행종류
+		input2.setAttribute('type', 'text');
+		input2.setAttribute('id', 'add_carList_type');
+		input2.setAttribute('class', 'div_input');
+		input2.setAttribute('style', 'width: 80px;');
+		input2.setAttribute('placeholder', '운행종류');
+		add_box_div.appendChild(input2);
+
+		var input3 = document.createElement('input');//차량번호
+		input3.setAttribute('type', 'text');
+		input3.setAttribute('id', 'add_carList_carInfo');
+		input3.setAttribute('class', 'div_input');
+		input3.setAttribute('style', 'width: 80px;');
+		input3.setAttribute('placeholder', '차량번호');
+		add_box_div.appendChild(input3);
+
+		var input4 = document.createElement('input');//목적지
+		input4.setAttribute('type', 'text');
+		input4.setAttribute('id', 'add_carList_destination');
+		input4.setAttribute('class', 'div_input');
+		input4.setAttribute('style', 'width: 160px;');
+		input4.setAttribute('placeholder', '목적지');
+		add_box_div.appendChild(input4);
+
+		var input5 = document.createElement('input');//용무
+		input5.setAttribute('type', 'text');
+		input5.setAttribute('id', 'add_carList_business');
+		input5.setAttribute('class', 'div_input');
+		input5.setAttribute('style', 'width: 160px;');
+		input5.setAttribute('placeholder', '용무');
+		add_box_div.appendChild(input5);
+
+		var input6 = document.createElement('input');//비고
+		input6.setAttribute('type', 'text');
+		input6.setAttribute('id', 'add_carList_remark');
+		input6.setAttribute('class', 'div_input');
+		input6.setAttribute('style', 'width: 140px;');
+		input6.setAttribute('value', '없음');
+		add_box_div.appendChild(input6);
+
+	add_box_Area.appendChild(add_box_div);
+}
+
+function save_AddcarList_div(){//추가 배차명령서 제출시 세션배열에 push
+	//my_Arr = new Array();
+	Session_obj = new Object();
+	Session_obj.name = document.getElementById("add_carList_name").value;
+	Session_obj.type = document.getElementById("add_carList_type").value;
+	var carNum = document.getElementById("add_carList_carInfo").value;
+	Session_obj.carInfo = search_carNum(carNum);
+	Session_obj.destination = document.getElementById("add_carList_destination").value;
+	Session_obj.business = document.getElementById("add_carList_business").value;
+	Session_obj.remark = document.getElementById("add_carList_remark").value;
+
+	final_arr.push(Session_obj);
+	create_officerList(final_arr.length-1);
+}
+
+function finish_AddcarList_div(){//배차명령서 삭제
+	var parent = document.getElementById("input_add_box");
+	var child = document.getElementById("Add_carList_div");
+	parent.removeChild(child);
+}
