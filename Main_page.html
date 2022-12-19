@@ -1,0 +1,160 @@
+<html>
+    <head>
+        <script src="./Main_logic1.js"></script>
+        <link rel="stylesheet" type="text/css" href="./Main_style.css">
+    </head>
+
+    <body>
+        <h2 style="display:inline">위조근무 도우미</h2>
+        날짜 : <input type="date" id="TodayDate">
+        <div id="AAC_main_div">
+            <div id="Notion_part_div" class="DivList_style">
+                <div id="Notion_closed_div" class="closed_div">
+                    <input type="button" class="toggle_btn" value="인수인계 사항" onclick="toggleNotion()">
+                </div>
+                <div id="Notion_opened_div" class="opened_div" style="display:none;"></div>
+            </div>
+
+            <div id="Visitor_part_div" class="DivList_style">
+                <div id="Visitor_closed_div" class="closed_div">
+                    <input type="button" class="Linked_btn" value="민간인 출입통제" onclick="location.href='./Visitor_part/Visitor_part.html'">
+                </div>
+            </div>
+
+            <div id="Office_part1_div" class="DivList_style">
+                <div id="OfficeP1_closed_div" class="closed_div">
+                    <input type="button" class="Linked_btn" value="대대간부 출입통제" onclick="location.href='/Office_part1/Office_part1.html'">
+                </div>
+            </div>
+
+            <div id="Office_part2_part_div" class="DivList_style">
+                <div id="OfficeP2_closed_div" class="closed_div">
+                    <input type="button" class="Linked_btn" value="대대간부 출퇴근" onclick="location.href='/Office_part2/Office_part2.html'">
+                </div>
+            </div>
+
+            <div id="Office_part3_part_div" class="DivList_style">
+                <div id="OfficeP3_closed_div" class="closed_div">
+                    <input type="button" class="toggle_btn" value="타부대 출입통제" onclick="toggleOfficeP3()">
+                </div>
+                <div id="OfficeP3_opened_div" class="opened_div" style="display:none;"></div>
+            </div>
+
+            <div id="Report_part_div" class="DivList_style">
+                <div id="Report_closed_div" class="closed_div">
+                    <input type="button" class="toggle_btn" value="위병일지 작성" onclick="toggleReport()">
+                </div>
+                <div id="Report_opened_div" class="opened_div" style="display:none; height: 480px;">
+                    <textarea id="Report1" readonly="" style="display:none;">
+                        1. 근무 열심히 서야함
+                        2. 근무 성실하게 임해야됨
+                        3. 복장 착용상태 확인 
+                        4. 문제가 일어났을때에는 신속하게 보고</textarea>
+
+                    <textarea id="Report2" readonly="" style="display:none;">
+                        -실시간 상황파악해야함
+                        -사고예방 활동 및 취약시간대 순찰활동 강화
+                        -안쓰는곳은 잘 잠그기</textarea>
+
+                    <textarea id="Report3_1" readonly="" style="display:none;">CCTV(위병소)</textarea>
+                    <textarea id="Report3_2" readonly="" style="display:none;">CCTV(탄약고)</textarea>
+                    <textarea id="Report3_3" readonly="" style="display:none;">CCTV(출입문)</textarea>
+                    <textarea id="Report3_4" readonly="" style="display:none;">CCTV(5조벨)</textarea>
+
+                    <div id="Report_div1" style="width:700px; padding-left:15px; padding-bottom:12px; padding-top:15px">
+                        <input type="button" class="textbtn_div" value="지휘관 지시사항" onclick="copy_Report1()">
+                    </div>
+
+                    <div id="Report_div2" style="width:700px; padding-left:15px;">
+                        <input type="button" class="textbtn_div" value="위병사관 근무계획" onclick="copy_Report2()">
+                    </div>
+
+                    <h2 style="font-size: 15px; font-weight:bold; padding-left:15px;">- CCTV/경보시설
+                        <table style="width: 700px;">
+                            <thead style="width: 700px;">
+                                <tr id="table_style1">
+                                    <th>구분</th>
+                                    <th>수량</th>
+                                    <th>이상유무</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td id="table_style2">
+                                        <input type="button" class="textbox_div" value="CCTV(위병소)" onclick="copy_Report3_1()">
+                                    </td>
+                                    <td id="table_style2">
+                                        <nobr>1</nobr>
+                                    </td>
+                                    <td id="table_style2">
+                                        <nobr>이상무</nobr>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="table_style2">
+                                        <input type="button" class="textbox_div" value="CCTV(탄약고)" onclick="copy_Report3_2()">
+                                    </td>
+                                    <td id="table_style2">
+                                        <nobr>1</nobr>
+                                    </td>
+                                    <td id="table_style2">
+                                        <nobr>이상무</nobr>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="table_style2">
+                                        <input type="button" class="textbox_div" value="CCTV(출입문)" onclick="copy_Report3_3()">
+                                    </td>
+                                    <td id="table_style2">
+                                        <nobr>1</nobr>
+                                    </td>
+                                    <td id="table_style2">
+                                        <nobr>이상무</nobr>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="table_style2">
+                                        <input type="button" class="textbox_div" value="CCTV(5조벨)" onclick="copy_Report3_4()">
+                                    </td>
+                                    <td id="table_style2">
+                                        <nobr>1</nobr>
+                                    </td>
+                                    <td id="table_style2">
+                                        <nobr>이상무</nobr>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </h2>
+
+                    <div id="Report_div3" style="width: 700px; padding-left: 15px; padding-bottom: 12px;">
+                        <input type="button" class="textbtn_div" value="- 가지고 들어온 물품" onclick="copy_Report4()">
+                    </div>
+
+                    <div id="Report_div4" style="width: 700px; padding-left: 15px; padding-bottom: 12px;">
+                        <input type="button" class="textbtn_div" value="- 특이사항" onclick="copy_Report4()">
+                    </div>
+
+                    <h2 style="font-size: 15px; font-weight:bold; padding-left: 15px; margin-bottom: 0px;">- 결제권자</h2>
+                    <h3 style="font-size: 15px; padding-left: 30px; margin-top: 0px;">
+                        1차: 상병 권가웅 21-71234567<br>
+                        2차: 병장 김승주 21-78764321
+                    </h3>
+                </div>
+            </div>
+
+            <div id="Etc_part_div" class="DivList_style">
+                <div id="Etc_closed_div" class="closed_div">
+                    <input type="button" class="toggle_btn" value="기타사항" onclick="toggleEtc()">
+                </div>
+                <div id="Etc_opened_div" class="opened_div" style="display:none;">
+                    <h2 style="font-size: 15px; padding-left: 30px; margin-top: 0px;">
+                        - 비밀번호
+                        <textarea id="textarea_val" style="width: 750px; float:right; height:300px; resize:none;"></textarea>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
