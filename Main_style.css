@@ -10,6 +10,8 @@
     width: 790px;
     height: 600px;
     border: 1px solid black;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     border-top: hidden;
     padding: 7px;
 }
