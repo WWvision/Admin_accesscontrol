@@ -22,17 +22,18 @@ var SessionDiv_arr = new Array();
 /**  @param object - 입퇴영기록값이 저장된 객체 배열 */
 var TodayOfficeList_arr = new Array();
 
+var isSendData = false;//데이터 저장기능이 추가되기 전까지만 쓰이는 배차 명령서 제출&추가 토글 기능
 
 function addrow(){//입력 폼 행 추가
-	var OCtable = document.getElementById('OC_table');
-	var row = OCtable.insertRow(OCtable.rows.length);
-	var cell1 = row.insertCell(0);
-	var cell2 = row.insertCell(1);
-	var cell3 = row.insertCell(2);
-	var cell4 = row.insertCell(3);
-	var cell5 = row.insertCell(4);
-	var cell6 = row.insertCell(5);
-	var cell7 = row.insertCell(6);
+	let OCtable = document.getElementById('OC_table');
+	let row = OCtable.insertRow(OCtable.rows.length);
+	let cell1 = row.insertCell(0);
+	let cell2 = row.insertCell(1);
+	let cell3 = row.insertCell(2);
+	let cell4 = row.insertCell(3);
+	let cell5 = row.insertCell(4);
+	let cell6 = row.insertCell(5);
+	let cell7 = row.insertCell(6);
 	
 	cell1.innerText =  rowcount;
 	cell2.innerHTML ='<input type="text" name="OC_carInfo['+rowcount+']"  class="form_data" size="7">';
@@ -45,7 +46,7 @@ function addrow(){//입력 폼 행 추가
 }
 
 function deleterow(){//입력 폼 행 삭제
-	var OCtable = document.getElementById('OC_table');
+	let OCtable = document.getElementById('OC_table');
 	if(rowcount==1){
 		alert("삭제할 항목이 없습니다!");
 	} else {
@@ -57,12 +58,12 @@ function deleterow(){//입력 폼 행 삭제
 function send_data(){//입력 폼에 있는 데이터를 모두 불러와 원하는 정보로 가공
 	//https://codingmoonkwa.tistory.com/12 참고해서 구현
 	
-	var table = document.getElementById("Operate_Car");
+	let table = document.getElementById("Operate_Car");
 	console.log("Operate_Car 값은 :" + table);
-	var counting_six = 0;
-	var data_arr=[];
+	let counting_six = 0;
+	let data_arr=[];
 	console.log("테이블 요소 길이는 : " + table.length);
-	for(var count=0;count< table.length; count++){
+	for(let count=0;count< table.length; count++){
 		console.log(count + "번째 테이블 요소 값은 : " + table.elements[count].value);
 		counting_six++;
 		
@@ -77,10 +78,10 @@ function send_data(){//입력 폼에 있는 데이터를 모두 불러와 원하
 		}
 	}
 	var split_arr1 = data_arr.split("~");
-	for(var i=0;i<split_arr1.length-1;i++){
-		var split_arr2 = split_arr1[i].split("/");
-		var obj_arr = {};
-		for(var k=0;k<split_arr2.length;k++){
+	for(let i=0;i<split_arr1.length-1;i++){
+		let split_arr2 = split_arr1[i].split("/");
+		let obj_arr = {};
+		for(let k=0;k<split_arr2.length;k++){
 			switch(k){
 				case 0://carInfo
 					obj_arr.carInfo = search_carNum(split_arr2[k]);
@@ -106,19 +107,20 @@ function send_data(){//입력 폼에 있는 데이터를 모두 불러와 원하
 		}
 		final_arr.push(obj_arr);
 	}
-	var con = document.getElementById("input_box");
+	let con = document.getElementById("input_box");
 	con.style.display = "none";
 	console.log("final_arr 출력");
 	console.log(final_arr);
 	make_officerList(final_arr);//현재는 제출 폼밖에 없으므로 제출을 누르면 자동 실행
 	//이후엔 초기값이 설정되었는지 확인하고 안되어있으면 실행 & 추가하기만 실행되게끔
 	//autoSave_InputForm();//배차명령서 데이터 저장
+	isSendData = true;
 	Disabled_btn();
 }
 
 function search_carNum(val){//key값에 맞는 차량 번호를 리턴 
 	var returned = false;
-	for(var i=0;i<car_obj_arr.length;i++){
+	for(let i=0;i<car_obj_arr.length;i++){
 		if(val == car_obj_arr[i].key){
 			console.log("번호값을 찾았습니다");
 			returned = true;
@@ -149,7 +151,7 @@ function Coming(div_id, button_id, index){//입퇴영 현황의 입영 버튼
 
 function Save_ListData(index, recordedTime, bool_type){//입영, 퇴영 버튼을 누르면 해당 정보 저장
 	console.log("실행!");
-	var ListData = new Object();
+	let ListData = new Object();
 	
 	ListData.bool = bool_type;//입퇴영
 	ListData.time = recordedTime;//기록된 시간
@@ -168,7 +170,7 @@ function Save_ListData(index, recordedTime, bool_type){//입영, 퇴영 버튼�
 
 function copyClipboard(obj){//입영, 퇴영 버튼을 누르면 자동으로 해당 내용이 복사
 	//https://thinkforthink.tistory.com/341 참고
-	var text;
+	let text;
 	if(obj.bool == "입영"){// 선탑(차량, 차량번호)/통합막사/복귀
 		text =  obj.type + "(" + obj.carInfo + ")/통합막사/복귀";
 	} else if(obj.bool == "퇴영"){// 선탑(차량, 차량번호)/목적지/용무
@@ -183,15 +185,15 @@ function copyClipboard(obj){//입영, 퇴영 버튼을 누르면 자동으로 �
 }
 
 function delete_OfficerDiv(div_id, index){//입퇴영현황 Div 삭제 할 수 있는 함수
-	var del_name = document.getElementById(eval("'ofc_name_"+index+"'")).value;
-	var del_type = document.getElementById(eval("'ofc_type_"+index+"'")).value;
-	var del_carInfo = document.getElementById(eval("'ofc_carInfo_"+index+"'")).value;
-	var del_destination = document.getElementById(eval("'ofc_destination_"+index+"'")).value;
-	var del_business = document.getElementById(eval("'ofc_business_"+index+"'")).value;
-	var msg = del_name + "/" + del_type + "(" + del_carInfo + ")/" + del_destination + "/" + del_business;
+	let del_name = document.getElementById(eval("'ofc_name_"+index+"'")).value;
+	let del_type = document.getElementById(eval("'ofc_type_"+index+"'")).value;
+	let del_carInfo = document.getElementById(eval("'ofc_carInfo_"+index+"'")).value;
+	let del_destination = document.getElementById(eval("'ofc_destination_"+index+"'")).value;
+	let del_business = document.getElementById(eval("'ofc_business_"+index+"'")).value;
+	let msg = del_name + "/" + del_type + "(" + del_carInfo + ")/" + del_destination + "/" + del_business;
 	if(confirm(msg + "를 정말 삭제하시겠습니까?")){
-		var parent = document.getElementById("view_box");
-		var child = document.getElementById(eval("'"+ div_id +"'"));
+		let parent = document.getElementById("view_box");
+		let child = document.getElementById(eval("'"+ div_id +"'"));
 		parent.removeChild(child);
 		//autoSave_ViewBox();
 	} else ;

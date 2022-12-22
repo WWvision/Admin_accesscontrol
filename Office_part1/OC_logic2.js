@@ -1,8 +1,8 @@
 var History_Count = 0;//기록에 추가된 div 카운트
 
 function create_officerList(index){//입퇴영현황 div 생성 함수
-	var OfficerList_Input_Area = document.getElementById('view_box');
-	var OfficerList_div = document.createElement('div');
+	let OfficerList_Input_Area = document.getElementById('view_box');
+	let OfficerList_div = document.createElement('div');
 	//var num = "1"; num 대신에 list_index
 	OfficerList_div.setAttribute("id",eval("'officerList"+index+"'")); //officerList1
 	OfficerList_div.setAttribute("class","view_officerList");
@@ -11,13 +11,13 @@ function create_officerList(index){//입퇴영현황 div 생성 함수
 	//OfficerList_div.setAttribute('style',');
 	OfficerList_Input_Area.appendChild(OfficerList_div);
 		
-	var access_button = document.createElement('span');
+	let access_button = document.createElement('span');
 	access_button.setAttribute("id","div_access_button");
 
-		var val1 = 'Coming("officerList' + index + '","coming_' + index + '", '+ index +')';
-		var val2 = 'Going("officerList' + index + '","going_' + index + '", '+ index +')';
+		let val1 = 'Coming("officerList' + index + '","coming_' + index + '", '+ index +')';
+		let val2 = 'Going("officerList' + index + '","going_' + index + '", '+ index +')';
 	
-		var button1 = document.createElement('input');
+		let button1 = document.createElement('input');
 		button1.setAttribute('type','button');
 		button1.setAttribute('id', eval("'coming_"+index+"'"));//coming_1
 		button1.setAttribute('onclick',eval("'"+ val1 +"'"));//Coming("officerList1","coming_1", 1)
@@ -30,10 +30,10 @@ function create_officerList(index){//입퇴영현황 div 생성 함수
 		button1.setAttribute('style','display :inline-block;');
 		access_button.appendChild(button1);
 	
-		var enter = document.createElement('br');
+		let enter = document.createElement('br');
 		access_button.appendChild(enter);
 		
-		var button2 = document.createElement('input');
+		let button2 = document.createElement('input');
 		button2.setAttribute('type','button');
 		button2.setAttribute('id', eval("'going_"+index+"'"));//going_1
 		button2.setAttribute('onclick',eval("'"+ val2 +"'"));//Going("officerList1","going_1", 1)
@@ -48,10 +48,10 @@ function create_officerList(index){//입퇴영현황 div 생성 함수
 	
 	OfficerList_div.appendChild(access_button);
 
-	var close_button = document.createElement('div');
+	let close_button = document.createElement('div');
 	close_button.setAttribute('id', 'div_close_button');
-		var button3 = document.createElement('input');
-		var val3 = 'delete_OfficerDiv("officerList' + index + '", '+ index +')';
+		let button3 = document.createElement('input');
+		let val3 = 'delete_OfficerDiv("officerList' + index + '", '+ index +')';
 		button3.setAttribute('type', 'button');
 		button3.setAttribute('class', 'closebutton_style');
 		button3.setAttribute('id', eval("'closing_"+index+"'"));//closing_1
@@ -60,10 +60,10 @@ function create_officerList(index){//입퇴영현황 div 생성 함수
 		close_button.appendChild(button3);
 	OfficerList_div.appendChild(close_button);
 
-	var cell1 =  document.createElement('span');//이름
+	let cell1 =  document.createElement('span');//이름
 	cell1.setAttribute('class','div_cells');
 	//cell1.setAttribute('style','width: 70px'); 
-		var input1 = document.createElement('input');
+		let input1 = document.createElement('input');
 		input1.setAttribute('type','text');
 		input1.setAttribute('id', eval("'ofc_name_"+index+"'"));//ofc_name_인덱스
 		input1.setAttribute('class','div_input');
@@ -73,10 +73,10 @@ function create_officerList(index){//입퇴영현황 div 생성 함수
 	OfficerList_div.appendChild(cell1);
 	
 	
-	var cell2 =  document.createElement('span');//운행종류
+	let cell2 =  document.createElement('span');//운행종류
 	cell2.setAttribute('class','div_cells');
 	//cell2.setAttribute('style','width: 70px');
-		var input2 = document.createElement('input');
+		let input2 = document.createElement('input');
 		input2.setAttribute('type','text');
 		input2.setAttribute('id', eval("'ofc_type_"+index+"'"));//ofc_type_인덱스
 		input2.setAttribute('class','div_input');
@@ -86,10 +86,10 @@ function create_officerList(index){//입퇴영현황 div 생성 함수
 	OfficerList_div.appendChild(cell2);
 		
 
-	var cell3 =  document.createElement('span');//차량정보
+	let cell3 =  document.createElement('span');//차량정보
 	cell3.setAttribute('class','div_cells');
 	//cell3.setAttribute('style','width: 160px');
-		var input3 = document.createElement('input');
+		let input3 = document.createElement('input');
 		input3.setAttribute('type','text');
 		input3.setAttribute('id', eval("'ofc_carInfo_"+index+"'"));//ofc_carInfo_인덱스
 		input3.setAttribute('class','div_input');
@@ -99,10 +99,10 @@ function create_officerList(index){//입퇴영현황 div 생성 함수
 	OfficerList_div.appendChild(cell3);
 	
 	
-	var cell4 =  document.createElement('span');//목적지
+	let cell4 =  document.createElement('span');//목적지
 	cell4.setAttribute('class','div_cells');
 	//cell4.setAttribute('style','width: 120px');
-		var input4 = document.createElement('input');
+		let input4 = document.createElement('input');
 		input4.setAttribute('type','text');
 		input4.setAttribute('id', eval("'ofc_destination_"+index+"'"));//ofc_destination_인덱스
 		input4.setAttribute('class','div_input');
@@ -112,10 +112,10 @@ function create_officerList(index){//입퇴영현황 div 생성 함수
 	OfficerList_div.appendChild(cell4);
 
 
-	var cell5 =  document.createElement('span');//용무
+	let cell5 =  document.createElement('span');//용무
 	cell5.setAttribute('class','div_cells');
 	//cell5.setAttribute('style','width: 120px');
-		var input5 = document.createElement('input');
+		let input5 = document.createElement('input');
 		input5.setAttribute('type','text');
 		input5.setAttribute('id', eval("'ofc_business_"+index+"'"));//ofc_business_인덱스
 		input5.setAttribute('class','div_input');
@@ -125,9 +125,9 @@ function create_officerList(index){//입퇴영현황 div 생성 함수
 	OfficerList_div.appendChild(cell5);
 	
 	
-	var cell6 =  document.createElement('span');//비고
+	let cell6 =  document.createElement('span');//비고
 	cell6.setAttribute('class','div_cells');
-		var input6 = document.createElement('input');
+		let input6 = document.createElement('input');
 		input6.setAttribute('type','text');
 		input6.setAttribute('id', eval("'ofc_remark_"+index+"'"));//ofc_remark_인덱스
 		input6.setAttribute('class','div_input');
@@ -138,14 +138,14 @@ function create_officerList(index){//입퇴영현황 div 생성 함수
 }
 
 function make_officerList(myArr){//초기 입퇴영현황 div 생성 함수
-	for(var list_index = 0; list_index < myArr.length ; list_index++){
+	for(let list_index = 0; list_index < myArr.length ; list_index++){
 		create_officerList(list_index);
 	}
 }
 
 function create_historyList(index){//입퇴영기록 div 생성 함수 
-	var HistoryList_Area = document.getElementById('history_box');
-	var HistoryList_div = document.createElement('div');
+	let HistoryList_Area = document.getElementById('history_box');
+	let HistoryList_div = document.createElement('div');
 	HistoryList_div.setAttribute("id",eval("'historyList"+index+"'")); //historyList1
 	console.log("히스토리div 생성중");
 	//HistoryList_div.setAttribute("class", "view_historyList");
@@ -155,73 +155,73 @@ function create_historyList(index){//입퇴영기록 div 생성 함수
 		HistoryList_div.setAttribute("class", "view_historyList_going");
 	}
 	HistoryList_Area.appendChild(HistoryList_div);
-	var h_cell1 = document.createElement('div');//입퇴영
+	let h_cell1 = document.createElement('div');//입퇴영
 	h_cell1.setAttribute('class','div_h_cells');
 	h_cell1.setAttribute('style','width: 40px'); 
-		var text1 = document.createElement('b');
-		var text1_val = document.createTextNode(TodayOfficeList_arr[index].bool);
+		let text1 = document.createElement('b');
+		let text1_val = document.createTextNode(TodayOfficeList_arr[index].bool);
 		text1.appendChild(text1_val);
 		h_cell1.appendChild(text1);
 	HistoryList_div.appendChild(h_cell1);
 
-	var h_cell2 = document.createElement('div');//기록된 시간
+	let h_cell2 = document.createElement('div');//기록된 시간
 	h_cell2.setAttribute('class','div_h_cells');
 	h_cell2.setAttribute('style','width: 100px');
-		var text2 = document.createElement('b');
-		var text2_val = document.createTextNode(TodayOfficeList_arr[index].time);
+		let text2 = document.createElement('b');
+		let text2_val = document.createTextNode(TodayOfficeList_arr[index].time);
 		text2.appendChild(text2_val);
 		h_cell2.appendChild(text2);
 	HistoryList_div.appendChild(h_cell2);
 
-	var h_cell3 = document.createElement('div');//선탑자
+	let h_cell3 = document.createElement('div');//선탑자
 	h_cell3.setAttribute('class','div_h_cells');
 	h_cell3.setAttribute('style','width: 70px');
-		var text3 = document.createElement('b'); 
-		var text3_val = document.createTextNode(TodayOfficeList_arr[index].name);
+		let text3 = document.createElement('b'); 
+		let text3_val = document.createTextNode(TodayOfficeList_arr[index].name);
 		text3.appendChild(text3_val);
 		h_cell3.appendChild(text3);
 	HistoryList_div.appendChild(h_cell3);
 
-	var h_cell4 = document.createElement('div');//운행종류
+	let h_cell4 = document.createElement('div');//운행종류
 	h_cell4.setAttribute('class','div_h_cells');
 	h_cell4.setAttribute('style','width: 70px');
-		var text4 = document.createElement('b');
-		var text4_val = document.createTextNode(TodayOfficeList_arr[index].type);
+		let text4 = document.createElement('b');
+		let text4_val = document.createTextNode(TodayOfficeList_arr[index].type);
 		text4.appendChild(text4_val);
 		h_cell4.appendChild(text4);
 	HistoryList_div.appendChild(h_cell4);
 
-	var h_cell5 = document.createElement('div');//차량정보
+	let h_cell5 = document.createElement('div');//차량정보
 	h_cell5.setAttribute('class','div_h_cells');
 	h_cell5.setAttribute('style','width: 160px');
-		var text5 = document.createElement('b');
-		var text5_val = document.createTextNode(TodayOfficeList_arr[index].carInfo);
+		let text5 = document.createElement('b');
+		let text5_val = document.createTextNode(TodayOfficeList_arr[index].carInfo);
 		text5.appendChild(text5_val);
 		h_cell5.appendChild(text5);
 	HistoryList_div.appendChild(h_cell5);
 
-	var h_cell6 = document.createElement('div');//목적지
+	let h_cell6 = document.createElement('div');//목적지
 	h_cell6.setAttribute('class','div_h_cells');
 	h_cell6.setAttribute('style','width: 120px');
-		var text6 = document.createElement('b');
-		var text6_val = document.createTextNode(TodayOfficeList_arr[index].destination);
+		let text6 = document.createElement('b');
+		let text6_val = document.createTextNode(TodayOfficeList_arr[index].destination);
 		text6.appendChild(text6_val);
 		h_cell6.appendChild(text6);
 	HistoryList_div.appendChild(h_cell6);
 
-	var h_cell7 = document.createElement('div');//용무
+	let h_cell7 = document.createElement('div');//용무
 	h_cell7.setAttribute('class','div_h_cells');
 	h_cell7.setAttribute('style','width: 120px');
-		var text7 = document.createElement('b');
-		var text7_val = document.createTextNode(TodayOfficeList_arr[index].business);
+		let text7 = document.createElement('b');
+		let text7_val = document.createTextNode(TodayOfficeList_arr[index].business);
 		text7.appendChild(text7_val);
 		h_cell7.appendChild(text7);
 	HistoryList_div.appendChild(h_cell7);
 
-	var h_cell8 = document.createElement('div');//비고
+	let h_cell8 = document.createElement('div');//비고
 	h_cell8.setAttribute('class','div_h_cells');
-		var text8 = document.createElement('b');
-		var text8_val = document.createTextNode(TodayOfficeList_arr[index].remark);
+		let text8 = document.createElement('b');
+		let text8_val = document.createTextNode(TodayOfficeList_arr[index].remark);
 		text8.appendChild(text8_val);
 		h_cell8.appendChild(text8);
 	HistoryList_div.appendChild(h_cell8);
@@ -236,20 +236,20 @@ function make_historyList(){//초기 입퇴영기록 View Box 생성 함수
 
 function reloading_History(){//새로운 기록이 추가되면 입퇴영 기록에 새로운 div를 생성하는 함수
 	//if(History_Count <= TodayOfficeList_arr.length + 1){}
-	var div_status = document.getElementById("history_box");
+	let div_status = document.getElementById("history_box");
 	if(div_status.style.display == "block"){
 		make_historyList();
 	}
 }
 
 function start_AddcarList_div(){//배차명령서 추가 페이지 생성
-	var add_box_Area = document.getElementById("input_add_box");
-	var add_box_div = document.createElement('div');
+	let add_box_Area = document.getElementById("input_add_box");
+	let add_box_div = document.createElement('div');
 	add_box_div.setAttribute("id", "Add_carList_div");
 	add_box_div.setAttribute("class", "Add_carList");
 	add_box_div.setAttribute('style', 'float: top;');
 
-		var input1 = document.createElement('input');//이름
+		let input1 = document.createElement('input');//이름
 		input1.setAttribute('type', 'text');
 		input1.setAttribute('id', 'add_carList_name');
 		input1.setAttribute('class', 'div_input');
@@ -257,7 +257,7 @@ function start_AddcarList_div(){//배차명령서 추가 페이지 생성
 		input1.setAttribute('placeholder', '선탑자');
 		add_box_div.appendChild(input1);
 
-		var input2 = document.createElement('input');//운행종류
+		let input2 = document.createElement('input');//운행종류
 		input2.setAttribute('type', 'text');
 		input2.setAttribute('id', 'add_carList_type');
 		input2.setAttribute('class', 'div_input');
@@ -265,7 +265,7 @@ function start_AddcarList_div(){//배차명령서 추가 페이지 생성
 		input2.setAttribute('placeholder', '운행종류');
 		add_box_div.appendChild(input2);
 
-		var input3 = document.createElement('input');//차량번호
+		let input3 = document.createElement('input');//차량번호
 		input3.setAttribute('type', 'text');
 		input3.setAttribute('id', 'add_carList_carInfo');
 		input3.setAttribute('class', 'div_input');
@@ -273,7 +273,7 @@ function start_AddcarList_div(){//배차명령서 추가 페이지 생성
 		input3.setAttribute('placeholder', '차량번호');
 		add_box_div.appendChild(input3);
 
-		var input4 = document.createElement('input');//목적지
+		let input4 = document.createElement('input');//목적지
 		input4.setAttribute('type', 'text');
 		input4.setAttribute('id', 'add_carList_destination');
 		input4.setAttribute('class', 'div_input');
@@ -281,7 +281,7 @@ function start_AddcarList_div(){//배차명령서 추가 페이지 생성
 		input4.setAttribute('placeholder', '목적지');
 		add_box_div.appendChild(input4);
 
-		var input5 = document.createElement('input');//용무
+		let input5 = document.createElement('input');//용무
 		input5.setAttribute('type', 'text');
 		input5.setAttribute('id', 'add_carList_business');
 		input5.setAttribute('class', 'div_input');
@@ -289,7 +289,7 @@ function start_AddcarList_div(){//배차명령서 추가 페이지 생성
 		input5.setAttribute('placeholder', '용무');
 		add_box_div.appendChild(input5);
 
-		var input6 = document.createElement('input');//비고
+		let input6 = document.createElement('input');//비고
 		input6.setAttribute('type', 'text');
 		input6.setAttribute('id', 'add_carList_remark');
 		input6.setAttribute('class', 'div_input');
@@ -305,7 +305,7 @@ function save_AddcarList_div(){//추가 배차명령서 제출시 세션배열�
 	Session_obj = new Object();
 	Session_obj.name = document.getElementById("add_carList_name").value;
 	Session_obj.type = document.getElementById("add_carList_type").value;
-	var carNum = document.getElementById("add_carList_carInfo").value;
+	let carNum = document.getElementById("add_carList_carInfo").value;
 	Session_obj.carInfo = search_carNum(carNum);
 	Session_obj.destination = document.getElementById("add_carList_destination").value;
 	Session_obj.business = document.getElementById("add_carList_business").value;
@@ -316,7 +316,7 @@ function save_AddcarList_div(){//추가 배차명령서 제출시 세션배열�
 }
 
 function finish_AddcarList_div(){//배차명령서 삭제
-	var parent = document.getElementById("input_add_box");
-	var child = document.getElementById("Add_carList_div");
+	let parent = document.getElementById("input_add_box");
+	let child = document.getElementById("Add_carList_div");
 	parent.removeChild(child);
 }
