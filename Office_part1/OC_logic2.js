@@ -293,8 +293,8 @@ function start_AddcarList_div(){//배차명령서 추가 페이지 생성
 		input6.setAttribute('type', 'text');
 		input6.setAttribute('id', 'add_carList_remark');
 		input6.setAttribute('class', 'div_input');
-		input6.setAttribute('style', 'width: 140px;');
-		input6.setAttribute('value', '없음');
+		input6.setAttribute('style', 'width: 110px;');
+		input6.setAttribute('placeholder', '비고');
 		add_box_div.appendChild(input6);
 
 	add_box_Area.appendChild(add_box_div);

@@ -10,14 +10,14 @@
 
 	<div id="Officer_part_div">
 		
-		<input type='button' id="New_carList" abled value='배차명령서 입력' onclick='toggleNewList()'>
-		<input type='button' id="Add_carList" disabled value='배차명령서 추가' onclick='toggleAddList()'>
-		<input type="button" value="입퇴영기록" onclick="toggleViewHistory()" style="float:right;">
+		<input type='button' id="New_carList" class="btn_style" abled value='배차명령서 입력' onclick='toggleNewList()'>
+		<input type='button' id="Add_carList" class="btn_style" disabled value='배차명령서 추가' onclick='toggleAddList()'>
+		<input type="button" id="History_btn" class="btn_style" value="입퇴영기록" onclick="toggleViewHistory()" style="float:right;">
 		
-		<div id='input_box' style="width:600;display:none;" >
-			<input type='button' value="추가하기" onclick="addrow()">				
-			<input type='button' value="삭제하기" onclick="deleterow()">
-			<form id='Operate_Car'>
+		<div id='input_box' style="width:610px;display:none;margin-left:10px;margin-top:8px;" >
+			<input type='button' id="addrow_btn" class="btn_style" value="추가하기" onclick="addrow()">				
+			<input type='button' id="deleterow_btn" class="btn_style" value="삭제하기" onclick="deleterow()">
+			<form id='Operate_Car' style="margin-top: 7px; margin-left: 10px;">
 				<!-- input type="date" id="OC_date"><br -->
 				<table border="1" >
 					<th>순번</th>
@@ -42,14 +42,14 @@
 					</tbody>
 				</table>
 			
-			<input type='button' value="제출" onclick="send_data()">	
+			<input type='button' id="sendData_btn" value=" 제출하기 " style="margin-top: 6px;" onclick="send_data()">	
 			</form>
 		</div>
 		
 		<div id="input_add_box" style="display: none;" >
 			
 
-			<input type='button' value="제출" style="float: right; margin-right: 10px; position: relative; top:80px;" onclick="Add_data()">
+			<input type='button' id="sendData_btn" value=" 제출하기 " style="float: right; margin-right: 10px; position: relative; top:80px;" onclick="Add_data()">
 		</div>
 
 		<!-- div id="view_text" -->

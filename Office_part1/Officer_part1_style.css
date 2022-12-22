@@ -2,7 +2,7 @@ td {
     height: 40px;
 }
 #Officer_part_div {
-    width: 790px;
+    width: 808px;
     height: 1000px;
     border: 10px;
 }
@@ -31,7 +31,7 @@ td {
 }
 #input_add_box {
     width: 790px;
-    height: 110px;
+    height: 120px;
     overflow-y:auto;
     background-color: rgba(211,211,211,0.1);
     border-radius: 10px;
@@ -55,6 +55,56 @@ td {
     border: 1px solid gray;
     padding: 3px;
     height: 50px;
+    margin-bottom: 0;
+}
+#New_carList, #addrow_btn {
+    margin-right: -4px;
+    margin-left: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#Add_carList, #deleterow_btn {
+    margin-left: -4px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+#History_btn {
+    border-radius: 5px;
+    margin-right: 5px;
+}
+#sendData_btn {
+    border: 1px solid skyblue;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: bold;
+}
+#sendData_btn:hover {
+    background-color: lightskyblue;
+    color: white;
+}
+.btn_style {
+    border: 2px solid lightseagreen;
+    color: black;
+    background-color: white;
+    padding: 5px;
+}
+.btn_style:hover {
+    background-color: lightseagreen;
+    color:white;
+}
+.btn_style:active {
+    transform: translateZ(5px);
+}
+.btn_style:focus {
+    border: 2px solid rgb(31, 178, 170);
+    outline: none;
+}
+.btn_style:disabled {
+    border: 2px solid rgba(129, 139, 139, 0.7);
+    background-color: rgba(129, 139, 139, 0.6);
+    color: white
 }
 .form_data{
     border:0 solid black; 

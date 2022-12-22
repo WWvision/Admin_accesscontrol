@@ -41,7 +41,7 @@ function addrow(){//입력 폼 행 추가
 	cell4.innerHTML ='<input type="text" name="OC_business['+rowcount+']"  class="form_data" size="7">';
 	cell5.innerHTML ='<input type="text" name="OC_name['+rowcount+']"  class="form_data" size="7">';
 	cell6.innerHTML ='<input type="text" name="OC_type['+rowcount+']" class="form_data"size="7">';
-	cell7.innerHTML ='<input type="text" name="OC_remark['+rowcount+']" value="없음" class="form_data" size="7">';
+	cell7.innerHTML ='<input type="text" name="OC_remark['+rowcount+']" class="form_data" size="7">';
 	rowcount++;
 }
 
