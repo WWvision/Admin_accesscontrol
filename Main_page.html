@@ -18,6 +18,13 @@
                     <div><!-- 인수인계 사항 opened div 공간-->
                         <div id="Notion_Content_Area">
                             <!-- 인수인계 사항 항목 들어가는 공간-->
+                            <div id="Notion_Content1" class="Notion_content_style">
+                                <div id="content1_date" class="Notion_content_date_style">12월 12일</div>
+                                <div id="content1_text" class="Notion_content_text_style">
+                                    <textarea id="content1_textarea" class="Notion_content_textarea">낙수조치 필수</textarea>
+                                </div>
+                                <div style="float: right;"><input type="button" class="closebutton_style" value="X"></div>
+                            </div>
                         </div>
                         <div id="Notion_Input_Area_openbtn">
                             <input type="button" id="Notion_Input_toggleBtn" onclick="toggleInputArea()" value=" 글쓰기 ">
@@ -33,13 +40,13 @@
                                     중요?: <input type="checkbox" id="Notion_posts_Important">
                                 </span>
                                 <span id="Input_post3" style="position: relative; left:120px;">
-                                    알림여부: <input type="checkbox" id="Notion_posts_AlarmCheck">
-                                    주기:<select>
+                                    알림여부: <input type="checkbox" id="Notion_posts_AlarmCheck" onclick="activeAlarmCheck()">
+                                    주기:<select id="AlarmCheck_cycle" disabled>
                                         <option>매일</option>
                                         <option>일주일</option>
                                         <option>하루</option>
                                     </select>
-                                    시간: <input type="time" id="Notion_posts_AlarmTime">
+                                    시간: <input type="time" id="AlarmCheck_time" disabled>
                                 </span>
                             </div>
                             <div id="Notion_Input_Middle" style="float:middle;">
@@ -48,7 +55,7 @@
                             </div>
                             <div id="Notion_Input_Bottom" style="float:bottom;">
                                 <!-- 인수인계 사항에 제출하기 버튼 들어가는 공간-->
-                                <input type="button" id="Notion_posts_btn" value="글쓰기" style="float:right;">
+                                <input type="button" id="Notion_posts_btn" value="글쓰기" style="float:right;" onclick="addNotion()">
                             </div>
                         </div>
                     </div>
@@ -197,4 +204,6 @@
             </div>
         </div>
     </body>
+
+    <script src="./Main_logic2.js"></script>
 </html>

@@ -66,3 +66,17 @@ function copy_Report4(){
     let Report4_msg = "이상없습니다.";
     copyClipboard(Report4_msg);
 }
+function activeAlarmCheck(){//인수인계 사항의 글쓰기 기능에서 알람 관련 함수
+    let is_check = document.getElementById('Notion_posts_AlarmCheck').checked;
+    let inp_cycle = document.getElementById('AlarmCheck_cycle');
+	let inp_time = document.getElementById('AlarmCheck_time');
+	if(is_check){//알람여부에 체크
+		//체크 되어있다면 활성화
+        inp_cycle.disabled = false;
+        inp_time.disabled = false;
+	} else {
+		//체크가 안되어있다면 비활성화
+		inp_cycle.disabled = true;
+        inp_time.disabled = true;
+	}
+}
