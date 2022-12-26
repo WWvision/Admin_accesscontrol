@@ -1,8 +1,8 @@
 #Notion_Content_Area{
     float:top; 
     width:790px;
-    height: 300px;
-    border: 1px solid black;
+    overflow-y: auto;
+    height: 560px;
 }
 #Notion_Input_Area{
     float:bottom; 
@@ -13,24 +13,105 @@
     top:20px;
 }
 #Notion_Input_Area_openbtn {
-    
+    position: absolute;
+    top: 660px;
     width: 790px;
-    border: 1px solid black;
 }
 #Notion_Input_Top{
     width: 778px;
-    border: 1px solid blueviolet;
+    border: 1px solid black;
     margin: 5px;
 }
 #Notion_Input_Middle {
     width: 778px;
     height: 150px;
-    border: 1px solid blueviolet;
+    border: 1px solid gray;
     margin: 5px;
 }
 #Notion_Input_Bottom {
     width: 778px;
     height: 30px;
-    border: 1px solid blueviolet;
     margin: 5px;
+}
+.Notion_content_style{
+    width: 760px;
+    overflow: auto;
+    box-shadow: 1px 1px 3px grey;
+    margin: 5px;
+}
+.Notion_content_Important_style{
+    width: 760px;
+    overflow: auto;
+    box-shadow: 1px 1px 3px grey;
+    margin: 5px;
+}
+.Notion_content_date_style {
+    width:  100px;
+    overflow: auto;
+    text-align: center;
+    border-right: 2px solid black ;
+    margin: 3px;
+    font-weight: bold;
+    float: left;
+}
+.Notion_content_seperate_style {
+    border: 1px solid black;
+    overflow: auto;
+    float: left;
+    margin: 4px;
+}
+.Notion_content_text_style {
+    width:  620px;
+    overflow: auto;
+    margin: 3px;
+    float: left;
+}
+.Notion_content_textarea {
+    /*resize: none;*/
+    width: 620px;
+    overflow: auto;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+.closebutton_style {
+    width: 15px;
+    display:inline-block; 
+    font-size:13px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+}
+.closebutton_style:hover {
+    color: red;
+}
+
+
+#toggle_Notion_Inp {
+  appearance:none;
+}
+#toggle_Notion_Inp + label {
+  position:absolute;
+  cursor:pointer;
+  padding:10px;
+  background: #26ae90;
+  width: 786px;
+  border-radius: 3px;
+  padding: 8px 10px;
+  color: #FFF;
+  line-height:20px;
+  font-size:12px;
+  text-align:center;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  transition:all 500ms ease;
+}
+#toggle_Notion_Inp + label:after {
+  content:"open" 
+}
+#toggle_Notion_Inp:checked + label:after {
+  content:"close"
+}
+#toggle_Notion_Inp:checked + label {
+  background:#dd6149;
 }

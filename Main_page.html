@@ -18,18 +18,9 @@
                     <div><!-- 인수인계 사항 opened div 공간-->
                         <div id="Notion_Content_Area">
                             <!-- 인수인계 사항 항목 들어가는 공간-->
-                            <div id="Notion_Content1" class="Notion_content_style">
-                                <div id="content1_date" class="Notion_content_date_style">12월 12일</div>
-                                <div id="content1_text" class="Notion_content_text_style">
-                                    <textarea id="content1_textarea" class="Notion_content_textarea">낙수조치 필수</textarea>
-                                </div>
-                                <div style="float: right;"><input type="button" class="closebutton_style" value="X"></div>
-                            </div>
                         </div>
-                        <div id="Notion_Input_Area_openbtn">
-                            <input type="button" id="Notion_Input_toggleBtn" onclick="toggleInputArea()" value=" 글쓰기 ">
-                        </div>
-                        <div id="Notion_Input_Area">
+                        
+                        <div id="Notion_Input_Area" style="position: absolute; top: 420px; background-color: oldlace; display: block;">
                             <!-- 인수인계 사항 글쓰는 칸 들어가는 공간-->
                             <div id="Notion_Input_Top" style="float:top;">
                                 <!-- 인수인계 사항에 날짜/중요/알림 들어가는 공간-->
@@ -58,8 +49,14 @@
                                 <input type="button" id="Notion_posts_btn" value="글쓰기" style="float:right;" onclick="addNotion()">
                             </div>
                         </div>
+                        <div id="Notion_Input_Area_openbtn">
+                            <!--input type="button" id="Notion_Input_toggleBtn" onclick="toggleInputArea()" value=" 글쓰기 "-->
+                            <input type="checkbox" name="toggle_Notion_Inp" id="toggle_Notion_Inp" onclick="toggleInputArea()"/>
+                            <label for="toggle_Notion_Inp" id="level_style" style="left:-8px;"></label>
+                        </div>
                     </div>
                 </div>
+                <script src="./Notion_part/Notion_logic2.js"></script>
             </div>
 
             <div id="Visitor_part_div" class="DivList_style">
