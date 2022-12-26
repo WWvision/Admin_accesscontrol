@@ -12,7 +12,7 @@
                 <div id="Notion_closed_div" class="closed_div">
                     <input type="button" class="toggle_btn" value="인수인계 사항" onclick="toggleNotion()">
                 </div>
-                <div id="Notion_opened_div" class="opened_div" style="display:block;">
+                <div id="Notion_opened_div" class="opened_div" style="display:none;">
                     <script src="./Notion_part/Notion_logic1.js"></script>
                     <link rel="stylesheet" type="text/css" href="./Notion_part/Notion_style.css">
                     <div><!-- 인수인계 사항 opened div 공간-->
@@ -46,13 +46,12 @@
                             </div>
                             <div id="Notion_Input_Bottom" style="float:bottom;">
                                 <!-- 인수인계 사항에 제출하기 버튼 들어가는 공간-->
-                                <input type="button" id="Notion_posts_btn" value="글쓰기" style="float:right;" onclick="addNotion()">
+                                <input type="button" id="Notion_posts_btn" value="글쓰기" onclick="addNotion()">
                             </div>
                         </div>
                         <div id="Notion_Input_Area_openbtn">
-                            <!--input type="button" id="Notion_Input_toggleBtn" onclick="toggleInputArea()" value=" 글쓰기 "-->
                             <input type="checkbox" name="toggle_Notion_Inp" id="toggle_Notion_Inp" onclick="toggleInputArea()"/>
-                            <label for="toggle_Notion_Inp" id="level_style" style="left:-8px;"></label>
+                            <label for="toggle_Notion_Inp" style="left:-8px;"></label>
                         </div>
                     </div>
                 </div>
@@ -79,10 +78,10 @@
 
             <div id="Office_part3_part_div" class="DivList_style">
                 <div id="OfficeP3_closed_div" class="closed_div">
-                    <input type="button" class="toggle_btn" value="타부대 출입통제" onclick="toggleOfficeP3()">
+                    <input type="button" class="Linked_btn" value="타부대 출입통제" onclick="location.href='./Office_part3/OfficeP3_page.html'">
                 </div>
-                <div id="OfficeP3_opened_div" class="opened_div" style="display:none;"></div>
             </div>
+
 
             <div id="Report_part_div" class="DivList_style">
                 <div id="Report_closed_div" class="closed_div">

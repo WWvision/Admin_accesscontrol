@@ -4,13 +4,10 @@
     overflow-y: auto;
     height: 560px;
 }
-#Notion_Input_Area{
-    float:bottom; 
+#Notion_Input_Area{ 
     width: 790px;
     height: 230px;
     border: 1px solid black;
-    position: relative; 
-    top:20px;
 }
 #Notion_Input_Area_openbtn {
     position: absolute;
@@ -85,7 +82,19 @@
 .closebutton_style:hover {
     color: red;
 }
-
+#Notion_posts_btn {
+    border-radius: 5px;
+    margin-right: 5px;
+    border: 2px solid rgb(142, 219, 142);
+    color: black;
+    background-color: white;
+    padding: 5px;
+    margin-left: 725px;
+}
+#Notion_posts_btn:hover {
+    color: white;
+    background-color: rgb(142, 219, 142);
+}
 
 #toggle_Notion_Inp {
   appearance:none;
