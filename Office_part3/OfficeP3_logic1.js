@@ -193,7 +193,7 @@ function create_OfficeP3_History(index){//타부대 입퇴영 기록 Content 생
 
 		let Cell2 = document.createElement("div");//입퇴영시간
 		Cell2.setAttribute("class", "HistoryCell_style");
-		Cell2.setAttribute("style", "width: 100px");
+		Cell2.setAttribute("style", "width: 130px");
 			let Cell2_Element = document.createElement("b");
 			let Cell2_val = document.createTextNode(OfficeP3_HistoryArr[index].times);
 			Cell2_Element.appendChild(Cell2_val);

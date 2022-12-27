@@ -5,7 +5,7 @@
 }
 #Content_box, #History_box {
     width: 790px;
-    height: 300px;
+    height: 380px;
     overflow-y: auto;
     background-color: rgba(211,211,211,0.1);
     border-radius: 10px;
