@@ -3,9 +3,9 @@
     left: 50px;
     display: inline;
 }
-#view_box, #history_box {
+#Content_box, #History_box {
     width: 790px;
-    height: 700px;
+    height: 300px;
     overflow-y: auto;
     background-color: rgba(211,211,211,0.1);
     border-radius: 10px;
@@ -19,7 +19,7 @@
     border-bottom: 1px solid gray;
     padding-bottom: 1px;
 }
-#input_add_content {
+#OfficeP3_Content_Input_Area {
     width: 790px;
     height: 120px;
     overflow-y: auto;
@@ -41,14 +41,13 @@
     background-color: lightskyblue;
     color: white;
 }
-#Add_Content_div {
+#Content_Input_Div {
     margin: 10px;
     border: 1px solid gray;
     padding: 3px;
     height: 50px;
     margin-bottom: 0;
 }
-
 #OfficeP3_Cotent_Area {
     float:top; 
     width: 790px;
@@ -88,14 +87,6 @@
     margin: 5px;
     border: 1px solid firebrick;
 }
-.div_input {
-    text-align: center;
-    height: 50px;
-    border: none;
-    background-color: white;
-    overflow: visible;
-    margin: 1px;
-}
 #OfficeP3_posts_btn {
     border-radius: 5px;
     margin-right: 5px;
@@ -109,14 +100,6 @@
     color: white;
     background-color: rgb(142, 219, 142);
 }
-
-
-
-
-
-
-
-
 #toggle_OfficeP3_Inp {
     appearance:none;
   }
@@ -144,4 +127,68 @@
 }
 #toggle_OfficeP3_Inp:checked + label {
     background:#dd6149;
+}
+#Content_AccessBtn {
+    float:left;
+    width:130px;
+    height:50px;
+    margin: auto;
+    text-align: center;
+}
+#Content_CloseBtn {
+    float: right;
+}
+.div_input {
+    text-align: center;
+    height: 50px;
+    border: none;
+    background-color: white;
+    overflow: visible;
+    margin: 1px;
+}
+.Content_InpStyle {
+    text-align: center;
+    height: 50px;
+    border: none;
+    background-color: white;
+    overflow: visible;
+    margin: 1px;
+    background-color: transparent; 
+    float:left;
+}
+.OfficeP3_Content {
+    margin: 15px;
+    background-color: rgba();
+    border: 1px solid gray;
+    padding: 3px;
+    height: 50px;
+}
+.CloseBtn_style {
+    display:inline-block; 
+    font-size:13px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+}
+.CloseBtn_style:hover {
+    color: red;
+}
+.HistoryCell_style {
+    float:left;
+    height:20px;
+    text-align: center;
+}
+.HistoryContent_Coming {
+    margin: 8px;
+    background-color: lightgreen;
+    border: 1px solid gray;
+    padding: 3px;
+    height: 25px;
+}
+.HistoryContent_Going {
+    margin: 8px;
+    background-color: pink;
+    border: 1px solid gray;
+    padding: 3px;
+    height: 25px;
 }

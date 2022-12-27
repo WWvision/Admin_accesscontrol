@@ -1,37 +1,30 @@
 <html>
 	<head>
-		
 		<link rel="stylesheet" href="./OfficeP3_style.css">
 	</head>
 
 	<body>
 	    <h2 id="Page_Title" style="display:inline;">타부대간부 출입통제</h2>
-	    <input type="date" id="TodayDate_val">
+	    <input type="date" id="TodayDate_val"> 
 
-        <div id="input_add_content" style="display: block;" >
+        <div id="OfficeP3_Content_Input_Area" style="display: block;" >
 			<!-- 타부대간부 정보 입력칸-->
 			<input type='button' id="sendData_btn" value=" 제출하기 " style="float: right; margin-right: 10px; position: relative; top:80px;" onclick="Add_data()">
 		</div>
 
-        <div id="view_box">
+        <div id="Content_box">
 			<div id='div_title'>
-				※ 입퇴영 현황
+				※ 타부대 입퇴영 현황
 			</div>
-			
 			<!-- Content_div 생성되는 곳 OfficeP1처럼 비슷하게 생성 -->
-			
 		</div>
 
-        <div id="history_box" style="background-color: rgba(0, 128, 128, 0.199); display:block;">
+        <div id="History_box" style="background-color: rgba(0, 128, 128, 0.199); display:block;">
 			<div id='div_title'>
-				※ 입퇴영 기록
+				※ 타부대 입퇴영 기록
 			</div>
-
 			<!-- History_ListData 정보를 div형태로 출력하는 곳 -->
-
 		</div>
         <script src='./OfficeP3_logic1.js'></script>
 	</body>
 </html>
-
-<!-- 입력받는 기능은 구현 > 데이터 저장 후 content_div 생성 > content_div에서 기록된 히스토리 리스트 표시 해야함 -->
