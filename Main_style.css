@@ -98,3 +98,56 @@
     cursor: default;
 }
 
+/* 탭메뉴 구성*/
+ul,li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.tab-container {
+    display: flex;
+}
+.TestTab {
+    cursor: pointer;
+}
+.TestTab:hover {
+    background-color: #369fff;
+    transition: background-color 0.4s ease-in-out;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.TestTab:hover .TestTab--title {
+    color: #fff;
+    transition: color 0.4s ease-in-out;
+}
+.TestTab.active {
+    border-bottom: 2px solid #369fff;
+}
+.TestTab.active .TestTab--title {
+    color: #369fff;
+}
+.TestTab.active:hover {
+    background-color: #369fff;
+    transition: background-color 0.4s ease-in-out;
+}
+.TestTab.active:hover .TestTab--title {
+    color: #fff;
+    transition: color 0.4s ease-in-out;
+}
+.TestTab--title {
+    display: inline-block;
+    color: #999;
+    font-weight: 700;
+    text-decoration: none;
+    margin: 15px;
+}
+.content-container {
+    padding: 10px;
+}
+.TestContent {
+    display: none;
+}
+.TestContent.target {
+    display: block;
+}
+
