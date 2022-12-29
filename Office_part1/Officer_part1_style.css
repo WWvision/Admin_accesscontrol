@@ -72,7 +72,7 @@ td {
     border-radius: 5px;
     margin-right: 5px;
 }
-#sendData_btn {
+.sendData_btn_style {
     border: 1px solid skyblue;
     background-color: white;
     color: black;
@@ -80,7 +80,7 @@ td {
     padding: 5px;
     font-weight: bold;
 }
-#sendData_btn:hover {
+.sendData_btn_style:hover {
     background-color: lightskyblue;
     color: white;
 }
@@ -133,16 +133,13 @@ td {
 }
 .div_cells{
     float:left;
-    /*width:100px;*/
     height:50px;
     margin: auto;
     text-align: center;
 }
 .div_h_cells {
     float:left;
-    /*width:70px;*/
     height:20px;
-    /*padding: 10px;*/
     text-align: center;
 }
 .closebutton_style {

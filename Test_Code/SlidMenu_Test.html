@@ -5,6 +5,7 @@
     </head>
 
     <body>
+        <input type="button" value="open Link" onclick="openTab()">
         <nav>
             
             <div class="menu-btn">
@@ -22,6 +23,11 @@
         </nav>
 
     </body>
-
+    <script>
+        function openTab(){
+            var win = window.open('./AccessControl_manage.html', '_blank');
+            win.focus();
+        }
+    </script>
     <script src="./SlidMenu_logic.js"></script>
 </html>

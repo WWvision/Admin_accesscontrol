@@ -247,7 +247,6 @@ function start_AddcarList_div(){//배차명령서 추가 페이지 생성
 	let add_box_div = document.createElement('div');
 	add_box_div.setAttribute("id", "Add_carList_div");
 	add_box_div.setAttribute("class", "Add_carList");
-	add_box_div.setAttribute('style', 'float: top;');
 
 		let input1 = document.createElement('input');//이름
 		input1.setAttribute('type', 'text');
@@ -296,8 +295,16 @@ function start_AddcarList_div(){//배차명령서 추가 페이지 생성
 		input6.setAttribute('style', 'width: 110px;');
 		input6.setAttribute('placeholder', '비고');
 		add_box_div.appendChild(input6);
-
 	add_box_Area.appendChild(add_box_div);
+
+	let sendBtn = document.createElement("input");
+	sendBtn.setAttribute("type", "button");
+	sendBtn.setAttribute("id", "sendData_btn2");
+	sendBtn.setAttribute("class", "sendData_btn_style");
+	sendBtn.setAttribute("value", " 제출하기 ");
+	sendBtn.setAttribute("style", "float: right; margin-right: 10px; position: relative; top: 12px;");
+	sendBtn.setAttribute("onclick", "Add_data()");
+	add_box_Area.appendChild(sendBtn);
 }
 
 function save_AddcarList_div(){//추가 배차명령서 제출시 세션배열에 push
@@ -317,6 +324,8 @@ function save_AddcarList_div(){//추가 배차명령서 제출시 세션배열�
 
 function finish_AddcarList_div(){//배차명령서 삭제
 	let parent = document.getElementById("input_add_box");
-	let child = document.getElementById("Add_carList_div");
-	parent.removeChild(child);
+	let child1 = document.getElementById("Add_carList_div");
+	let child2 = document.getElementById("sendData_btn2");
+	parent.removeChild(child1);
+	parent.removeChild(child2);
 }
