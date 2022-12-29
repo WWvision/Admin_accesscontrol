@@ -2,6 +2,7 @@
 var Notion_arr = new Array();
 /** 처음 생성 이후 인수인계 사항들이 저장되는 객체 배열 */
 var Session_NotionData = new Array();
+var deleteIndex_Arr = [];//삭제된 Session Content 항목의 Index값을 저장하는 곳 > 정상적으로 다시 Content가 리로드되면 값 초기화
 function addNotion(){//인수인계 새로운 정보 제출버튼을 누르면 실행
     //입력된 데이터를 Notion_arr에 저장하는 함수
     /** 인수인계 새로운 정보가 들어있는 객체  */
@@ -34,26 +35,15 @@ function addNotion(){//인수인계 새로운 정보 제출버튼을 누르면 �
         //Notion_Content_Area 하위 자식 div 모두 삭제 후
         delNotionContent("all");
         //새로 생성
-        makeNotionContent(ElementCount);
+        makeNotionContent();
     } else if(ElementCount == 0){//Notion_Content_Area에 아무것도 존재하지 않는다면
-        makeNotionContent(0);
+        makeNotionContent();
     }
     
 }
 //페이지가 로드되거나 새로운 데이터가 추기될때
-function makeNotionContent(index){//Notion Content Div를 규칙에 맞게 생성하는 함수
-    //중요 == true 1순위
-    //오래된 날짜  2순위
-    for(let count1=index; count1 < Notion_arr.length; count1++){//1순위 중요한 사항부터 생성
-        if(Notion_arr[count1].important == true){
-            Session_NotionData.push(Notion_arr[count1]);
-        }
-    }
-    for(let count2 = index; count2 < Notion_arr.length; count2++){//2순위 오래된 날짜
-        if(Notion_arr[count2].important == false){
-            Session_NotionData.push(Notion_arr[count2]);
-        }
-    }
+function makeNotionContent(){//Notion Content Div를 규칙에 맞게 생성하는 함수
+    Session_NotionData = Notion_arr;
     for(let count3=0; count3 < Session_NotionData.length; count3++){//우선순위로 재정립한 뒤 div 생성
         createNotionContent(count3);
     }
@@ -90,7 +80,7 @@ function createNotionContent(index){//Notion Content Div 생성 함수
             let Content_closeBtn = document.createElement("input");
             Content_closeBtn.setAttribute("class", "closebutton_style");
             Content_closeBtn.setAttribute("value", "X");
-            let val = 'delNotionContent("Notion_Content' + index + '")';
+            let val = 'delNotionContent("Notion_Content' + index + '",' + index +')';
             Content_closeBtn.setAttribute("onclick", eval("'" + val + "'"));
             Content_Btn.appendChild(Content_closeBtn);
         NotionContent_div.appendChild(Content_Btn);
@@ -105,13 +95,23 @@ function createNotionContent(index){//Notion Content Div 생성 함수
 //makeNoitonContent()함수가 실행되기 전 만들어진 div가 있다면
 function saveNotionContent(){//기존 div content에 입력된 정보를 업데이트시키는 함수
     let ElementCount = document.getElementById("Notion_Content_Area").childElementCount;
+    deleteIndex_Arr.sort();
+
     for(let k=0; k< ElementCount ; k++){//기존 div에 있는 정보 저장 
-        let Notion_val = document.getElementById(eval("'NotionTextarea" + k + "'")).value;//NotionContent_textdata1
-        Session_NotionData[k].text = Notion_val;
+        for(let h=0; h<deleteIndex_Arr.length; h++){
+            if(deleteIndex_Arr[h] != k){//deleteIndex에 저장되어있는 인덱스와 저장하려는 인덱스가 같지 않을때만 값을 받아와서 푸쉬
+                let Notion_val = document.getElementById(eval("'NotionTextarea" + k + "'")).value;//NotionContent_textdata1
+                Session_NotionData[k].text = Notion_val;
+            } 
+        }
+    }
+    while(deleteIndex_Arr.length){//deleteIndex_Arr 길이가 0이되면 종료
+        let index = deleteIndex_Arr.pop();
+        Session_NotionData.splice(index, 1);
     }
 }
-function delNotionContent(div_id){//div content를 다 제거하는 함수
-    //하나만 제거할땐 delNotionContent(div_id); 이용
+function delNotionContent(div_id, index){//div content를 다 제거하는 함수
+    //하나만 제거할땐 해당 Content를 잠시 숨기고 인덱스를 저장했다가 새로 업데이트 할때 완전히 삭제
     //모두 제거할땐 for 반복문으로 Content Area에 존재하는 div Content 삭제
     let parent = document.getElementById("Notion_Content_Area");
     if(div_id == "all"){//모두 지우게 된다면? Notion_Content_Area 화면을 업데이트 시키기 위함
@@ -119,9 +119,9 @@ function delNotionContent(div_id){//div content를 다 제거하는 함수
             parent.removeChild(parent.firstChild);
          }
     } else {//하나만 지우게 된다면
-        let child = document.getElementById(div_id);
         if(confirm("삭제하시겠습니까?")){
-            parent.removeChild(child);
+            document.getElementById(div_id).style.display = "none";
+            deleteIndex_Arr.push(index);
         }
     }
 }
