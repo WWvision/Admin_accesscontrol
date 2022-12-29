@@ -11,7 +11,7 @@
 }
 #Notion_Input_Area_openbtn {
     position: absolute;
-    top: 660px;
+    top: 725px;
     width: 790px;
 }
 #Notion_Input_Top{
@@ -103,7 +103,7 @@
   position:absolute;
   cursor:pointer;
   padding:10px;
-  background: #26ae90;
+  background: #dd6149;
   width: 786px;
   border-radius: 3px;
   padding: 8px 10px;
@@ -116,11 +116,11 @@
   transition:all 500ms ease;
 }
 #toggle_Notion_Inp + label:after {
-  content:"open" 
+  content:"close" 
 }
 #toggle_Notion_Inp:checked + label:after {
-  content:"close"
+  content:"open"
 }
 #toggle_Notion_Inp:checked + label {
-  background:#dd6149;
+  background: #26ae90;
 }
