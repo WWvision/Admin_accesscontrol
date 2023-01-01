@@ -1,30 +1,104 @@
 <html>
 	<head>
-		<link rel="stylesheet" href="../Office_part3/OfficeP3_style.css">
+		<link rel="stylesheet" href="./Office_part2_style.css">
+		<title>대대간부 출퇴근</title>
 	</head>
 
 	<body>
 	    <h2 id="Page_Title" style="display:inline;">대대간부 출퇴근</h2>
-	    <input type="date" id="TodayDate_val"> 
+	    <!-- <input type="date" id="TodayDate_val">  -->
 
-        <div id="OfficeP3_Content_Input_Area" style="display: block;" >
-			<input type="text" id="sendData_txt" style="width: 700px; height: 30px; font-size: 23px;" placeholder="운전자 동승자 동승자 (띄어쓰기로 구분)">
-			<input type='button' id="sendData_btn" value=" 제출하기 " style="margin-right: 10px; position: absolute; top: 85px; left: 17px;" onclick="sendData()">
+		<div class="button b2" id="CommuteBtn" style="top: -15px; left:-190px;">
+			<input id="BtnChecked" type="checkbox" class="checkbox">
+			<div class="knobs"></div>
+			<div class="layer"></div>
 		</div>
 
-        <div id="Content_box">
+        <div id="OfficeP2_Content_Input_Area" style="display: block;" >
+			<input type="text" id="sendData_txt" style="margin: 5px; margin-top: 20px; width: 580px; height: 30px; font-size: 20px;" placeholder="운전자 동승자 동승자 (띄어쓰기로 구분)">
+			<input type='button' id="sendData_btn" value=" 제출하기 " style="margin-left: 4px;" onclick="sendData()">
+		</div>
+
+		<input type="button" class="Toggle_Box" value="출근" onclick="toggleGoWork()">
+        <div id="GoWork_Box" class="Content_Box" style="display: block;">
 			<div id='div_title'>
-				※ 대대간부 출퇴근 현황
+				※ 출근 현황
 			</div>
 			<!-- Content_div 생성되는 곳 OfficeP1처럼 비슷하게 생성 -->
+
+			<div id="OfficeP2_ContentA" class="OfficeP2_Content" style="background-color: white;">
+				<div id="Content_msg" style="font-weight: bold;">k3, 53두 7522
+					<input type="button" class="CloseBtn_style" value="X" style="float: right;" onclick="delete_OfficeP2_Content(OfficeP2_Content0)">
+					<input type="button" class="CloseBtn_style" value="변경하기" style="float: right;">
+				</div>
+				<div id="Content_AccessBtn" style="font-weight: bold; margin-top: 14px;">1617</div>
+				<input type="button" class="Content_InpStyle" value="김모씨" style="width: 100px;" onclick="log()">
+				<input type="button" class="Content_InpStyle" value="김승주" style="width: 100px">
+				<input type="button" class="Content_InpStyle" value="권세웅" style="width: 100px">
+				<input type="button" class="Content_InpStyle" value="김태민" style="width: 100px">
+			</div>
+
+			<div id="OfficeP2_ContentA" class="OfficeP2_Content" style="background-color: white;">
+				<div class="Content_msg" style="font-weight: bold;">k3, 53두 7522
+					<span style="color: red; margin-left:15px;"> !차량정보가 없습니다</span>
+					<input type="button" class="CloseBtn_style" onclick="delete_OfficeP2_Content(OfficeP2_Content0)" value="X" style="float: right;">
+					<input type="button" class="CloseBtn_style" value="저장하기" style="float: right;">
+				</div>
+				<div id="Content_AccessBtn" style="font-weight: bold; margin-top: 14px;">
+					<input type="time" value="16:17">
+				</div>
+				<input type="text"  class="Content_InpStyle" placeholder="운전자" style="width: 100px">
+				<input type="text"  class="Content_InpStyle" placeholder="동승자1" style="width: 100px">
+				<input type="text"  class="Content_InpStyle" placeholder="동승자2" style="width: 100px">
+				<input type="text"  class="Content_InpStyle" placeholder="동승자3" style="width: 100px">
+				<div style="float:right; font-size: 13px; padding: 2px; margin-top: 3px; margin-right: 5px;">
+					<input type="button" class="CloseBtn_style" value="동승자 추가" style="float: right;border: 1px solid black; "><br>
+					<input type="button" class="CloseBtn_style" value="동승자 삭제" style="float: right;border: 1px solid black; margin-top:2px;">
+				</div>
+				
+			</div>
 		</div>
 
-        <div id="History_box" style="background-color: rgba(0, 128, 128, 0.199); display:block;">
+		<input type="button" class="Toggle_Box" value="퇴근" onclick="toggleOffWork()">
+		<div id="OffWork_Box" class="Content_Box">
 			<div id='div_title'>
-				※ 대대간부 출퇴근 기록
+				※ 퇴근 현황
 			</div>
-			<!-- History_ListData 정보를 div형태로 출력하는 곳 -->
+			<!-- Content_div 생성되는 곳 OfficeP1처럼 비슷하게 생성 -->
+
+			<div id="OfficeP2_ContentA" class="OfficeP2_Content" style="background-color: white;">
+				<div id="Content_msg" style="font-weight: bold;">k3, 53두 7522
+					<input type="button" class="CloseBtn_style" value="X" style="float: right;" onclick="delete_OfficeP2_Content(OfficeP2_Content0)">
+					<input type="button" class="CloseBtn_style" value="변경하기" style="float: right;">
+				</div>
+				<div id="Content_AccessBtn" style="font-weight: bold; margin-top: 14px;">1617</div>
+				<input type="button" class="Content_InpStyle" value="김모씨" style="width: 100px;" onclick="log()">
+				<input type="button" class="Content_InpStyle" value="김승주" style="width: 100px">
+				<input type="button" class="Content_InpStyle" value="권세웅" style="width: 100px">
+				<input type="button" class="Content_InpStyle" value="김태민" style="width: 100px">
+			</div>
+
+			<div id="OfficeP2_OffWorkA" class="OfficeP2_Content" style="background-color: white;">
+				<div class="Content_msg" style="font-weight: bold;">k3, 53두 7522
+					<span style="color: red; margin-left:15px;"> !차량정보가 없습니다</span>
+					<input type="button" class="CloseBtn_style" onclick="delete_OfficeP2_Content(OfficeP2_Content0)" value="X" style="float: right;">
+					<input type="button" class="CloseBtn_style" value="저장하기" style="float: right;">
+				</div>
+				<div id="Content_AccessBtn" style="font-weight: bold; margin-top: 14px;">
+					<input type="time" value="16:17">
+				</div>
+				<input type="text"  class="Content_InpStyle" placeholder="운전자" style="width: 100px">
+				<input type="text"  class="Content_InpStyle" placeholder="동승자1" style="width: 100px">
+				<input type="text"  class="Content_InpStyle" placeholder="동승자2" style="width: 100px">
+				<input type="text"  class="Content_InpStyle" placeholder="동승자3" style="width: 100px">
+				<div style="float:right; font-size: 13px; padding: 2px; margin-top: 3px; margin-right: 5px;">
+					<input type="button" class="CloseBtn_style" value="동승자 추가" style="float: right;border: 1px solid black; "><br>
+					<input type="button" class="CloseBtn_style" value="동승자 삭제" style="float: right;border: 1px solid black; margin-top:2px;">
+				</div>
+				
+			</div>
 		</div>
         <script src='./Office_part2_logic1.js'></script>
+		<script src='./Office_part2_logic2.js'></script>
 	</body>
 </html>

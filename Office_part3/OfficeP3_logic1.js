@@ -120,7 +120,7 @@ function create_OfficeP3_Content(index){//OfficeP3 Content Div를 생성하는 �
 		Content_div.appendChild(AccessBtn);
 
 		let CloseBtn = document.createElement("div");
-		CloseBtn.setAttribute("id", "Contetn_CloseBtn");
+		CloseBtn.setAttribute("id", "Content_CloseBtn");
 			let Btn3 = document.createElement("input");
 			let Btn3_val = `delete_OfficeP3_Content("OfficeP3_Content`+ index +`")`;
 			Btn3.setAttribute("type", "button");
