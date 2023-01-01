@@ -56,7 +56,7 @@ function searchPosition(PositionVal){//OfficerList배열에 PositionVal 해당�
 function createGoWork(carInfo, OccupantArr, index){
     let Content_Area = document.getElementById("GoWork_Box");
     let ContentDiv = document.createElement("div");
-    ContentDiv.setAttribute("id", eval("'OffWork_Content" + index + "'"));
+    ContentDiv.setAttribute("id", eval("'GoWork_Content" + index + "'"));
     ContentDiv.setAttribute("class", "OfficeP2_Content");
     ContentDiv.setAttribute("style", "background-color: white;");
 
@@ -102,7 +102,7 @@ function createGoWork(carInfo, OccupantArr, index){
 
         let Inp1 = document.createElement("input");
         Inp1.setAttribute("type", "button");
-        Inp1.setAttribute("class", "Content_InpStyle");
+        Inp1.setAttribute("class", "Content_InpBtn");
         Inp1.setAttribute("id", eval("'Content" + index + "_Driver'"));
         Inp1.setAttribute("value", eval("'" + OccupantArr[0] + "'"));//객체배열 아니고 그냥 배열임
         Inp1.setAttribute('style', 'width: 100px;');
@@ -113,7 +113,7 @@ function createGoWork(carInfo, OccupantArr, index){
         for(let num=1; num < OccupantArr.length ;num++){
             let Inp2 = document.createElement("input");
             Inp2.setAttribute("type", "button");
-            Inp2.setAttribute("class", "Content_InpStyle");
+            Inp2.setAttribute("class", "Content_InpBtn");
             Inp2.setAttribute("id", eval("'Content" + index + "_passenger" + num + "'"));//Content0_passenger1
             Inp2.setAttribute("value", eval("'" + OccupantArr[num] + "'"));//동승자 이름
             Inp2.setAttribute('style', 'width: 100px');
@@ -153,6 +153,7 @@ function createOffWork(carInfo, OccupantArr, index){
             let div1 = document.createElement('span');
             div1.setAttribute("id", eval("'OffWork_Content" + index + "_msg'"));
             div1.setAttribute('class', 'Content_msg');
+            div1.setAttribute('name', 'naming');
             Content_msg.appendChild(div1);
 
             let btn1 = document.createElement('input');
@@ -179,15 +180,17 @@ function createOffWork(carInfo, OccupantArr, index){
             let div2 = document.createElement('span');
             div2.setAttribute('id', eval("'OffWork_Content" + index + "_time'"));//OffWork_Content0_time
             div2.setAttribute('style', 'width: 100px;');
+            div2.setAttribute('name', 'naming');
             ContentTime.appendChild(div2);
         ContentDiv.appendChild(ContentTime);
 
         let Inp1 = document.createElement("input");
         Inp1.setAttribute("type", "button");
-        Inp1.setAttribute("class", "Content_InpStyle");
+        Inp1.setAttribute("class", "Content_InpBtn");
         Inp1.setAttribute("id", eval("'Content" + index + "_Driver'"));
         Inp1.setAttribute("value", eval("'" + OccupantArr[0] + "'"));//객체배열 아니고 그냥 배열임
         Inp1.setAttribute('style', 'width: 100px;');
+        Inp1.setAttribute('name', 'naming');
         let func_val1 = 'copyClipBoard("자차/동승(간부' + (OccupantArr.length - 1) + ')/퇴근")';  
         Inp1.setAttribute("onclick", eval("'" +  func_val1 + "'"));//copyClipBoard('동승(간부3)/퇴근');
         ContentDiv.appendChild(Inp1);
@@ -195,10 +198,11 @@ function createOffWork(carInfo, OccupantArr, index){
         for(let num=1; num < OccupantArr.length ;num++){
             let Inp2 = document.createElement("input");
             Inp2.setAttribute("type", "button");
-            Inp2.setAttribute("class", "Content_InpStyle");
+            Inp2.setAttribute("class", "Content_InpBtn");
             Inp2.setAttribute("id", eval("'Content" + index + "_passenger" + num + "'"));//Content0_passenger1
             Inp2.setAttribute("value", eval("'" + OccupantArr[num] + "'"));//동승자 이름
             Inp2.setAttribute('style', 'width: 100px');
+            Inp2.setAttribute('name', 'naming');
             let func_val2 = 'copyClipBoard("동승(' + carInfo + ')/퇴근")';
             Inp2.setAttribute("onclick", eval("'" + func_val2 + "'"));
             ContentDiv.appendChild(Inp2);
@@ -216,3 +220,20 @@ function createOffWork(carInfo, OccupantArr, index){
     document.getElementById(eval("'OffWork_Content" + index + "_time'")).innerText = "퇴근" + Hours + Mins; 
     OffWorkIndex++;
 }
+
+function ChangeContent(div_id, index){
+    
+}
+
+// document.getElementById("GoWork_Content0_msg").innerText    "승용차3"
+// document.getElementById("GoWork_Content0_time").innerText   "출근2328"
+// document.getElementById("Content0_Driver").value            "김모씨"
+// document.getElementById("Content0_passenger1").value        "김태민"
+// document.getElementById("Content0_passenger2").value        "권세웅"
+
+// document.getElementsByName("naming")[0].innerText   "승용차3"
+// document.getElementsByName("naming")[1].innerText   "퇴근2340"
+// document.getElementsByName("naming")[2].value       "김모씨"
+// document.getElementsByName("naming")[3].value       "김승주"
+// document.getElementsByName("naming")[4].value       "김태민"
+// document.getElementsByName("naming")[5].value       "권세웅"
