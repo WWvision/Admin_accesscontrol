@@ -207,11 +207,9 @@
     color: red;
 }
 .ContentTime_style{
+    width: 130px;
     font-weight: bold; 
     float:left;
-    width:130px;
-    height:50px;
-    margin: auto;
     text-align: center;
 }
 
