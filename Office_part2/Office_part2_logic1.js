@@ -1,7 +1,7 @@
 var exp_name = new RegExp("[가-힣]{2,4}", "g");
 var ResultArr;
 var OfficerList = [
-    { "position": "인턴","name": "최모씨", "car": "승용차1", "otherCar": [] },
+    { "position": "인턴","name": "최모씨", "car": "", "otherCar": [] },
     { "position": "대리","name": "오모씨", "car": "승용차2", "otherCar": [] },
     { "position": "과장","name": "김모씨", "car": "승용차3", "otherCar": [] },
     { "position": "부장","name": "이모씨", "car": "승용차4", "otherCar": [] },
@@ -277,13 +277,15 @@ function ChangeContent(content_id, div_name, index){//ChangeContent("OffWork_Con
         
         let btn2 = document.createElement('input');//운전자 이름 입력하는 곳
         btn2.setAttribute('type', 'text');
+        btn2.setAttribute('id', eval("'" + name + index + "_driver'"));//OffWork0_driver
         btn2.setAttribute('name', eval("'"+ div_name + index + "'"));//OffWorkName0[1]
         btn2.setAttribute('class', 'Change_InpBtn');
         btn2.setAttribute('value', eval("'" + ElemObj.driver + "'"));
+        btn2.setAttribute('onchange', eval("'searchCar(`" + name + index + "`)'"));//searchCar(`OffWork0`)
         btn2.setAttribute('style', 'width: 100px;');
         BlockElem.appendChild(btn2);
     for(let k=0; k< PaxArr.length; k++){
-        let btn3 = document.createElement('input');//운전자 이름 입력하는 곳
+        let btn3 = document.createElement('input');//동승자 이름 입력하는 곳
         btn3.setAttribute('type', 'text');
         btn3.setAttribute('name', eval("'"+ div_name + index + "'"));//OffWorkName0[2...]
         btn3.setAttribute('class', 'Change_InpBtn');
@@ -321,7 +323,6 @@ function ChangeContent(content_id, div_name, index){//ChangeContent("OffWork_Con
 
 function delInpBtn(parent_div, div_name){
     //element.length을 기준으로 삭제 인덱스 3초과까지만 
-    let parent = document.getElementById(parent_div);
     let nameElem = document.getElementsByName(div_name);
     if(nameElem.length > 3){
         nameElem[nameElem.length-1].remove();
@@ -350,4 +351,42 @@ function SaveContent(content_id, div_name, index){
     //사용자가 원하는 정보를 입력하고 다시 저장하면
     //입력된 정보들을 다시 배열에 저장
     //입력된 정보가 저장되어 있는 배열로 다시 content_id 하위 콘텐트 생성 
+
+}
+function searchCar(id){//OffWork0
+    let InpName = document.getElementById(id + "_driver").value;//운전자이름
+    let ArrIndex = OfficerList.findIndex(i => i.name == InpName);//OfficeList에서 해당 이름값을 찾으면 찾은 인덱스 반환
+
+    let msg1 = document.getElementById(id + "_msg1");//차량정보 표시하는 곳
+    let msg2 = document.getElementById(id + "_msg2");//문제 생겼을때 메세지 표시하는 곳
+    if(ArrIndex == -1){//아무값도 찾지 못한다면?
+        msg1.innerText = "없는 번호";
+        msg2.innerText = "해당 이름이 등록되지 않았습니다.";
+    } else if(OfficerList[ArrIndex].car == ""){
+        msg1.innerText = "없는 번호";
+        msg2.innerText = "해당 이름이 등록되지 않았습니다.";
+    } else if(OfficerList[ArrIndex].otherCar.length > 1){//아무이상 없고 운전자의 차가 두개이상일때 msg2에 select선택 생성
+        let select = document.createElement('select');
+        select.setAttribute('id', eval("'" + id + "_select'"));//OffWork0_select
+        select.setAttribute('onchange', eval("'SelectDiv(`" + id + "`)'"));//OffWork0
+        let carArr = OfficerList[ArrIndex].otherCar;
+        for(let k=0; k < carArr.length; k++){
+            let optionElem = document.createElement("option");
+            optionElem.setAttribute('id', eval("'" + id + "_option" + k + "'"));//OffWork0_option0;
+            optionElem.setAttribute('value', eval("'" + carArr[k] +"'"))
+            select.appendChild(optionElem);
+        }
+        msg2.appendChild(select);
+        //Option value title 달아주기 
+        for(let i=0; i < carArr.length; i++){
+            let optionName = document.getElementById(id+ "_option" + i);////OffWork0_option0;
+            optionName.innerText = carArr[i];
+        }
+        
+    }
+}
+
+function SelectDiv(div_id){//OffWork0
+    let val = document.getElementById(div_id + "_select").value;
+    document.getElementById(div_id + "_msg1").innerText = val;
 }
