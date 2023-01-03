@@ -176,6 +176,23 @@
     background-color: lightblue;
     color: white;
 }
+.Change_InpBtn {
+    border-radius: 5px;
+    border: 1px solid rgb(142, 219, 142);
+    text-align: center;
+    height: 50px;
+    background-color: white;
+    overflow: visible;
+    margin: 1px;
+    margin-right: 5px; 
+    background-color: transparent; 
+    float:left;
+    font-weight: bold;
+}
+.Change_InpBtn:hover {
+    background-color: rgb(142, 219, 142);
+    color: white;
+}
 .Content_InpStyle {
     border-radius: 5px;
     border: 1px solid lightblue;
@@ -211,6 +228,13 @@
     font-weight: bold; 
     float:left;
     text-align: center;
+}
+.operate_InpBtn { 
+    float: right;
+    font-size: 13px;
+    padding: 2px;
+    margin-top: 3px;
+    margin-right: 5px;
 }
 
 

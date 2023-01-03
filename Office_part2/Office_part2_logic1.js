@@ -217,6 +217,9 @@ function createOffWork(carInfo, OccupantArr, index){
     let Today_times = new Date();
     let Hours = Today_times.getHours();
     let Mins = Today_times.getMinutes();
+    if(Hours < 10){
+        Hours = "0" + Hours;
+    }
     if(Mins < 10){
         Mins = "0" + Mins;
     }
@@ -245,51 +248,106 @@ function ChangeContent(content_id, div_name, index){//ChangeContent("OffWork_Con
         }
     }
     
-    //content_id 있는 하위 콘텐트 싹다 삭제한 뒤 입력창 생성
+    //content_id 있는 하위 콘텐트 싹다 삭제
     let parent = document.getElementById(content_id);//쟤 상위 div
 	let AlterElem = document.getElementById("OffWork_Block" + index);//얘 기준으로 하위 요소 싹 삭제
 	parent.removeChild(AlterElem);
     
-    
+    //Content_Block 안에 정보수정창 생성 및 저장하기 버튼으로 변경
     let name =  div_name.replace('Name', '');
     let ChangeBtn = document.getElementById(name + index  + "_ChangeBtn");
-    console.log(name+ index + "_ChangeBtn");
+    let func_val3 = `SaveContent("` + content_id + `","` + div_name + `",` + index + `)`;
     ChangeBtn.value = "저장하기";//기존 요소를 삭제하면 변경버튼을 저장버튼으로 변환
-    ChangeBtn.setAttribute("onclick", eval("'SaveContent(" + content_id + "," + div_name + "," + index + ")'"));//기존 요소를 삭제하면 변경버튼을 저장버튼으로 변환
-    console.log("'SaveContent(" + content_id + "," + div_name + "," + index + ")'");
-    let val1 = document.createElement("div");//퇴근1521 표시하는 곳
-    val1.setAttribute('value', eval("'" + ElemObj.times + "'"));//퇴근1521
-    val1.setAttribute('class', 'ContentTime_style');
-    val1.setAttribute('style', 'margin-top:4px;');
-    AlterElem.appendChild(val1);
-    let btn1 = document.createElement('button');//퇴근 시간 지정하는 곳
-    btn1.setAttribute('type', 'time');
-    btn1.setAttribute('name', eval("'"+ div_name + index + "'"));//OffWorkName0[0]
-    btn1.setAttribute('style', 'float: left;');
-    AlterElem.appendChild(btn1);
-    let btn2 = document.createElement('button');//운전자 이름 입력하는 곳
-    btn2.setAttribute('type', 'text');
-    btn2.setAttribute('name', eval("'"+ div_name + index + "'"));//OffWorkName0[1]
-    btn2.setAttribute('class', 'Content_InpBtn');
-    btn2.setAttribute('value', eval("'" + ElemObj.driver + "'"));
-    AlterElem.appendChild(btn2);
+    ChangeBtn.setAttribute("onclick", eval("'" + func_val3 + "'"));//기존 요소를 삭제하면 변경버튼을 저장버튼으로 변환
+    let BlockElem = document.createElement('div');
+    BlockElem.setAttribute('id', eval("'OffWork_Block" + index + "'"));
+        let TimeDiv = document.createElement('div');
+        TimeDiv.setAttribute('style', 'float:left; width: 130px; height: 55px;');
+            let val1 = document.createElement("div");//퇴근1521 표시하는 곳
+            val1.setAttribute('id', eval("'" + name + index + "_recordedTime'"));//OffWork0_recordedTime
+            val1.setAttribute('class', 'ContentTime_style');
+            val1.setAttribute('style', 'flaot: top');
+            TimeDiv.appendChild(val1);
+            let btn1 = document.createElement('input');//퇴근 시간 지정하는 곳
+            btn1.setAttribute('type', 'time');
+            btn1.setAttribute('name', eval("'"+ div_name + index + "'"));//OffWorkName0[0]
+            btn1.setAttribute('style', 'float: bottom');
+            TimeDiv.appendChild(btn1);
+        BlockElem.appendChild(TimeDiv);
+        
+        let btn2 = document.createElement('input');//운전자 이름 입력하는 곳
+        btn2.setAttribute('type', 'text');
+        btn2.setAttribute('name', eval("'"+ div_name + index + "'"));//OffWorkName0[1]
+        btn2.setAttribute('class', 'Change_InpBtn');
+        btn2.setAttribute('value', eval("'" + ElemObj.driver + "'"));
+        btn2.setAttribute('style', 'width: 100px;');
+        BlockElem.appendChild(btn2);
     for(let k=0; k< PaxArr.length; k++){
-        let btn3 = document.createElement('button');//운전자 이름 입력하는 곳
+        let btn3 = document.createElement('input');//운전자 이름 입력하는 곳
         btn3.setAttribute('type', 'text');
         btn3.setAttribute('name', eval("'"+ div_name + index + "'"));//OffWorkName0[2...]
-        btn3.setAttribute('class', 'Content_InpBtn');
+        btn3.setAttribute('class', 'Change_InpBtn');
         btn3.setAttribute('value', eval("'" + PaxArr[k] + "'"));
-        AlterElem.appendChild(btn3);
+        btn3.setAttribute('style', 'width: 100px;');
+        BlockElem.appendChild(btn3);
     }
-    //변경하기 버튼을 누르면 저장하고 삭제하고 원래있던 자리에 입력타입들을 만드는 과정중이었고
-    //만들어지는 elements가 다 OffWork_Block 안에 들어갈 수 있도록 만들어야함 아직 OffWork_Block 부분이 구현 안됨
-    
-    //사용자가 원하는 정보를 입력하고 다시 저장하면
-    //입력된 정보들을 다시 배열에 저장
-    //입력된 정보가 저장되어 있는 배열로 다시 content_id 하위 콘텐트 생성 
+        
+        let val2 = document.createElement('div');
+        val2.setAttribute('class', 'operate_InpBtn');
+            let addbtn = document.createElement('input');
+            addbtn.setAttribute('type', 'button');
+            addbtn.setAttribute('class', 'CloseBtn_style');
+            addbtn.setAttribute('value', '동승자 추가');
+            let func_val4 = 'addInpBtn("'+ name + '_Block' + index + '","' + div_name + index + '")';
+            addbtn.setAttribute('onclick', eval("'" + func_val4 + "'"));
+            addbtn.setAttribute('style', 'float: right; border:1px solid black;');
+            val2.appendChild(addbtn);
 
+            let br = document.createElement('br');
+            val2.appendChild(br);
+
+            let delbtn = document.createElement('input');
+            delbtn.setAttribute('type', 'button');
+            delbtn.setAttribute('class', 'CloseBtn_style');
+            delbtn.setAttribute('value', '동승자 삭제');
+            let func_val5 = 'delInpBtn("'+ name + '_Block' + index + '","' + div_name + index + '")';
+            delbtn.setAttribute('onclick', eval("'" + func_val5 + "'"));
+            delbtn.setAttribute('style', 'float:right; border:1px solid black; margin-top:2px;');
+            val2.appendChild(delbtn);
+        BlockElem.appendChild(val2);
+    parent.appendChild(BlockElem);
+    document.getElementById(name + index + "_recordedTime").innerText = ElemObj.times;
+}
+
+function delInpBtn(parent_div, div_name){
+    //element.length을 기준으로 삭제 인덱스 3초과까지만 
+    let parent = document.getElementById(parent_div);
+    let nameElem = document.getElementsByName(div_name);
+    if(nameElem.length > 3){
+        nameElem[nameElem.length-1].remove();
+    } else {
+        alert("더 이상 삭제 할 수 없습니다!");
+    }
+}
+function addInpBtn(parent_div, div_name){//addInpBtn("OffWork_Block0", "OffWorkName0")
+    //element.length을 기준으로 추가, 인덱스 6이하까지만
+    let parent = document.getElementById(parent_div);
+    let nameElem = document.getElementsByName(div_name);
+    if(nameElem.length <=6 ){
+        let newBtn = document.createElement('input');//운전자 이름 입력하는 곳
+        newBtn.setAttribute('type', 'text');
+        newBtn.setAttribute('name', eval("'"+ div_name + "'"));//OffWorkName0[2...]
+        newBtn.setAttribute('class', 'Change_InpBtn');
+        newBtn.setAttribute('placeholder', eval("'동승자" + (nameElem.length-2) + "'"));
+        newBtn.setAttribute('style', 'width: 100px;');
+        parent.appendChild(newBtn);
+    } else {
+        alert("더 이상 추가 할 수 없습니다!");
+    }
 }
 
 function SaveContent(content_id, div_name, index){
-
+    //사용자가 원하는 정보를 입력하고 다시 저장하면
+    //입력된 정보들을 다시 배열에 저장
+    //입력된 정보가 저장되어 있는 배열로 다시 content_id 하위 콘텐트 생성 
 }
