@@ -312,7 +312,7 @@ function ChangeContent(content_id, div_name, index){//ChangeContent("OffWork_Con
             delbtn.setAttribute('type', 'button');
             delbtn.setAttribute('class', 'CloseBtn_style');
             delbtn.setAttribute('value', '동승자 삭제');
-            let func_val5 = 'delInpBtn("'+ name + '_Block' + index + '","' + div_name + index + '")';
+            let func_val5 = 'delInpBtn("' + div_name + index + '")';
             delbtn.setAttribute('onclick', eval("'" + func_val5 + "'"));
             delbtn.setAttribute('style', 'float:right; border:1px solid black; margin-top:2px;');
             val2.appendChild(delbtn);
@@ -321,7 +321,7 @@ function ChangeContent(content_id, div_name, index){//ChangeContent("OffWork_Con
     document.getElementById(name + index + "_recordedTime").innerText = ElemObj.times;
 }
 
-function delInpBtn(parent_div, div_name){
+function delInpBtn(div_name){
     //element.length을 기준으로 삭제 인덱스 3초과까지만 
     let nameElem = document.getElementsByName(div_name);
     if(nameElem.length > 3){
@@ -360,11 +360,11 @@ function searchCar(id){//OffWork0
     let msg1 = document.getElementById(id + "_msg1");//차량정보 표시하는 곳
     let msg2 = document.getElementById(id + "_msg2");//문제 생겼을때 메세지 표시하는 곳
     if(ArrIndex == -1){//아무값도 찾지 못한다면?
-        msg1.innerText = "없는 번호";
+        msg1.innerText = "없는 이름";
         msg2.innerText = "해당 이름이 등록되지 않았습니다.";
     } else if(OfficerList[ArrIndex].car == ""){
         msg1.innerText = "없는 번호";
-        msg2.innerText = "해당 이름이 등록되지 않았습니다.";
+        msg2.innerText = "차량번호가 등록되어있지 않습니다.";
     } else if(OfficerList[ArrIndex].otherCar.length > 1){//아무이상 없고 운전자의 차가 두개이상일때 msg2에 select선택 생성
         let select = document.createElement('select');
         select.setAttribute('id', eval("'" + id + "_select'"));//OffWork0_select
@@ -382,7 +382,9 @@ function searchCar(id){//OffWork0
             let optionName = document.getElementById(id+ "_option" + i);////OffWork0_option0;
             optionName.innerText = carArr[i];
         }
-        
+    } else {
+        msg1.innerText = OfficerList[ArrIndex].car;
+        msg2.innerHTML = "";
     }
 }
 
