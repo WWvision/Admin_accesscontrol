@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="./Visitor_part_style.css">
+		<title>민간인 출입통제</title>
+	</head>
+
+	<body>
+	    <h2 id="Page_Title" style="display:inline;">민간인 출입통제</h2>
+
+		<div id="TotalDiv" style="width: 808px; overflow-y:auto;">
+			<div id="Visitor_Input_Area" style="display: block;" >
+				<input type="text" id="sendData_txt_test" placeholder="이름 검색">
+				<input type='button' id="sendData_btn" value=" 추가하기 " style="margin-left: 4px;" onclick="sendData()">
+                <div id="SearchResult_test">
+                    <input type="button" class="result_NameBtn_test" value="이름1/991001">
+                    <input type="button" class="result_NameBtn_test" value="이름2/881211">
+                </div>
+
+                <div id="InputBox_test">
+
+                </div>
+            </div>
+
+			<input type="button" class="Toggle_Box" value="출근" onclick="toggleGoWork()">
+			<div id="GoWork_Box" class="Content_Box" style="display: none;">
+				<div id='div_title'>
+					※ 출근 현황
+				</div>
+				<!-- Content_div 생성되는 곳 OfficeP1처럼 비슷하게 생성 -->
+			</div>
+
+			<input type="button" class="Toggle_Box" value="퇴근" onclick="toggleOffWork()">
+			<div id="OffWork_Box" class="Content_Box" style="float: bottom;">
+				<div id='div_title'>
+					※ 퇴근 현황
+				</div>
+				<!-- Content_div 생성되는 곳 OfficeP1처럼 비슷하게 생성 -->
+			</div>
+		</div>
+        <script src='./Visitor_part_logic1.js'></script>
+	</body>
+</html>
