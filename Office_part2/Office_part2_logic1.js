@@ -7,7 +7,7 @@ var OfficerList = [
     { "position": "부장","name": "이모씨", "car": "승용차4", "otherCar": [] },
     { "position": "경리","name": "박모씨", "car": "승용차5", "otherCar": ["승용차5-1", "승용차5-2"] }
 ];
-
+var DelGoWorkIndex = new Array(), DelOffWorkIndex = new Array(); 
 var GoWorkIndex = 0, OffWorkIndex = 0;
 function sendData(){
     ResultArr = getData();//입력된 정보를 이름 배열로 반환
@@ -162,7 +162,8 @@ function createOffWork(carInfo, OccupantArr, index){
             btn1.setAttribute("type", "button");
             btn1.setAttribute("class", "CloseBtn_style");
             btn1.setAttribute("value", "X");
-            btn1.setAttribute("onclick", eval("'DeleteContent(OffWork_Content" + index + ")'"));
+            btn1.setAttribute("onclick", eval("'DeleteContent(`OffWork_Content" + index + "`,`OffWork`," + index  +")'"));
+            //OffWork_Content0, OffWork, 0
             btn1.setAttribute("style", "float:right");
             Content_msg.appendChild(btn1);
             
@@ -256,7 +257,7 @@ function ChangeContent(content_id, div_name, index){//ChangeContent("OffWork_Con
     //Content_Block 안에 정보수정창 생성 및 저장하기 버튼으로 변경
     let name =  div_name.replace('Name', '');
     let ChangeBtn = document.getElementById(name + index  + "_ChangeBtn");
-    let func_val3 = `SaveContent("` + content_id + `","` + div_name + `",` + index + `)`;
+    let func_val3 = `SaveContent("` + content_id + `","` + name + `",` + index + `)`;
     ChangeBtn.value = "저장하기";//기존 요소를 삭제하면 변경버튼을 저장버튼으로 변환
     ChangeBtn.setAttribute("onclick", eval("'" + func_val3 + "'"));//기존 요소를 삭제하면 변경버튼을 저장버튼으로 변환
     let BlockElem = document.createElement('div');
@@ -347,12 +348,6 @@ function addInpBtn(parent_div, div_name){//addInpBtn("OffWork_Block0", "OffWorkN
     }
 }
 
-function SaveContent(content_id, div_name, index){
-    //사용자가 원하는 정보를 입력하고 다시 저장하면
-    //입력된 정보들을 다시 배열에 저장
-    //입력된 정보가 저장되어 있는 배열로 다시 content_id 하위 콘텐트 생성 
-
-}
 function searchCar(id){//OffWork0
     let InpName = document.getElementById(id + "_driver").value;//운전자이름
     let ArrIndex = OfficerList.findIndex(i => i.name == InpName);//OfficeList에서 해당 이름값을 찾으면 찾은 인덱스 반환
@@ -391,4 +386,113 @@ function searchCar(id){//OffWork0
 function SelectDiv(div_id){//OffWork0
     let val = document.getElementById(div_id + "_select").value;
     document.getElementById(div_id + "_msg1").innerText = val;
+}
+function SaveContent(content_id, div_name, index){//OffWork_Content0, OffWork, 0
+    //사용자가 원하는 정보를 입력하고 다시 저장하면
+    let ElemData = document.getElementsByName(div_name+"Name"+index);
+    let is_ok = true;//값이 정상적으로 다 입력되었는지 확인
+    let DataObj = new Object;
+    let type, newPaxArr = [];
+
+    if(div_name == "OffWork"){
+        type = "퇴근";
+    } else if(div_name == "GoWork"){
+        type = "출근";
+    }
+    for(let i=0;i< ElemData.length; i++){//데이터 확인 또는 저장
+        if(ElemData[i].value == ""){
+            is_ok = false;
+        } 
+    }
+    if(!is_ok){//하나라도 입력되지 않은 값이 있다면
+        alert("값이 입력되지 않았습니다.");
+    } else {
+        //입력된 정보들을 다시 저장
+        for(let p=0; p< ElemData.length; p++){
+            switch(p){
+                case 0:
+                    DataObj.carInfo = ElemData[0].value; break;
+                case 1:
+                    let times = ElemData[1].value;
+                    DataObj.times = type + times.replace(':', ''); break;
+                case 2: 
+                    DataObj.driver = ElemData[2].value; break;
+                default:
+                    newPaxArr.push(ElemData[p].value);
+            }
+        }
+        DataObj.passengers = newPaxArr;
+    }
+    
+    //content_id 있는 하위 콘텐트 싹다 삭제
+    let parent = document.getElementById(content_id);//쟤 상위 div
+    let AlterElem = document.getElementById(div_name +"_Block" + index);//OffWork_Block0
+    parent.removeChild(AlterElem);
+
+    SavedContent(content_id, div_name, DataObj, index);//OffWork_Content0, OffWork, data, 0
+     
+
+}
+function SavedContent(parentId, childName, obj, index){//OffWork_Content0, OffWork, data, 0
+    //입력된 정보가 저장되어 있는 배열로 다시 content_id 하위 콘텐트 생성
+    let ChangeBtn = document.getElementById(childName + index  + "_ChangeBtn");
+    let func_val = `DeleteContent("` + parentId + `","` + childName + `Name",` + index + `)`;
+    ChangeBtn.value = "변경하기";//기존 요소를 삭제하면 저장버튼을 변경버튼으로 변환
+    ChangeBtn.setAttribute("onclick", eval("'" + func_val + "'"));
+
+    let typeTxt; 
+    let PassengerArr = obj.passengers;
+    test = PassengerArr.length;
+    if(childName == "OffWork"){
+        typeTxt = "퇴근";
+    } else if(childName == "GoWork"){
+        typeTxt = "통합막사/출근";
+    }
+    let parentDiv = document.getElementById(parentId);//OffWork_Content0
+    let childDiv = document.createElement('div');
+    childDiv.setAttribute('id', eval("'" + childName + "_Block" + index + "'"));
+        let div1 = document.createElement('div');//퇴근1742
+        div1.setAttribute('id', eval("'" + childName + index + "_time'"));
+        div1.setAttribute('name', eval("'" + childName + "Name" + index + "'"));
+        div1.setAttribute('class', 'ContentTime_style');
+        div1.setAttribute('style', 'margin-top: 14px');
+        childDiv.appendChild(div1);
+
+        let btn1 = document.createElement('input');
+        btn1.setAttribute('type','button');
+        btn1.setAttribute('id', eval("'" + childName + index + "_Driver'"));
+        btn1.setAttribute('class', 'Content_InpBtn');
+        btn1.setAttribute('name', eval("'" + childName + "Name" + index + "'"));
+        btn1.setAttribute('value', eval("'" + obj.driver + "'"));
+        let func_val1 = 'copyClipBoard("자차/동승(간부' + PassengerArr.length + ')/' +  typeTxt + '")';
+        btn1.setAttribute('onclick', eval("'" + func_val1 + "'"));
+        btn1.setAttribute('style', 'width: 100px');
+        childDiv.appendChild(btn1);
+
+        for(let d=0;d < PassengerArr.length; d++){
+            let btn2 = document.createElement('input');
+            btn2.setAttribute('type', 'button');
+            btn2.setAttribute('id', eval("'" + childName + index + "_passenger" + d + "'"));
+            btn2.setAttribute('class', 'Content_InpBtn');
+            btn2.setAttribute('name', eval("'" + childName + "Name" + index + "'"));
+            btn2.setAttribute('value', eval("'" + PassengerArr[d] + "'"));
+            let func_val2 = 'copyClipBoard("동승(' + obj.carInfo + ')/' +  typeTxt + '")';
+            btn2.setAttribute('onclick', eval("'" + func_val2 + "'"));
+            btn2.setAttribute('style', 'width: 100px;');
+            childDiv.appendChild(btn2);
+        }
+    parentDiv.appendChild(childDiv);
+
+    document.getElementById(childName + index + "_time").innerText = obj.times;
+}       
+var test;
+function DeleteContent(Content_id, type, index){
+    //일단 배열 숨겨두고
+    document.getElementById(Content_id).style.display = "none";
+    if(type == "GoWork"){
+        DelGoWorkIndex.push(index);
+    } else if(type == "OffWork"){
+        DelOffWorkIndex.push(index);
+    }
+    //새로운 페이지 로드될떄 세션 저장했다 업데이트
 }
