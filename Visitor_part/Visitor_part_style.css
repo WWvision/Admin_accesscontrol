@@ -1,52 +1,78 @@
 .Content_box {
     width: 790px;
-    height: 650px;
+    height: 550px;
     overflow-y: auto;
     background-color: rgba(211,211,211,0.1);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
     border: 1px solid black;
-    border-top: transparent;
+    padding: 3px;
+    margin: 5px;
+    margin-top: 10px;
+}
+#TotalDiv {
+    width: 808px; 
+    overflow-y:auto;
+}
+.toggleBtn{
+    width: 798px; 
+    height: 40px;
+    margin: 5px; 
+    margin-bottom: 0;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: white;
+    border: 2px solid lightblue;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.toggleBtn:hover {
+    background-color: lightblue;
+    color: white;
+}
+#InputBox{
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 748px;
+    height: 250px;
+    position: absolute;
+    left: 32px;
+    top: 250px;
+    overflow-y: auto;
+}
+#InputBox::-webkit-scrollbar{
+    display:  none;
+}
+
+#VisitorsInfo {
+    margin-left: 8px;
+    margin-top: 10px; 
+    overflow-y: auto;
+}
+#Visitor_Input_Area {
+    width: 790px;
+    height: 430px;
+    overflow-y: auto;
+    background-color: rgba(211,211,211,0.1);
+    border: 1px solid black;
+    border-top: 0;
     padding: 3px;
     margin: 5px;
     margin-top: 0;
 }
-.Toggle_Box {
-    width: 798px;
-    height: 35px;
-    background-color: white;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border: 1px solid black;
-    padding: 3px;
-    margin: 5px; 
-    margin-bottom: 0;
+#sendData_txt{
+    margin-top: 10px;
+    margin-left: 15px;
+    width: 617px;
+    height: 40px;
     font-size: 20px;
-    font-weight: bold;
-}
-.Toggle_Box:hover {
-    border: 1px solid darkgray;
-    background-color: royalblue;
-    color: white;
-}
-#div_title{
-    margin: 10px;
-    font-weight: bold;
-    border-bottom: 1px solid gray;
-    padding-bottom: 1px;
-}
-#Visitor_Input_Area {
-    width: 790px;
-    height: 660px;
-    overflow-y: auto;
-    background-color: rgba(211,211,211,0.1);
-    border: 1px solid black;
-    padding: 3px;
-    margin: 5px;
+    display: inline-block;
+    border: 2px solid #9caaaf;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 #sendData_btn {
     position: absolute;
-    top: 59px;
+    top: 98px;
     left: 645px;
     width: 135px;
     height: 40px;
@@ -59,35 +85,28 @@
     font-weight: bold;
     font-size: 17px;
     display: inline-block;
+    margin-left: 4px;
 }
-#sendData_btn:hover {
-    background-color: lightskyblue;
-    color: white;
-}
-#sendData_txt_test{
-    margin-top: 10px;
-    margin-left: 15px;
-    width: 617px;
-    height: 40px;
-    font-size: 20px;
-    display: inline-block;
-    border: 2px solid #9caaaf;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-#SearchResult_test {
+#SearchResult {
     width: 690px;
     height: 100px;
     position: absolute;
     left: 90px;
-    top: 96px;
     z-index: -1;
     border: 2px solid grey;
     border-top: 0;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    overflow-y: auto;
 }
-.result_NameBtn_test {
+#SearchResult::-webkit-scrollbar {
+    display: none;
+}
+#sendData_btn:hover {
+    background-color: lightskyblue;
+    color: white;
+}
+.result_NameBtn {
     width: 680px;
     background-color: white;
     border: 1px solid pink;
@@ -97,21 +116,175 @@
     font-size: 15px;
     font-weight: bold;
 }
-.result_SelectBtn_test {
-    font-size: 16px; 
-    font-weight: bold; 
-    float: right;
-    background-color: white; 
-    border: 3px solid pink; 
-    border-radius: 5px;
-    margin-right: 50px;
+.Vname_Info {
+    width: 580px; 
+    font-size: 17px;
 }
-#InputBox_test{
-    border: 2px solid black;
+.deleteBtn {
+    border: none; 
+    background-color: transparent; 
+    float:right;
+    font-weight: bold;
+}
+.deleteBtn:hover {
+    color: red;
+}
+.border-line {
+    width: 733px; 
+    border-bottom: 2px solid black; 
+    margin-left: 8px; 
+    margin-top: 10px;
+}
+#VisitorBusiness {
+    width: 170px; 
+    font-size: 17px; 
+    margin-left: 20px; 
+    margin-top: 10px;
+}
+#VisitorRemark{
+    width: 500px; 
+    font-size: 17px; 
+    margin-left: 8px; 
+    margin-top: 10px; 
+    margin-bottom: 15px;
+}
+#SubmitBtn {
+    border: 2px solid lightblue;
     border-radius: 5px;
-    width: 748px;
-    height: 300px;
-    position: absolute;
-    left: 32px;
-    top: 230px;
+    background-color: white;
+    font-size: 17px;
+    margin-left: 8px;
+    margin-bottom: 15px;
+    width: 733px;
+}
+#SubmitBtn:hover {
+    background-color: lightblue;
+    color: white;
+}
+#div_title{
+    margin: 10px;
+    font-weight: bold;
+    border-bottom: 1px solid gray;
+    padding-bottom: 1px;
+}
+.Content_style{
+    margin-left: 10px; 
+    width: 768px; 
+    height: 224px;
+    /* 메인 높이 115px / 자식요소 110px*/
+}
+.Content_TypeBar_style {
+    height: 20px; 
+    border: 1px solid black;
+    border-bottom: 0;
+    background-color: pink;
+}
+.changeBtn{
+    float:right; 
+    border: none; 
+    background-color: transparent; 
+    font-weight: bold;
+}
+.Content_Body {
+    border: 1px solid black; 
+    height: 95px;
+}
+.TypeBtn {
+    width: 102px; 
+    height: 80px; 
+    float:left; 
+    margin-left: 10px;
+}
+.Body_NameCon {
+    width: 635px;
+    float: right; 
+    margin-bottom: 4px;
+    padding: 5px;
+    padding-left: 10px;
+}
+.NameCon_style {
+    width: 100px; 
+    float: left; 
+    height: 40px; 
+    margin-right: 10px;
+}
+.Content_Bs_style {
+    width: 150px;
+    height: 30px;
+    margin-left: 13px; 
+    margin-bottom: 10px;
+}
+.Content_Remark_style{
+    width: 450px; 
+    height: 30px;
+}
+
+.Child_Content {
+    width: 747px; 
+    height: 108px; 
+    float: right;
+    border: 1px solid black; 
+    border-top: 0;
+    background-color: rgb(240, 240, 240); 
+}
+.Child_TypeBar{
+    height: 20px;
+    background-color: lightgreen;
+}
+.Child_TypeBtn {
+    width: 102px; 
+    height: 80px; 
+    margin-left: 10px;
+    float:left; 
+}
+.Child_NameCon {
+    width: 620px;
+    float: right; 
+    padding: 5px;
+}
+.Child_Name_style{
+    width: 100px; 
+    height: 40px; 
+    margin-right: 5px;
+    float: left; 
+}
+.Child_Bs_style {
+    width: 150px; 
+    height: 30px;
+    margin-left: 7px; 
+}
+.Child_Remark_style{
+    width: 430px; 
+    height: 30px;
+}
+
+.History_Content{
+    height: 50px;
+    margin: 8px;
+    background-color: pink;
+    border: 1px solid gray; 
+    padding: 3px;
+}
+
+
+
+.div_h_cells{
+    float: left;
+    height: 20px;
+    width: 70px;
+}
+.hCell_type {
+    float: left; 
+    width: 150px;
+    height: 40px;
+}
+.hCell_Name{
+    float: left;
+    width: 610px;
+    height: 25px;
+}
+.hCell_Others{
+    float: left;
+    width: 610px;
+    height: 25px;
 }

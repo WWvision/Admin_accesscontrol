@@ -5,38 +5,121 @@
 	</head>
 
 	<body>
-	    <h2 id="Page_Title" style="display:inline;">민간인 출입통제</h2>
+	    <h2 style="display:inline;">민간인 출입통제</h2>
+		<div id="TotalDiv">
+			<input type="button" class="toggleBtn" value="민간인 추가" onclick="toggleAddVisitor()">
 
-		<div id="TotalDiv" style="width: 808px; overflow-y:auto;">
 			<div id="Visitor_Input_Area" style="display: block;" >
-				<input type="text" id="sendData_txt_test" placeholder="이름 검색">
-				<input type='button' id="sendData_btn" value=" 추가하기 " style="margin-left: 4px;" onclick="sendData()">
-                <div id="SearchResult_test">
-                    <input type="button" class="result_NameBtn_test" value="이름1/991001">
-                    <input type="button" class="result_NameBtn_test" value="이름2/881211">
-                </div>
+				<input type="text" id="sendData_txt" placeholder="이름 검색">
+				<input type='button' id="sendData_btn" value=" 추가하기 " onclick="sendData()">
+				<div id="SearchResult">
+					<input type="button" class="result_NameBtn" value="이름1/991001">
+				</div>
 
-                <div id="InputBox_test">
+				<div id="InputBox">
+					<div id="VistorsInfo">
+						<div id="VisitorName1" style="margin-top: 5px;">
+							<b style="margin-left: 5px;">이름1/991001</b>
+							<input type="text" id="Vname_Info1" class="Vname_Info" value="첫번쨰 배열 이것저것">
+							<input type="button" class="deleteBtn" value="X" onclick="deleteInfo('VisitorName1')">
+						</div>
+					</div>
+					<div class="border-line"></div> 
+					<input type="text" id="VisitorBusiness" placeholder="용무">
+					<input type="text" id="VisitorRemark" placeholder="특이사항">
+					<input type="button" id="SubmitBtn" value="제출하기">
+				</div>
+			</div>
 
-                </div>
-            </div>
-
-			<input type="button" class="Toggle_Box" value="출근" onclick="toggleGoWork()">
-			<div id="GoWork_Box" class="Content_Box" style="display: none;">
+			<div id="Content_Box" class="Content_Box" style="display: block;">
 				<div id='div_title'>
-					※ 출근 현황
+					※ 입퇴영 현황
+				</div>
+				<div id="Content1" class="Content_style">
+					<div id="Content1_TypeBar" class="Content_TypeBar_style">
+						<input type="button" class="deleteBtn" value="X">
+						<input type="button" class="changeBtn" value="변경사항">
+					</div>
+					<div id="Content1_Body" class="Content_Body"><!-- 자식요소와 구분짓기 위해 존재-->
+						<div id="Content1_TypeBtn" class="TypeBtn">
+							<input type="button" value="입영: 10:50:01" style="margin-top: 22px;">
+							<input type="button" value="퇴영: 13:01:12" >
+						</div>
+						<div id="Content1_NameCon" class="Body_NameCon">
+							<input type="text" id="Content1_Name1" class="NameCon_style" value="이름1">
+							<input type="text" id="Content1_Name2" class="NameCon_style" value="이름2">
+							<input type="text" id="Content1_Name3" class="NameCon_style" value="이름3">
+							<input type="text" id="Content1_Name4" class="NameCon_style" value="이름4">
+						</div>
+						<input type="text" id="Content1_Bs" class="Content_Bs_style" value="용무~~~~~~">
+						<input type="text" id="Content1_Remark" class="Content_Remark_style" value="특이사항~~~~~~">
+					</div>
+
+					<div id="Content1_Child1" class="Child_Content">
+						<div id="Child1_TypeBar" class="Child_TypeBar">
+							<input type="button" class="deleteBtn" value="X">
+							<input type="button" class="changeBtn" value="저장하기">
+						</div>
+						<div id="Child1_TypeBtn" class="Child_TypeBtn">
+							<input type="button" value="입영: 10:50:01" style="margin-top: 15px">
+							<input type="button" value="퇴영: 13:01:12" >
+						</div>
+						<div id="Child1_NameCon" class="Child_NameCon">
+							<input type="text" id="Child1_Name1" class="Child_Name_style" value="이름1">
+						</div>
+						<input type="text" id="Child1_Bs" class="Child_Bs_style" value="용무~~~~~~">
+						<input type="text" id="Child1_Remark" class="Child_Remark_style" value="특이사항~~~~~">
+					</div>
 				</div>
 				<!-- Content_div 생성되는 곳 OfficeP1처럼 비슷하게 생성 -->
 			</div>
 
-			<input type="button" class="Toggle_Box" value="퇴근" onclick="toggleOffWork()">
-			<div id="OffWork_Box" class="Content_Box" style="float: bottom;">
+			<div id="OffWork_Box" class="Content_Box" style="display: block;">
 				<div id='div_title'>
-					※ 퇴근 현황
+					※ 입퇴영기록
 				</div>
 				<!-- Content_div 생성되는 곳 OfficeP1처럼 비슷하게 생성 -->
+				<div id="HistoryContent1" class="History_Content">
+					<div class="hCell_type">
+						<div class="div_h_cells" style="width: 40px; margin-top: 12px;">
+							<b>퇴영</b>
+						</div>
+						<div class="div_h_cells" style="width: 100px; margin-top: 12px;">
+							<b>오후 1:33:12</b>
+						</div>
+					</div>
+						
+					<div class="hCell_Name">
+						<div class="div_h_cells">
+							<b>이름1</b>
+						</div>
+						<div class="div_h_cells">
+							<b>이름2</b>
+						</div>
+						<div class="div_h_cells">
+							<b>이름3</b>
+						</div>
+						<div class="div_h_cells">
+							<b>이름4</b>
+						</div>
+					</div>
+
+					<div class="hCell_Others">
+						<div class="div_h_cells" style="width: 150px;margin-left: 3px;">
+							<b>용무</b>
+						</div>
+						<div class="div_h_cells"style="width: 450px">
+							<b>특이사항</b>
+						</div>
+					</div>
+					
+				</div>
+					<!-- document.createTextNode(TodayOfficeList_arr[index].bool); -->
+					
 			</div>
 		</div>
+
         <script src='./Visitor_part_logic1.js'></script>
+		<script src='./Visitor_part_logic2.js'></script>
 	</body>
 </html>
