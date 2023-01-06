@@ -92,7 +92,6 @@
     height: 100px;
     position: absolute;
     left: 90px;
-    z-index: -1;
     border: 2px solid grey;
     border-top: 0;
     border-bottom-left-radius: 5px;
@@ -106,8 +105,33 @@
     background-color: lightskyblue;
     color: white;
 }
-.result_NameBtn {
+.Result_style {
+    width: 670px;
+    box-shadow: 3px 3px 3px gray;
+    margin-top: 4px;
+    margin-left: 8px;
+}
+.result_div_style {
+    background-color: white;
+    border: none;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.result_Btn {
+    border: 2px solid lightcoral;
+    background-color: transparent;
+    font-size: 13px;
+    font-weight: bold;
+}
+.result_Btn:hover{
+    background-color: lightcoral;
+    color: white;
+}
+.result_NewVisitor {
     width: 680px;
+    height: 40px;
     background-color: white;
     border: 1px solid pink;
     margin-top: 4px;
@@ -115,8 +139,17 @@
     text-align: left;
     font-size: 15px;
     font-weight: bold;
+    
 }
-.Vname_Info {
+.Vst_Name {
+    margin-left: 5px; 
+    width: 120px; 
+    border: none; 
+    background-color: transparent; 
+    font-size: 17px; 
+    font-weight: bold;
+}
+.Vst_Info {
     width: 580px; 
     font-size: 17px;
 }

@@ -10,24 +10,31 @@
 			<input type="button" class="toggleBtn" value="민간인 추가" onclick="toggleAddVisitor()">
 
 			<div id="Visitor_Input_Area" style="display: block;" >
-				<input type="text" id="sendData_txt" placeholder="이름 검색">
-				<input type='button' id="sendData_btn" value=" 추가하기 " onclick="sendData()">
+				<input type="text" id="sendData_txt" placeholder="이름 검색" onchange="searchVisitor()">
+				<input type='button' id="sendData_btn" value="새로 추가하기 " onclick="AddNewVisitor()">
 				<div id="SearchResult">
-					<input type="button" class="result_NameBtn" value="이름1/991001">
+					<!-- 이름 검색하면 비고정출입자 명단 출력 -->
+					<div id="ResultA" class="Result_style">
+						<input type="button" class="result_Btn" value="선택">
+						<input type="button" class="result_div_style" value="타부대/기타사항" style="width: 120px;">
+						<input type="button" class="result_div_style" value="김승주/991001" style="width: 120px;">
+						<input type="button" class="result_div_style" value="차량정보~~/주소~~/전화번호" style="width: 370px;">
+					</div> 
 				</div>
 
 				<div id="InputBox">
 					<div id="VistorsInfo">
-						<div id="VisitorName1" style="margin-top: 5px;">
-							<b style="margin-left: 5px;">이름1/991001</b>
-							<input type="text" id="Vname_Info1" class="Vname_Info" value="첫번쨰 배열 이것저것">
-							<input type="button" class="deleteBtn" value="X" onclick="deleteInfo('VisitorName1')">
+						<!-- 위에 출력된 곳에서 이름을 선택하면 해당 민간인을 여기서 자세한 정보를 입력하는 곳-->
+						<div id="VisitorNameA" style="margin-top: 5px;">
+							<input type="button" id="Vst_NameA" class="Vst_Name" value="이름1/991001"></input>
+							<input type="text" id="Vst_InfoA" class="Vst_Info" value="첫번쨰 배열 이것저것">
+							<input type="button" class="deleteBtn" value="X" onclick="deleteInfo('VisitorNameA')">
 						</div>
 					</div>
 					<div class="border-line"></div> 
 					<input type="text" id="VisitorBusiness" placeholder="용무">
 					<input type="text" id="VisitorRemark" placeholder="특이사항">
-					<input type="button" id="SubmitBtn" value="제출하기">
+					<input type="button" id="SubmitBtn" value="제출하기" onclick="sendData()">
 				</div>
 			</div>
 
