@@ -14,22 +14,12 @@
 				<input type='button' id="sendData_btn" value="새로 추가하기 " onclick="AddNewVisitor()">
 				<div id="SearchResult">
 					<!-- 이름 검색하면 비고정출입자 명단 출력 -->
-					<div id="ResultA" class="Result_style">
-						<input type="button" class="result_Btn" value="선택">
-						<input type="button" class="result_div_style" value="타부대/기타사항" style="width: 120px;">
-						<input type="button" class="result_div_style" value="김승주/991001" style="width: 120px;">
-						<input type="button" class="result_div_style" value="차량정보~~/주소~~/전화번호" style="width: 370px;">
-					</div> 
 				</div>
 
 				<div id="InputBox">
 					<div id="VistorsInfo">
 						<!-- 위에 출력된 곳에서 이름을 선택하면 해당 민간인을 여기서 자세한 정보를 입력하는 곳-->
-						<div id="VisitorNameA" style="margin-top: 5px;">
-							<input type="button" id="Vst_NameA" class="Vst_Name" value="이름1/991001"></input>
-							<input type="text" id="Vst_InfoA" class="Vst_Info" value="첫번쨰 배열 이것저것">
-							<input type="button" class="deleteBtn" value="X" onclick="deleteInfo('VisitorNameA')">
-						</div>
+
 					</div>
 					<div class="border-line"></div> 
 					<input type="text" id="VisitorBusiness" placeholder="용무">
@@ -42,27 +32,27 @@
 				<div id='div_title'>
 					※ 입퇴영 현황
 				</div>
-				<div id="Content1" class="Content_style">
-					<div id="Content1_TypeBar" class="Content_TypeBar_style">
+				<div id="Content0" class="Content_style" style="height: 226px;">
+					<div id="Content0_TypeBar" class="Content_TypeBar_style">
 						<input type="button" class="deleteBtn" value="X">
 						<input type="button" class="changeBtn" value="변경사항">
 					</div>
-					<div id="Content1_Body" class="Content_Body"><!-- 자식요소와 구분짓기 위해 존재-->
-						<div id="Content1_TypeBtn" class="TypeBtn">
+					<div id="Content0_Body" class="Content_Body"><!--자식요소와 구분짓기 위해 존재 -->
+						<div id="Content0_TypeBtn" class="TypeBtn">
 							<input type="button" value="입영: 10:50:01" style="margin-top: 22px;">
 							<input type="button" value="퇴영: 13:01:12" >
 						</div>
-						<div id="Content1_NameCon" class="Body_NameCon">
-							<input type="text" id="Content1_Name1" class="NameCon_style" value="이름1">
-							<input type="text" id="Content1_Name2" class="NameCon_style" value="이름2">
-							<input type="text" id="Content1_Name3" class="NameCon_style" value="이름3">
-							<input type="text" id="Content1_Name4" class="NameCon_style" value="이름4">
+						<div id="Content0_NameCon" class="Body_NameCon">
+							<input type="button" id="Content0_Name1" class="NameCon_style" value="이름1" onclick="Visitor('이름1')">
+							<input type="button" id="Content0_Name2" class="NameCon_style" value="이름2" onclick="Visitor('이름2')">
+							<input type="button" id="Content0_Name3" class="NameCon_style" value="이름3" onclick="Visitor('이름3')">
+							<input type="button" id="Content0_Name4" class="NameCon_style" value="이름4" onclick="Visitor('이름4')">
 						</div>
-						<input type="text" id="Content1_Bs" class="Content_Bs_style" value="용무~~~~~~">
-						<input type="text" id="Content1_Remark" class="Content_Remark_style" value="특이사항~~~~~~">
+						<input type="text" id="Content0_Bs" class="Content_Bs_style" value="용무~~~~~~">
+						<input type="text" id="Content0_Remark" class="Content_Remark_style" value="특이사항~~~~~~">
 					</div>
 
-					<div id="Content1_Child1" class="Child_Content">
+					<div id="Content0_Child1" class="Child_Content">
 						<div id="Child1_TypeBar" class="Child_TypeBar">
 							<input type="button" class="deleteBtn" value="X">
 							<input type="button" class="changeBtn" value="저장하기">
@@ -86,7 +76,7 @@
 					※ 입퇴영기록
 				</div>
 				<!-- Content_div 생성되는 곳 OfficeP1처럼 비슷하게 생성 -->
-				<div id="HistoryContent1" class="History_Content">
+				<div id="HistoryContentA" class="History_Content">
 					<div class="hCell_type">
 						<div class="div_h_cells" style="width: 40px; margin-top: 12px;">
 							<b>퇴영</b>
@@ -95,20 +85,11 @@
 							<b>오후 1:33:12</b>
 						</div>
 					</div>
-						
 					<div class="hCell_Name">
-						<div class="div_h_cells">
-							<b>이름1</b>
-						</div>
-						<div class="div_h_cells">
-							<b>이름2</b>
-						</div>
-						<div class="div_h_cells">
-							<b>이름3</b>
-						</div>
-						<div class="div_h_cells">
-							<b>이름4</b>
-						</div>
+						<div class="div_h_cells"><b>이름1</b></div>
+						<div class="div_h_cells"><b>이름2</b></div>
+						<div class="div_h_cells"><b>이름3</b></div>
+						<div class="div_h_cells"><b>이름4</b></div>
 					</div>
 
 					<div class="hCell_Others">

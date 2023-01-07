@@ -6,3 +6,8 @@ function toggleAddVisitor(){
         con.style.display = "none";
     }
 }
+function Visitor(NameStr){
+    localStorage.setItem('VisitorInfo', NameStr);
+    let link1 = window.open('./test.html', '_blank');
+    link1.focus();
+}
