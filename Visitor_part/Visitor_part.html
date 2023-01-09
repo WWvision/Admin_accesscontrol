@@ -17,14 +17,15 @@
 				</div>
 
 				<div id="InputBox">
-					<div id="VistorsInfo">
+					<div id="VisitorsInfo">
 						<!-- 위에 출력된 곳에서 이름을 선택하면 해당 민간인을 여기서 자세한 정보를 입력하는 곳-->
 
 					</div>
-					<div class="border-line"></div> 
-					<input type="text" id="VisitorBusiness" placeholder="용무">
-					<input type="text" id="VisitorRemark" placeholder="특이사항">
-					<input type="button" id="SubmitBtn" value="제출하기" onclick="sendData()">
+					<div id="VisitorSend_Div" class="VisitorSendBox">
+						<input type="text" id="VisitorBusiness" placeholder="용무">
+						<input type="text" id="VisitorRemark" placeholder="특이사항">
+						<input type="button" id="SubmitBtn" value="제출하기" onclick="sendData()">
+					</div> 
 				</div>
 			</div>
 
@@ -47,6 +48,7 @@
 							<input type="button" id="Content0_Name2" class="NameCon_style" value="이름2" onclick="Visitor('이름2')">
 							<input type="button" id="Content0_Name3" class="NameCon_style" value="이름3" onclick="Visitor('이름3')">
 							<input type="button" id="Content0_Name4" class="NameCon_style" value="이름4" onclick="Visitor('이름4')">
+							<input type="button" id="Content0_Name3" class="NameCon_style" value="이름3" onclick="Visitor('이름3')">
 						</div>
 						<input type="text" id="Content0_Bs" class="Content_Bs_style" value="용무~~~~~~">
 						<input type="text" id="Content0_Remark" class="Content_Remark_style" value="특이사항~~~~~~">

@@ -7,6 +7,7 @@ var VisitorList = [
     { key: "김승준/441001", type: 4, value: "차량6/차량색6/주소6/전화번호6", count: 0 }
 ];
 //1: 고정출입자  / 2: 출입신청된 민간인 / 3:출입신청이 안된 민간인 / 4: 타부대 / 
+var exp_name = new RegExp("[가-힣]{2,4}", "g");
 
 function VisitorType(obj){//VisitorList 출입신청 타입 문자열로 변환해주는 함수
     switch(obj.type){
@@ -22,10 +23,6 @@ function VisitorType(obj){//VisitorList 출입신청 타입 문자열로 변환�
             return "Error Code 404";
     }
 }
-
-
-
-var exp_name = new RegExp("[가-힣]{2,4}", "g");
 function searchVisitor(){
     let InpName = document.getElementById("sendData_txt").value;//입력된 이름
     let Result_div = document.getElementById("SearchResult");
@@ -57,7 +54,6 @@ function searchVisitor(){
     }
     //하위 SearchResult Div에 
 }
-
 
 function createSearch_div(obj, index){
     let parent = document.getElementById("SearchResult");
@@ -96,66 +92,83 @@ function deleteSearch_div(div_val){//div_val 하위 요소 모두 삭제
 }
 
 function selectVisitor(index){//선택된 민간인 목록에 추가
-    let parent = document.getElementById("VistorsInfo");
-    let child = document.createElement('div');
-    child.setAttribute('id', eval("'VisitorName" + parent.children.length + "'"));
-    child.setAttribute('style', 'margin-top: 5px;');
-        let Btn0 = document.createElement('input');
-        Btn0.setAttribute('type', 'button');
-        Btn0.setAttribute('id', eval("'Vst_Name" + parent.children.length + "'"));
-        Btn0.setAttribute('class', 'Vst_Name');
-        Btn0.setAttribute('value', eval("'" + VisitorList[index].key + "'"));
-        child.appendChild(Btn0);
-        let Btn1 = document.createElement('input');
-        Btn1.setAttribute('type', 'text');
-        Btn1.setAttribute('id', eval("'Vst_Info" + parent.children.length + "'"));
-        Btn1.setAttribute('class','Vst_Info');
-        Btn1.setAttribute('value', eval("'" + VisitorList[index].value + "'"));
-        child.appendChild(Btn1);
-        let Btn2 = document.createElement('input');
-        Btn2.setAttribute('type', 'button');
-        Btn2.setAttribute('class', 'deleteBtn');
-        Btn2.setAttribute('value', 'X');
-        Btn2.setAttribute('onclick', eval("'deleteInfo(`VisitorName" + parent.children.length + "`)'"));
-        child.appendChild(Btn2);
-    parent.appendChild(child);
+    let parent = document.getElementById("VisitorsInfo");
+    let Active_Child=0;
+    for(let i=0;i< parent.children.length; i++){
+        if(parent.children[i].style.display != "none"){
+            Active_Child++;
+        }
+    }
+    if(Active_Child < 5){
+        let child = document.createElement('div');
+        child.setAttribute('id', eval("'VisitorName" + parent.children.length + "'"));
+            let Btn0 = document.createElement('input');
+            Btn0.setAttribute('type', 'button');
+            Btn0.setAttribute('id', eval("'Vst_Name" + parent.children.length + "'"));
+            Btn0.setAttribute('class', 'Vst_Name');
+            Btn0.setAttribute('value', eval("'" + VisitorList[index].key + "'"));
+            child.appendChild(Btn0);
+            let Btn1 = document.createElement('input');
+            Btn1.setAttribute('type', 'text');
+            Btn1.setAttribute('id', eval("'Vst_Info" + parent.children.length + "'"));
+            Btn1.setAttribute('class','Vst_Info');
+            Btn1.setAttribute('value', eval("'" + VisitorList[index].value + "'"));
+            child.appendChild(Btn1);
+            let Btn2 = document.createElement('input');
+            Btn2.setAttribute('type', 'button');
+            Btn2.setAttribute('class', 'deleteBtn');
+            Btn2.setAttribute('value', 'X');
+            Btn2.setAttribute('onclick', eval("'deleteInfo(`VisitorName" + parent.children.length + "`)'"));
+            child.appendChild(Btn2);
+        parent.appendChild(child);
+    } else {
+        alert("더 이상 목록에 추가 할수 없습니다! 새로 추가해주세요");
+    }
 }
 function AddNewVisitor(){//등록되지 않은 민간인 임시로 목록에 추가
-    let parent = document.getElementById("VistorsInfo");
-    let child = document.createElement('div');
-    child.setAttribute('id', eval("'VisitorName" + parent.children.length + "'"));
-    child.setAttribute('style', 'margin-top: 5px;');
-        let Btn0 = document.createElement('input');
-        Btn0.setAttribute('type', 'text');
-        Btn0.setAttribute('id', eval("'Vst_Name" + parent.children.length + "'"));
-        Btn0.setAttribute('class', 'Vst_Name');
-        Btn0.setAttribute('placeholder', ' 이름/생년월일');
-        Btn0.setAttribute('style', 'margin-left: 10px;');
-        child.appendChild(Btn0);
-        let Btn1 = document.createElement('input');
-        Btn1.setAttribute('type', 'text');
-        Btn1.setAttribute('id', eval("'Vst_Info" + parent.children.length + "'"));
-        Btn1.setAttribute('class', 'Vst_Info');
-        Btn1.setAttribute('placeholder', '차량정보/주소/전화번호');
-        Btn1.setAttribute('style', 'width: 580px; font-size:17px;');
-        child.appendChild(Btn1);
-        let Btn2 = document.createElement('input');
-        Btn2.setAttribute('type', 'button');
-        Btn2.setAttribute('class', 'deleteBtn');
-        Btn2.setAttribute('value', 'X');
-        Btn2.setAttribute('onclick', eval("'deleteInfo(`VisitorName" + parent.children.length + "`)'"));
-        child.appendChild(Btn2);
-    parent.appendChild(child);
+    let parent = document.getElementById("VisitorsInfo");
+    let Active_Child=0;
+    for(let i=0;i< parent.children.length; i++){
+        if(parent.children[i].style.display != "none"){
+            Active_Child++;
+        }
+    }
+    if(Active_Child < 5){
+        let child = document.createElement('div');
+        child.setAttribute('id', eval("'VisitorName" + parent.children.length + "'"));
+            let Btn0 = document.createElement('input');
+            Btn0.setAttribute('type', 'text');
+            Btn0.setAttribute('id', eval("'Vst_Name" + parent.children.length + "'"));
+            Btn0.setAttribute('class', 'Vst_Name');
+            Btn0.setAttribute('placeholder', '이름/생년월일');
+            Btn0.setAttribute('style', 'margin-left: 14px;width: 116px;');
+            child.appendChild(Btn0);
+            let Btn1 = document.createElement('input');
+            Btn1.setAttribute('type', 'text');
+            Btn1.setAttribute('id', eval("'Vst_Info" + parent.children.length + "'"));
+            Btn1.setAttribute('class', 'Vst_Info');
+            Btn1.setAttribute('placeholder', '차량정보/주소/전화번호');
+            child.appendChild(Btn1);
+            let Btn2 = document.createElement('input');
+            Btn2.setAttribute('type', 'button');
+            Btn2.setAttribute('class', 'deleteBtn');
+            Btn2.setAttribute('value', 'X');
+            Btn2.setAttribute('onclick', eval("'deleteInfo(`VisitorName" + parent.children.length + "`)'"));
+            child.appendChild(Btn2);
+        parent.appendChild(child);
+    } else {
+        alert("더 이상 목록에 추가 할수 없습니다! 새로 추가해주세요");
+    }
 }
 
 function deleteInfo(div_id){
     document.getElementById(div_id).style.display = "none";
 }
-var testObj;
+
 function sendData(){//민간인들 상세정보와 용무 특이사항을 적고 제출을 누르면 함수 실행
     //입력되어있는 정보들을 불러와 콘텐트Div에 출력
     //삭제처리되어있는 div(숨겨진 div)는 .style.display 상태가 none인것들은 불러들이는 목록에서 제외
-    let Visitor_Element = document.getElementById("VistorsInfo");//하위 요소에 방문자 정보들이 적혀 있는 div
+    let Visitor_Element = document.getElementById("VisitorsInfo");//하위 요소에 방문자 정보들이 적혀 있는 div
     let BundleData = {
         Bs: "",
         Remark: "",
@@ -175,8 +188,31 @@ function sendData(){//민간인들 상세정보와 용무 특이사항을 적고
     }
     BundleData.Bs = document.getElementById("VisitorBusiness").value;
     BundleData.Remark = document.getElementById("VisitorRemark").value;
-    testObj = BundleData;
     createContent(BundleData);
+    clearVisitorInfo();
+}
+function clearVisitorInfo(){
+    document.getElementById("VisitorsInfo").innerHTML = "";//이전 입력 데이터 초기화
+    document.getElementById("VisitorSend_Div").innerHTML = "";//이전 입력 데이터 초기화& 삭제
+    let parent = document.getElementById("VisitorSend_Div");//다시 입력폼 만들기
+    let btn1 = document.createElement('input');
+    btn1.setAttribute('type', 'text');
+    btn1.setAttribute('id', 'VisitorBusiness');
+    btn1.setAttribute('placeholder', '용무');
+    parent.appendChild(btn1);
+    let btn2 = document.createElement('input');
+    btn2.setAttribute('type', 'text');
+    btn2.setAttribute('id', 'VisitorRemark');
+    btn2.setAttribute('placeholder', '특이사항');
+    parent.appendChild(btn2);
+    let btn3 = document.createElement('input');
+    btn3.setAttribute('type', 'button');
+    btn3.setAttribute('id', 'SubmitBtn');
+    btn3.setAttribute('value', '제출하기');
+    btn3.setAttribute('onclick', 'sendData()');
+    parent.appendChild(btn3);
+
+    document.getElementById("Visitor_Input_Area").style.display = "none";//제출폼도 닫기
 }
 
 function createContent(Obj){//민간인 입퇴영 현황을 나타내는 함수
