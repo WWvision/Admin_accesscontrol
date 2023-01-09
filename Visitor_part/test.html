@@ -12,7 +12,15 @@
     </body>
 
     <script>
-       let VisitorData = localStorage.getItem('VisitorInfo');//이름1/991001
+        //0: 정보확인                      : 버튼색 초록색 버튼#7DCD00 
+        //1: 민간인 신규등록               : 버튼색 빨간색#FC4700 > 아무정보도 확인이 되지 않았기때문 위험 표시
+        //2: 미입력 데이터 업데이트        : 버튼 노란색#FCCC00사용자는 등록되어있지만 누락된 정보가 있다면 주의 표시
+        
+
+        //비고정출입자 데이터가 어떤식으로 필요할지? 물어보기
+        // > 기존 방식 그대로 갈지?: 어떤사람이 일주일에 몇번들어오는지에 대해서만
+        // > 새로운 방식: 어떤사람이 어떤 용무나 차량정보 몇번들어오는지 + 방문날짜 및 시각도 가능
+       let VisitorData = localStorage.getItem('VisitorInfo');//[1, 이름1/991001]
 
        let parent = document.getElementById("testDiv");
        let childtest = document.createElement('input');

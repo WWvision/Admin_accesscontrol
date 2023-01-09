@@ -221,7 +221,7 @@ function createContent(Obj){//민간인 입퇴영 현황을 나타내는 함수
     let child = document.createElement('div');
     child.setAttribute('id', eval("'Content" + child_Count + "'"));
     child.setAttribute('class', 'Content_style');
-    child.setAttribute('style', 'height:120px;');
+    child.setAttribute('style', 'height:118px;');
         let TypeBar = document.createElement('div');
         TypeBar.setAttribute('id', eval("'Content" + child_Count + "_TypeBar'"));
         TypeBar.setAttribute('class', 'Content_TypeBar_style');
@@ -229,7 +229,7 @@ function createContent(Obj){//민간인 입퇴영 현황을 나타내는 함수
             DelBtn.setAttribute('type', 'button');
             DelBtn.setAttribute('class', 'deleteBtn');
             DelBtn.setAttribute('value', 'X');
-            //onclick 필요
+            DelBtn.setAttribute('onclick', eval("'DeleteContent(`Content" + child_Count + "`)'"));//DeleteContent('Content1')
             TypeBar.appendChild(DelBtn);
             let ChgBtn = document.createElement('input');
             ChgBtn.setAttribute('type', 'button');
@@ -269,7 +269,7 @@ function createContent(Obj){//민간인 입퇴영 현황을 나타내는 함수
             for(let i=0; i < Obj.VisitorInfo.length; i++){
                 let Inp = document.createElement('input');
                 Inp.setAttribute('type', 'button');
-                Inp.setAttribute('id', eval("'Content" + (child_Count+1) + "_Name" + i + "'"));//Content1_Name1
+                Inp.setAttribute('id', eval("'Content" + child_Count + "_Name" + i + "'"));//Content1_Name1
                 Inp.setAttribute('class', 'NameCon_style');
                 let VstName_exp = Obj.VisitorInfo[i][0].match(exp_name);
                 Inp.setAttribute('value', eval("'" + VstName_exp + "'"));// 이름/생년월일
@@ -300,7 +300,7 @@ function Coming(div_id){
     let BtnElem = document.getElementById(div_id + "_ComingBtn");
     let times = new Date().toLocaleTimeString('ko-kr');
     BtnElem.value = "입영: " + times;
-    //AddHistoryList();//히스토리리스트에 올리는건데 어떻게 올릴지 고민
+    //AddHistoryList();//히스토리 리스트에 올리는건데 어떻게 올릴지 고민
 }
 function Going(div_id){
     //Going('Content1') : 해당 버튼을 누르면 해당 시간을 value로 표시하고 ContentBar에 입영 색깔을 입히고
@@ -309,25 +309,26 @@ function Going(div_id){
     let BtnElem = document.getElementById(div_id + "_GoingBtn");
     let times = new Date().toLocaleTimeString('ko-kr');
     BtnElem.value = "퇴영: " + times;
-    //AddHistoryList();//히스토리리스트에 올리는건데 어떻게 올릴지 고민
+    //AddHistoryList();//히스토리 리스트에 올리는건데 어떻게 올릴지 고민
 }
+
 
 function ChangeBtn(Content_Id){
     let parentContent = document.getElementById(Content_Id);
     let parentHeight = parentContent.style.height;//현재 추가될 콘텐트의 전체 크기
-    let childCount = parentContent.childNodes;//가장 기본일때 2이고 그 이상은 자식 요소 갯수
+    let childCount = parentContent.childNodes.length;//가장 기본일때 2이고 그 이상은 자식 요소 갯수
     let is_make = false;
     switch(parentHeight){
-        case "120px"://parent 1개
-            parentContent.style.height = "226px";//child 1개 추가
+        case "118px"://parent 1개
+            parentContent.style.height = "227px";//child 1개 추가
             is_make = true;
             break;
-        case "226px"://parent 1개 child 1개
-            parentContent.style.height = "332px";//child 1개 추가
+        case "227px"://parent 1개 child 1개
+            parentContent.style.height = "336px";//child 1개 추가
             is_make = true;
             break;
-        case "332px"://parent 1개 child 2개
-            parentContent.style.height = "438px";//child 1개 추가
+        case "336px"://parent 1개 child 2개
+            parentContent.style.height = "445px";//child 1개 추가
             is_make = true;
             break;
         default: //그 이외 것들
@@ -341,27 +342,22 @@ function ChangeBtn(Content_Id){
         child.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "'"));//Content0_Child0
         child.setAttribute('class', 'Child_Content');
             let child_TypeBar = document.createElement('div');
-            child_TypeBar.setAttribute('id', eval("'" + child_id + "_TypeBar'"));
+            child_TypeBar.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_TypeBar'"));
             child_TypeBar.setAttribute('class', 'Child_TypeBar');
                 let delBtn = document.createElement('input');
                 delBtn.setAttribute('type', 'button');
                 delBtn.setAttribute('class', 'deleteBtn');
                 delBtn.setAttribute('value', 'X');
-                //onclick 필요
+                delBtn.setAttribute('onclick', eval("'DeleteChildContent(`" + Content_Id + "`,`" + Content_Id + "_" + child_id + "`)'"));//DeleteChildContent(Parent_Content_Id, Child_Id)
                 child_TypeBar.appendChild(delBtn);
-                let ChgBtn = document.createElement('input');
-                ChgBtn.setAttribute('type', 'button');
-                ChgBtn.setAttribute('class', 'changeBtn');
-                ChgBtn.setAttribute('value', '저장하기');
-                //onclick 필요
-                child_TypeBar.appendChild(ChgBtn);
             child.appendChild(child_TypeBar);
 
             let child_TypeBtn = document.createElement('div');
-            child_TypeBtn.setAttribute('id', eval("'" + child_id + "_TypeBtn'"));
+            child_TypeBtn.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_TypeBtn'"));
             child_TypeBtn.setAttribute('class', 'Child_TypeBtn');
                 let ComeBtn = document.createElement('input');
                 ComeBtn.setAttribute('type', 'button');
+                ComeBtn.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_ComingBtn'"));
                 ComeBtn.setAttribute('value', '입영');
                 ComeBtn.setAttribute('onclick', eval("'Coming(`" + Content_Id + "_" + child_id + "`)'"));
                 ComeBtn.setAttribute('style', 'margin-top: 15px;');
@@ -372,53 +368,116 @@ function ChangeBtn(Content_Id){
 
                 let GoBtn = document.createElement('input');
                 GoBtn.setAttribute('type', 'button');
+                GoBtn.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_GoingBtn'"));
                 GoBtn.setAttribute('value', '퇴영');
                 GoBtn.setAttribute('onclick', eval("'Going(`" + Content_Id + "_" + child_id + "`)'"));
                 child_TypeBtn.appendChild(GoBtn);
             child.appendChild(child_TypeBtn);
 
             let childNameDiv = document.createElement('div');
-            childNameDiv.setAttribute('id', eval("'" + child_id + "_NameCon'"));
+            childNameDiv.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_NameCon'"));
             childNameDiv.setAttribute('class', 'Child_NameCon');
                 let defName = document.createElement('input');
                 defName.setAttribute('type', 'text');
-                defName.setAttribute('id', eval("'" + child_id + "_Name1'"));
+                defName.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_Name1'"));
                 defName.setAttribute('class', 'Child_Name_style');
                 defName.setAttribute('placeholder', '이름');
                 childNameDiv.appendChild(defName);
             child.appendChild(childNameDiv);
 
             let childNameBtn = document.createElement('div');
-            childNameBtn.setAttribute('id', eval("'" + child_id + "_NameBtn'"));
+            childNameBtn.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_NameBtn'"));
             childNameBtn.setAttribute('class', 'Child_NameBtn_Div');
                 let AddName = document.createElement('input');
                 AddName.setAttribute('type', 'button');
                 AddName.setAttribute('class', 'Child_NameBtn');
                 AddName.setAttribute('value', '추가하기');
-                AddName.setAttribute('onclick', eval("'AddChildName(`" + child_id + "_NameCon'"));//AddChildName('Child1_NameCon')
+                AddName.setAttribute('onclick', eval("'AddChildName(`" + Content_Id + "_" + child_id + "`)'"));//AddChildName('Content1_Child1')
                 AddName.setAttribute('style', 'margin-bottom: 1px;');
                 childNameBtn.appendChild(AddName);
                 let DelName = document.createElement('input');
                 DelName.setAttribute('type', 'button');
                 DelName.setAttribute('class', 'Child_NameBtn');
                 DelName.setAttribute('value', '삭제하기');
-                DelName.setAttribute('onclick', eval("'DelChildName(`" + child_id + "_NameCon'"));//DelChildName('Child1_NameCon');
+                DelName.setAttribute('onclick', eval("'DelChildName(`" + Content_Id + "_" + child_id + "`)'"));//DelChildName('Content1_Child1');
                 childNameBtn.appendChild(DelName);
             child.appendChild(childNameBtn);
 
             let Child_Bs = document.createElement('input');
             Child_Bs.setAttribute('type', 'text');
-            Child_Bs.setAttribute('id', eval("'" + child_id + "_Bs'"));
+            Child_Bs.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_Bs'"));
             Child_Bs.setAttribute('class', 'Child_Bs_style');
             Child_Bs.setAttribute('placeholder', '용무');
             child.appendChild(Child_Bs);
 
             let Child_Remark = document.createElement('input');
             Child_Remark.setAttribute('type', 'text');
-            Child_Remark.setAttribute('id', eval("'" + child_id + "_Remark'"));
+            Child_Remark.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_Remark'"));
             Child_Remark.setAttribute('class', 'Child_Remark_style');
             Child_Remark.setAttribute('placeholder', '특이사항');
             child.appendChild(Child_Remark);
         parentContent.appendChild(child); 
     }         
 }
+
+function DeleteContent(Content_Id){//Content1의 삭제 함수
+    document.getElementById(Content_Id).style.display = "none";
+}
+
+function DeleteChildContent(Parent_Content_Id, Child_Id){//부모 Content의 하위 ChildContent삭제
+    let parent_HT = document.getElementById(Parent_Content_Id).style.height;//부모 Content의 총 길이 파악
+    let is_del = false;
+    
+    switch(parent_HT){//자식 요소를 삭제하므로 사라진만큼 크기도 원래대로 줄이기 위함
+        case "445px"://자식요소 3개
+            document.getElementById(Parent_Content_Id).style.height = "336px";
+            is_del = true;
+            break;
+        case "336px"://자식요소 2개
+            document.getElementById(Parent_Content_Id).style.height = "227px";
+            is_del = true;
+            break;
+        case "227px"://자식요소 1개
+            document.getElementById(Parent_Content_Id).style.height = "118px";
+            is_del = true;
+            break;
+        default:
+            alert("더 이상 삭제 할 수 없습니다!");
+    }
+    if(is_del){
+        document.getElementById(Child_Id).style.display = "none";//삭제 누른 해당 Childcontent 삭제 
+    }
+}
+
+function AddChildName(Child_Id){
+    let TextInp_count = document.getElementById(Child_Id + "_NameCon").childNodes.length;
+    if(TextInp_count < 5){//최소 1개 ~ 최대 5개
+        let parent = document.getElementById(Child_Id + "_NameCon");
+        let newInp = document.createElement('input');
+        newInp.setAttribute('type', 'text');
+        newInp.setAttribute('id', eval("'" + Child_Id + "_Name" + (TextInp_count+1) + "'"));//Content1_Child1_Name2
+        newInp.setAttribute('class', 'Child_Name_style');
+        newInp.setAttribute('placeholder', '이름');
+        parent.appendChild(newInp);
+    } else { 
+        alert('더 이상 추가 할 수 없습니다!');
+    }
+}
+function DelChildName(Child_Id){
+    let TextInp_count = document.getElementById(Child_Id + "_NameCon").childNodes.length;
+    if(TextInp_count > 1){//최소 1개 ~ 최대 5개
+        document.getElementById(Child_Id + "_Name" + TextInp_count).remove();
+    } else { 
+        alert('더 이상 삭제 할 수 없습니다!');
+    }
+}
+
+//입퇴영할때마다 HistoryList에 기록하는 기능 
+function AddHistoryList(type, Div_Id){//type: 입퇴영 , 
+    //parent: Content1_NameCon - Content1_Name0 / Content1_Bs / Content1_Remark
+    //child: Content1_Child1_NameCon - Content1_Child1_Name1 / Content1_Child1_Bs / Content1_Child1_Remark
+    //부모와 자식요소 가져와야하는 값을 비교해보니 ContentId 차이만 나므로 공통으로 쓸 수 있어 보임
+    
+}
+//미입력된 데이터가 있으면 정보 입력페이지로 넘어가 입력하게 할 수 있는 입력폼
+//세션 데이터 저장 및 히스토리 데이터 저장하는 기능
