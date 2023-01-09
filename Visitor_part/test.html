@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>민간인 정보를 조회할 수 있는 페이지</title>
+        <script src="./Visitor_part_logic1.js"></script>
+    </head>
+
+
+    <body>
+        <div id="testDiv">
+
+        </div>
+    </body>
+
+    <script>
+       let VisitorData = localStorage.getItem('VisitorInfo');//이름1/991001
+
+       let parent = document.getElementById("testDiv");
+       let childtest = document.createElement('input');
+       childtest.setAttribute('type', 'button');
+       childtest.setAttribute('value', eval("'" + VisitorData + "'"));
+       parent.appendChild(childtest);
+    </script>
+</html>
+
