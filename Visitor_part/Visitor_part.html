@@ -58,11 +58,15 @@
 							<input type="button" class="changeBtn" value="저장하기">
 						</div>
 						<div id="Child1_TypeBtn" class="Child_TypeBtn">
-							<input type="button" value="입영: 10:50:01" style="margin-top: 15px">
-							<input type="button" value="퇴영: 13:01:12" >
+							<input type="button" value="입영: 10:50:01" onclick="Coming('Content0_Child1')" style="margin-top: 15px">
+							<input type="button" value="퇴영: 13:01:12" onclick="Going('Content0_Child1')">
 						</div>
 						<div id="Child1_NameCon" class="Child_NameCon">
 							<input type="text" id="Child1_Name1" class="Child_Name_style" value="이름1">
+						</div>
+						<div id="Child1_NameBtn" class="Child_NameBtn_Div">
+							<input type="button" class="Child_NameBtn" value="추가하기" onclick="AddChildName('Child1_NameCon')" style="margin-bottom: 1px;">
+							<input type="button" class="Child_NameBtn" value="삭제하기" onclick="DelChildName('Child1_NameCon')">
 						</div>
 						<input type="text" id="Child1_Bs" class="Child_Bs_style" value="용무~~~~~~">
 						<input type="text" id="Child1_Remark" class="Child_Remark_style" value="특이사항~~~~~">

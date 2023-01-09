@@ -92,7 +92,7 @@ function createSearch_div(obj, index){
 }
 
 function deleteSearch_div(div_val){//div_val 하위 요소 모두 삭제 
-    div_val.replaceChildren();
+    div_val.innerHTML = "";
 }
 
 function selectVisitor(index){//선택된 민간인 목록에 추가
@@ -129,7 +129,7 @@ function AddNewVisitor(){//등록되지 않은 민간인 임시로 목록에 추
         Btn0.setAttribute('type', 'text');
         Btn0.setAttribute('id', eval("'Vst_Name" + parent.children.length + "'"));
         Btn0.setAttribute('class', 'Vst_Name');
-        Btn0.setAttribute('placeholder', '이름/생년월일');
+        Btn0.setAttribute('placeholder', ' 이름/생년월일');
         Btn0.setAttribute('style', 'margin-left: 10px;');
         child.appendChild(Btn0);
         let Btn1 = document.createElement('input');
@@ -185,6 +185,7 @@ function createContent(Obj){//민간인 입퇴영 현황을 나타내는 함수
     let child = document.createElement('div');
     child.setAttribute('id', eval("'Content" + child_Count + "'"));
     child.setAttribute('class', 'Content_style');
+    child.setAttribute('style', 'height:120px;');
         let TypeBar = document.createElement('div');
         TypeBar.setAttribute('id', eval("'Content" + child_Count + "_TypeBar'"));
         TypeBar.setAttribute('class', 'Content_TypeBar_style');
@@ -192,11 +193,13 @@ function createContent(Obj){//민간인 입퇴영 현황을 나타내는 함수
             DelBtn.setAttribute('type', 'button');
             DelBtn.setAttribute('class', 'deleteBtn');
             DelBtn.setAttribute('value', 'X');
+            //onclick 필요
             TypeBar.appendChild(DelBtn);
             let ChgBtn = document.createElement('input');
             ChgBtn.setAttribute('type', 'button');
             ChgBtn.setAttribute('class', 'changeBtn');
-            ChgBtn.setAttribute('value', '변경사항');
+            ChgBtn.setAttribute('value', '변경사항 추가');
+            ChgBtn.setAttribute('onclick', eval("'ChangeBtn(`Content" + child_Count + "`)'"));
             TypeBar.appendChild(ChgBtn);
         child.appendChild(TypeBar);
 
@@ -273,4 +276,113 @@ function Going(div_id){
     //AddHistoryList();//히스토리리스트에 올리는건데 어떻게 올릴지 고민
 }
 
+function ChangeBtn(Content_Id){
+    let parentContent = document.getElementById(Content_Id);
+    let parentHeight = parentContent.style.height;//현재 추가될 콘텐트의 전체 크기
+    let childCount = parentContent.childNodes;//가장 기본일때 2이고 그 이상은 자식 요소 갯수
+    let is_make = false;
+    switch(parentHeight){
+        case "120px"://parent 1개
+            parentContent.style.height = "226px";//child 1개 추가
+            is_make = true;
+            break;
+        case "226px"://parent 1개 child 1개
+            parentContent.style.height = "332px";//child 1개 추가
+            is_make = true;
+            break;
+        case "332px"://parent 1개 child 2개
+            parentContent.style.height = "438px";//child 1개 추가
+            is_make = true;
+            break;
+        default: //그 이외 것들
+            alert('더 이상 추가 할 수 없습니다!');//디자인상 그냥 자식 요소 3개 이상 막음
+            // 더 추가하고 싶으면 case 항목 늘리면 됨
+    }
+    
+    if(is_make){
+        let child = document.createElement('div');
+        let child_id = "Child" + (childCount-1);//Child0
+        child.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "'"));//Content0_Child0
+        child.setAttribute('class', 'Child_Content');
+            let child_TypeBar = document.createElement('div');
+            child_TypeBar.setAttribute('id', eval("'" + child_id + "_TypeBar'"));
+            child_TypeBar.setAttribute('class', 'Child_TypeBar');
+                let delBtn = document.createElement('input');
+                delBtn.setAttribute('type', 'button');
+                delBtn.setAttribute('class', 'deleteBtn');
+                delBtn.setAttribute('value', 'X');
+                //onclick 필요
+                child_TypeBar.appendChild(delBtn);
+                let ChgBtn = document.createElement('input');
+                ChgBtn.setAttribute('type', 'button');
+                ChgBtn.setAttribute('class', 'changeBtn');
+                ChgBtn.setAttribute('value', '저장하기');
+                //onclick 필요
+                child_TypeBar.appendChild(ChgBtn);
+            child.appendChild(child_TypeBar);
 
+            let child_TypeBtn = document.createElement('div');
+            child_TypeBtn.setAttribute('id', eval("'" + child_id + "_TypeBtn'"));
+            child_TypeBtn.setAttribute('class', 'Child_TypeBtn');
+                let ComeBtn = document.createElement('input');
+                ComeBtn.setAttribute('type', 'button');
+                ComeBtn.setAttribute('value', '입영');
+                ComeBtn.setAttribute('onclick', eval("'Coming(`" + Content_Id + "_" + child_id + "`)'"));
+                ComeBtn.setAttribute('style', 'margin-top: 15px;');
+                child_TypeBtn.appendChild(ComeBtn);
+                
+                let ChildEnter = document.createElement('br');
+                child_TypeBtn.appendChild(ChildEnter);
+
+                let GoBtn = document.createElement('input');
+                GoBtn.setAttribute('type', 'button');
+                GoBtn.setAttribute('value', '퇴영');
+                GoBtn.setAttribute('onclick', eval("'Going(`" + Content_Id + "_" + child_id + "`)'"));
+                child_TypeBtn.appendChild(GoBtn);
+            child.appendChild(child_TypeBtn);
+
+            let childNameDiv = document.createElement('div');
+            childNameDiv.setAttribute('id', eval("'" + child_id + "_NameCon'"));
+            childNameDiv.setAttribute('class', 'Child_NameCon');
+                let defName = document.createElement('input');
+                defName.setAttribute('type', 'text');
+                defName.setAttribute('id', eval("'" + child_id + "_Name1'"));
+                defName.setAttribute('class', 'Child_Name_style');
+                defName.setAttribute('placeholder', '이름');
+                childNameDiv.appendChild(defName);
+            child.appendChild(childNameDiv);
+
+            let childNameBtn = document.createElement('div');
+            childNameBtn.setAttribute('id', eval("'" + child_id + "_NameBtn'"));
+            childNameBtn.setAttribute('class', 'Child_NameBtn_Div');
+                let AddName = document.createElement('input');
+                AddName.setAttribute('type', 'button');
+                AddName.setAttribute('class', 'Child_NameBtn');
+                AddName.setAttribute('value', '추가하기');
+                AddName.setAttribute('onclick', eval("'AddChildName(`" + child_id + "_NameCon'"));//AddChildName('Child1_NameCon')
+                AddName.setAttribute('style', 'margin-bottom: 1px;');
+                childNameBtn.appendChild(AddName);
+                let DelName = document.createElement('input');
+                DelName.setAttribute('type', 'button');
+                DelName.setAttribute('class', 'Child_NameBtn');
+                DelName.setAttribute('value', '삭제하기');
+                DelName.setAttribute('onclick', eval("'DelChildName(`" + child_id + "_NameCon'"));//DelChildName('Child1_NameCon');
+                childNameBtn.appendChild(DelName);
+            child.appendChild(childNameBtn);
+
+            let Child_Bs = document.createElement('input');
+            Child_Bs.setAttribute('type', 'text');
+            Child_Bs.setAttribute('id', eval("'" + child_id + "_Bs'"));
+            Child_Bs.setAttribute('class', 'Child_Bs_style');
+            Child_Bs.setAttribute('placeholder', '용무');
+            child.appendChild(Child_Bs);
+
+            let Child_Remark = document.createElement('input');
+            Child_Remark.setAttribute('type', 'text');
+            Child_Remark.setAttribute('id', eval("'" + child_id + "_Remark'"));
+            Child_Remark.setAttribute('class', 'Child_Remark_style');
+            Child_Remark.setAttribute('placeholder', '특이사항');
+            child.appendChild(Child_Remark);
+        parentContent.appendChild(child); 
+    }         
+}
