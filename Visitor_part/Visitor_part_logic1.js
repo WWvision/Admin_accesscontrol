@@ -244,7 +244,7 @@ function createContent(Obj){//민간인 입퇴영 현황을 나타내는 함수
         Body.setAttribute('class', 'Content_Body');
             let TypeBtn = document.createElement('div');
             TypeBtn.setAttribute('id', eval("'Content" + child_Count + "_TypeBtn'"));//Content1_TypeBtn
-            TypeBtn.setAttribute('class', 'TypeBtn');
+            TypeBtn.setAttribute('class', 'Body_TypeBtn');
                 let TypeBtn1 = document.createElement('input');
                 TypeBtn1.setAttribute('type', 'button');
                 TypeBtn1.setAttribute('id', eval("'Content" + child_Count + "_ComingBtn'"));
@@ -277,18 +277,22 @@ function createContent(Obj){//민간인 입퇴영 현황을 나타내는 함수
                 NameCon.appendChild(Inp);
             }
             Body.appendChild(NameCon);
-            let Bs = document.createElement('input');
-            Bs.setAttribute('type', 'text');
-            Bs.setAttribute('id', eval("'Content"+ child_Count + "_Bs'"));
-            Bs.setAttribute('class', 'Content_Bs_style');
-            Bs.setAttribute('value', eval("'" + Obj.Bs + "'"));
-            Body.appendChild(Bs);
-            let Remark = document.createElement('input');
-            Remark.setAttribute('type', 'text');
-            Remark.setAttribute('id', eval("'Content" + child_Count + "_Remark'"));
-            Remark.setAttribute('class', 'Content_Remark_style');
-            Remark.setAttribute('value', eval("'" + Obj.Remark + "'"));
-            Body.appendChild(Remark);
+
+            let OtherCon = document.createElement('div');
+            OtherCon.setAttribute('class', 'Body_OtherCon');
+                let Bs = document.createElement('input');
+                Bs.setAttribute('type', 'text');
+                Bs.setAttribute('id', eval("'Content"+ child_Count + "_Bs'"));
+                Bs.setAttribute('class', 'Content_Bs_style');
+                Bs.setAttribute('value', eval("'" + Obj.Bs + "'"));
+                OtherCon.appendChild(Bs);
+                let Remark = document.createElement('input');
+                Remark.setAttribute('type', 'text');
+                Remark.setAttribute('id', eval("'Content" + child_Count + "_Remark'"));
+                Remark.setAttribute('class', 'Content_Remark_style');
+                Remark.setAttribute('value', eval("'" + Obj.Remark + "'"));
+                OtherCon.appendChild(Remark);
+            Body.appendChild(OtherCon);
         child.appendChild(Body);
     parent.appendChild(child);
 }
@@ -300,7 +304,7 @@ function Coming(div_id){
     let BtnElem = document.getElementById(div_id + "_ComingBtn");
     let times = new Date().toLocaleTimeString('ko-kr');
     BtnElem.value = "입영: " + times;
-    //AddHistoryList();//히스토리 리스트에 올리는건데 어떻게 올릴지 고민
+    AddHistoryList("입영", div_id);
 }
 function Going(div_id){
     //Going('Content1') : 해당 버튼을 누르면 해당 시간을 value로 표시하고 ContentBar에 입영 색깔을 입히고
@@ -309,7 +313,7 @@ function Going(div_id){
     let BtnElem = document.getElementById(div_id + "_GoingBtn");
     let times = new Date().toLocaleTimeString('ko-kr');
     BtnElem.value = "퇴영: " + times;
-    //AddHistoryList();//히스토리 리스트에 올리는건데 어떻게 올릴지 고민
+    AddHistoryList("퇴영", div_id);
 }
 
 
@@ -379,7 +383,7 @@ function ChangeBtn(Content_Id){
             childNameDiv.setAttribute('class', 'Child_NameCon');
                 let defName = document.createElement('input');
                 defName.setAttribute('type', 'text');
-                defName.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_Name1'"));
+                defName.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_Name0'"));
                 defName.setAttribute('class', 'Child_Name_style');
                 defName.setAttribute('placeholder', '이름');
                 childNameDiv.appendChild(defName);
@@ -455,7 +459,7 @@ function AddChildName(Child_Id){
         let parent = document.getElementById(Child_Id + "_NameCon");
         let newInp = document.createElement('input');
         newInp.setAttribute('type', 'text');
-        newInp.setAttribute('id', eval("'" + Child_Id + "_Name" + (TextInp_count+1) + "'"));//Content1_Child1_Name2
+        newInp.setAttribute('id', eval("'" + Child_Id + "_Name" + TextInp_count + "'"));//Content1_Child1_Name2
         newInp.setAttribute('class', 'Child_Name_style');
         newInp.setAttribute('placeholder', '이름');
         parent.appendChild(newInp);
@@ -471,13 +475,88 @@ function DelChildName(Child_Id){
         alert('더 이상 삭제 할 수 없습니다!');
     }
 }
-
+var HistoryArr = new Array();
 //입퇴영할때마다 HistoryList에 기록하는 기능 
 function AddHistoryList(type, Div_Id){//type: 입퇴영 , 
-    //parent: Content1_NameCon - Content1_Name0 / Content1_Bs / Content1_Remark
-    //child: Content1_Child1_NameCon - Content1_Child1_Name1 / Content1_Child1_Bs / Content1_Child1_Remark
-    //부모와 자식요소 가져와야하는 값을 비교해보니 ContentId 차이만 나므로 공통으로 쓸 수 있어 보임
-    
+    //입력된 데이터 가져오기
+    let DataObj = new Object();
+    DataObj.type = type;
+    DataObj.times = new Date().toLocaleTimeString('ko-kr');
+    let Child_cnt = document.getElementById(Div_Id + "_NameCon").childNodes.length;
+    let NameArr = [];
+    for(let i=0; i < Child_cnt; i++){
+        let NameVal = document.getElementById(Div_Id + "_Name" + i).value;
+        NameArr.push(NameVal);
+    }
+    DataObj.NameList = NameArr;//민간인 정보
+    DataObj.Bs = document.getElementById(Div_Id + "_Bs").value;
+    DataObj.Remark = document.getElementById(Div_Id + "_Remark").value;
+
+    //입력된 데이터로 히스토리 리스트에 기록콘텐트 생성하기
+    CreateHistoryContent(DataObj);
+    //생성된 데이터 영구적으로 저장하기
+    HistoryArr.push(DataObj);
 }
 //미입력된 데이터가 있으면 정보 입력페이지로 넘어가 입력하게 할 수 있는 입력폼
 //세션 데이터 저장 및 히스토리 데이터 저장하는 기능
+
+function CreateHistoryContent(obj){
+    let parent = document.getElementById('History_Box');
+    let elemCnt = parent.children.length - 1;
+    let History_Content = document.createElement('div');
+    History_Content.setAttribute('id', eval("'HistoryContent" + elemCnt + "'"));//HistoryContent0
+    History_Content.setAttribute('class', 'History_Content');
+        let TypeDiv = document.createElement('div');
+        TypeDiv.setAttribute('class', 'hCell_type');
+            let Type = document.createElement('div');
+            Type.setAttribute('class', 'div_h_cells');
+            Type.setAttribute('style', 'width: 40px; margin-top: 12px;');
+                let Val1 = document.createElement('b');
+                let Val1_txt = document.createTextNode(obj.type);//퇴영
+                Val1.appendChild(Val1_txt);
+                Type.appendChild(Val1); 
+            TypeDiv.appendChild(Type);
+            let Times = document.createElement('div');
+            Times.setAttribute('class', 'div_h_cells');
+            Times.setAttribute('style', 'width: 105px; margin-top: 12px;');
+                let Val2 = document.createElement('b');
+                let Val2Txt = document.createTextNode(obj.times);//오후 1:13:32
+                Val2.appendChild(Val2Txt);
+                Times.appendChild(Val2);
+            TypeDiv.appendChild(Times);
+        History_Content.appendChild(TypeDiv);
+
+        let NameDiv = document.createElement('div');
+        NameDiv.setAttribute('class', 'hCell_Name');
+        for(let p=0;p<obj.NameList.length; p++){
+            let Name = document.createElement('div');
+            Name.setAttribute('class', 'div_h_cells');
+                let NameTxt = document.createElement('b');
+                let NameVal = document.createTextNode(obj.NameList[p]);//이름1
+                NameTxt.appendChild(NameVal);
+                Name.appendChild(NameTxt);
+            NameDiv.appendChild(Name);
+        }
+        History_Content.appendChild(NameDiv);
+
+        let OtherDiv = document.createElement('div');
+        OtherDiv.setAttribute('class', 'hCell_Others');
+            let Bs = document.createElement('div');
+            Bs.setAttribute('class', 'div_h_cells');
+            Bs.setAttribute('style', 'width: 165px;');
+                let BsTxt = document.createElement('b');
+                let BsVal = document.createTextNode(obj.Bs);//용무
+                BsTxt.appendChild(BsVal);
+                Bs.appendChild(BsTxt);
+            OtherDiv.appendChild(Bs);
+            let Remark = document.createElement('div');
+            Remark.setAttribute('class', 'div_h_cells');
+            Remark.setAttribute('style', 'width: 430px;');
+                let RemarkTxt = document.createElement('b');
+                let RemarkVal = document.createTextNode(obj.Remark);//특이사항
+                RemarkTxt.appendChild(RemarkVal);
+                Remark.appendChild(RemarkTxt);
+            OtherDiv.appendChild(Remark);
+        History_Content.appendChild(OtherDiv);
+    parent.appendChild(History_Content);
+}
