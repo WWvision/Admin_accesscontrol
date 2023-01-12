@@ -3,11 +3,12 @@ var VisitorList = [
     { key: "김승주/881001", type: 2, value: "차량2/차량색2/주소2/전화번호2", count: 0 },
     { key: "권세웅/771001", type: 3, value: "차량3/차량색3/주소3/전화번호3", count: 0 },
     { key: "박훈서/661001", type: 2, value: "차량4/차량색4/주소4/전화번호4", count: 0 },
-    { key: "기상민/551001", type: 1, value: "차량5/차량색5/주소5/전화번호5", count: 0 },
+    { key: "기상민/551001", type: 1, value:  "차량5/차량색5/주소5/전화번호5", count: 0 },
     { key: "김승준/441001", type: 4, value: "차량6/차량색6/주소6/전화번호6", count: 0 }
 ];
 //1: 고정출입자  / 2: 출입신청된 민간인 / 3:출입신청이 안된 민간인 / 4: 타부대 / 
 var exp_name = new RegExp("[가-힣]{2,4}", "g");
+var VisitorStorage = new Object();//정보 확인,수정,추가 페이지로 넘어갈때 보낼 값들을 저장하는 객체
 
 function VisitorType(obj){//VisitorList 출입신청 타입 문자열로 변환해주는 함수
     switch(obj.type){
@@ -99,6 +100,10 @@ function selectVisitor(index){//선택된 민간인 목록에 추가
             Active_Child++;
         }
     }
+    if(VisitorList[index].type == 1){
+        //모달 팝업창 띄우고 해당 위치 표시
+        onClick(VisitorList[index].key);
+    }
     if(Active_Child < 5){
         let child = document.createElement('div');
         child.setAttribute('id', eval("'VisitorName" + parent.children.length + "'"));
@@ -125,6 +130,9 @@ function selectVisitor(index){//선택된 민간인 목록에 추가
         alert("더 이상 목록에 추가 할수 없습니다! 새로 추가해주세요");
     }
 }
+
+
+
 function AddNewVisitor(){//등록되지 않은 민간인 임시로 목록에 추가
     let parent = document.getElementById("VisitorsInfo");
     let Active_Child=0;
@@ -179,9 +187,18 @@ function sendData(){//민간인들 상세정보와 용무 특이사항을 적고
         let Vst_Element = document.getElementById("VisitorName" + count);
         if(Vst_Element.style.display != "none"){//삭제처리된 div를 제외하고 데이터를 받아옴 
             let TempArr = [];
-            TempArr.push(document.getElementById("Vst_Name" + count).value);//Vst_Name0의 value: 이름/생년월일
-            TempArr.push(document.getElementById("Vst_Info" + count).value);//Vst_Info0의 value: 차량/주소/전화번호 등
+            let NameVal = document.getElementById("Vst_Name" + count).value;
+            let InfoVal = document.getElementById("Vst_Info" + count).value;
+            TempArr.push(NameVal);//Vst_Name0의 value: 이름/생년월일
+            TempArr.push(InfoVal);//Vst_Info0의 value: 차량/주소/전화번호 등
             //TempArr : ["이름/생년월일", "차량/주소/전화번호 등"]
+            if(NameVal != '' && InfoVal != ''){//데이터가 모두 정상적으로 입력되었을때
+                TempArr.push(0);
+            } else if(InfoVal == '' && NameVal != ''){//상세정보 데이터가 없다면 업데이트2
+                TempArr.push(2);
+            } else {//없는 데이터를 신규로 추가하려할때1
+                TempArr.push(1);
+            }
             console.log(TempArr);
             BundleData.VisitorInfo.push(TempArr);
         }
@@ -269,11 +286,28 @@ function createContent(Obj){//민간인 입퇴영 현황을 나타내는 함수
             for(let i=0; i < Obj.VisitorInfo.length; i++){
                 let Inp = document.createElement('input');
                 Inp.setAttribute('type', 'button');
-                Inp.setAttribute('id', eval("'Content" + child_Count + "_Name" + i + "'"));//Content1_Name1
+                let div_id = `Content` + child_Count + `_Name` + i;
+                Inp.setAttribute('id', eval("'"+ div_id + "'"));//Content1_Name1
                 Inp.setAttribute('class', 'NameCon_style');
                 let VstName_exp = Obj.VisitorInfo[i][0].match(exp_name);
-                Inp.setAttribute('value', eval("'" + VstName_exp + "'"));// 이름/생년월일
-                Inp.setAttribute('onclick', eval("'Visitor(`" + Obj.VisitorInfo[i][0] + "`)'"));
+                Inp.setAttribute('value', eval("'" + VstName_exp + "'"));// 이름
+                switch(Obj.VisitorInfo[i][2]){//여기서 값을 비교하고 해당값이면 onclick 함수와 버튼테두리 색 변경 
+                    case 0://정상
+                        Inp.setAttribute('style', 'border: 1px solid #7DCD00;');
+                        Inp.setAttribute('onclick', eval("'Visitor_ConfirmInfo(`" + Obj.VisitorInfo[i][0] + "`,`" + div_id +  "`)'"));
+                        break;
+                    case 1://신규등록
+                        Inp.setAttribute('style', 'border: 1px solid #FCCC00;');
+                        Inp.setAttribute('onclick', eval("'Visitor_ConfirmInfo(`" + Obj.VisitorInfo[i][0] + "`,`" + div_id +  "`)'"));
+                        break;
+                    case 2://업데이트
+                        Inp.setAttribute('style', 'border: 1px solid #FC4700;');
+                        Inp.setAttribute('onclick', eval("'Visitor_ConfirmInfo(`" + Obj.VisitorInfo[i][0] + "`,`" + div_id +  "`)'"));
+                        break;
+                    default://에러메세지
+                        alert("오류났습니다!");break;
+                }
+                
                 NameCon.appendChild(Inp);
             }
             Body.appendChild(NameCon);
@@ -296,6 +330,7 @@ function createContent(Obj){//민간인 입퇴영 현황을 나타내는 함수
         child.appendChild(Body);
     parent.appendChild(child);
 }
+
 
 function Coming(div_id){
     //Coming('Content1') : 해당 버튼을 누르면 해당 시간을 value로 표시하고 ContentBar에 입영 색깔을 입히고
@@ -407,19 +442,21 @@ function ChangeBtn(Content_Id){
                 childNameBtn.appendChild(DelName);
             child.appendChild(childNameBtn);
 
-            let Child_Bs = document.createElement('input');
-            Child_Bs.setAttribute('type', 'text');
-            Child_Bs.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_Bs'"));
-            Child_Bs.setAttribute('class', 'Child_Bs_style');
-            Child_Bs.setAttribute('placeholder', '용무');
-            child.appendChild(Child_Bs);
-
-            let Child_Remark = document.createElement('input');
-            Child_Remark.setAttribute('type', 'text');
-            Child_Remark.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_Remark'"));
-            Child_Remark.setAttribute('class', 'Child_Remark_style');
-            Child_Remark.setAttribute('placeholder', '특이사항');
-            child.appendChild(Child_Remark);
+            let OtherCon = document.createElement('div');
+            OtherCon.setAttribute('class', 'Child_OtherCon');
+                let Child_Bs = document.createElement('input');
+                Child_Bs.setAttribute('type', 'text');
+                Child_Bs.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_Bs'"));
+                Child_Bs.setAttribute('class', 'Child_Bs_style');
+                Child_Bs.setAttribute('placeholder', '용무');
+                OtherCon.appendChild(Child_Bs);
+                let Child_Remark = document.createElement('input');
+                Child_Remark.setAttribute('type', 'text');
+                Child_Remark.setAttribute('id', eval("'" + Content_Id + "_" + child_id + "_Remark'"));
+                Child_Remark.setAttribute('class', 'Child_Remark_style');
+                Child_Remark.setAttribute('placeholder', '특이사항');
+                OtherCon.appendChild(Child_Remark);
+            child.appendChild(OtherCon);
         parentContent.appendChild(child); 
     }         
 }
@@ -470,7 +507,7 @@ function AddChildName(Child_Id){
 function DelChildName(Child_Id){
     let TextInp_count = document.getElementById(Child_Id + "_NameCon").childNodes.length;
     if(TextInp_count > 1){//최소 1개 ~ 최대 5개
-        document.getElementById(Child_Id + "_Name" + TextInp_count).remove();
+        document.getElementById(Child_Id + "_Name" + (TextInp_count-1)).remove();
     } else { 
         alert('더 이상 삭제 할 수 없습니다!');
     }
@@ -504,8 +541,15 @@ function CreateHistoryContent(obj){
     let parent = document.getElementById('History_Box');
     let elemCnt = parent.children.length - 1;
     let History_Content = document.createElement('div');
+    let Color;
+    if(obj.type == "입영"){
+        Color = "lightgreen";
+    } else if(obj.type == "퇴영"){
+        Color = "pink";
+    }
     History_Content.setAttribute('id', eval("'HistoryContent" + elemCnt + "'"));//HistoryContent0
     History_Content.setAttribute('class', 'History_Content');
+    History_Content.setAttribute('style', eval("'background-color:" + Color + ";'"));
         let TypeDiv = document.createElement('div');
         TypeDiv.setAttribute('class', 'hCell_type');
             let Type = document.createElement('div');

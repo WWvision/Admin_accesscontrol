@@ -310,15 +310,23 @@
     margin-right: 5px;
     float: left; 
 }
+.Child_OtherCon {
+    width: 600px;
+    height: 40px;
+    float: left;
+    text-align: left;
+    margin-left: 7px;
+}
 .Child_Bs_style {
     width: 150px; 
     height: 30px;
-    margin-left: 7px; 
 }
 .Child_Remark_style{
     width: 430px; 
     height: 30px;
+    margin-left: 7px; 
 }
+
 
 .History_Content{
     height: 50px;
@@ -346,4 +354,38 @@
     float: left;
     width: 610px;
     height: 25px;
+}
+
+/* 모달 팝업창 */
+.modal_wrap1, .modal_wrap2, .modal_wrap3{
+    display: none;
+    width: 500px;
+    height: 325px;
+    position: absolute;
+    top:60%;
+    left: 50%;
+    margin: -250px 0 0 -250px;
+    background:transparent;
+    z-index: 2;
+}
+.black_bg1, .black_bg2, .black_bg3{
+    display: none;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0,0, 0.5);
+    top:0;
+    left: 0;
+    z-index: 1;
+}
+#modal_closeBtn {
+    float:right; 
+    font-size: 20px; 
+    font-weight: bold; 
+    background-color: transparent; 
+    border: none;
+}
+#modal_closeBtn:hover {
+    color: red;
 }

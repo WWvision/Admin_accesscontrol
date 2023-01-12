@@ -33,47 +33,7 @@
 				<div id='div_title'>
 					※ 입퇴영 현황
 				</div>
-				<div id="Content0" class="Content_style" style="height: 226px;">
-					<div id="Content0_TypeBar" class="Content_TypeBar_style">
-						<input type="button" class="deleteBtn" value="X">
-						<input type="button" class="changeBtn" value="변경사항">
-					</div>
-					<div id="Content0_Body" class="Content_Body"><!--자식요소와 구분짓기 위해 존재 -->
-						<div id="Content0_TypeBtn" class="TypeBtn">
-							<input type="button" value="입영: 10:50:01" style="margin-top: 22px;">
-							<input type="button" value="퇴영: 13:01:12" >
-						</div>
-						<div id="Content0_NameCon" class="Body_NameCon">
-							<input type="button" id="Content0_Name1" class="NameCon_style" value="이름1" onclick="Visitor('이름1')">
-							<input type="button" id="Content0_Name2" class="NameCon_style" value="이름2" onclick="Visitor('이름2')">
-							<input type="button" id="Content0_Name3" class="NameCon_style" value="이름3" onclick="Visitor('이름3')">
-							<input type="button" id="Content0_Name4" class="NameCon_style" value="이름4" onclick="Visitor('이름4')">
-							<input type="button" id="Content0_Name3" class="NameCon_style" value="이름3" onclick="Visitor('이름3')">
-						</div>
-						<input type="text" id="Content0_Bs" class="Content_Bs_style" value="용무~~~~~~">
-						<input type="text" id="Content0_Remark" class="Content_Remark_style" value="특이사항~~~~~~">
-					</div>
-
-					<div id="Content0_Child1" class="Child_Content">
-						<div id="Child1_TypeBar" class="Child_TypeBar">
-							<input type="button" class="deleteBtn" value="X">
-							<input type="button" class="changeBtn" value="저장하기">
-						</div>
-						<div id="Child1_TypeBtn" class="Child_TypeBtn">
-							<input type="button" value="입영: 10:50:01" onclick="Coming('Content0_Child1')" style="margin-top: 15px">
-							<input type="button" value="퇴영: 13:01:12" onclick="Going('Content0_Child1')">
-						</div>
-						<div id="Child1_NameCon" class="Child_NameCon">
-							<input type="text" id="Child1_Name1" class="Child_Name_style" value="이름1">
-						</div>
-						<div id="Child1_NameBtn" class="Child_NameBtn_Div">
-							<input type="button" class="Child_NameBtn" value="추가하기" onclick="AddChildName('Child1_NameCon')" style="margin-bottom: 1px;">
-							<input type="button" class="Child_NameBtn" value="삭제하기" onclick="DelChildName('Child1_NameCon')">
-						</div>
-						<input type="text" id="Child1_Bs" class="Child_Bs_style" value="용무~~~~~~">
-						<input type="text" id="Child1_Remark" class="Child_Remark_style" value="특이사항~~~~~">
-					</div>
-				</div>
+				
 				<!-- Content_div 생성되는 곳 OfficeP1처럼 비슷하게 생성 -->
 			</div>
 
@@ -82,37 +42,45 @@
 					※ 입퇴영기록
 				</div>
 				<!-- Content_div 생성되는 곳 OfficeP1처럼 비슷하게 생성 -->
-				<div id="HistoryContentA" class="History_Content">
-					<div class="hCell_type">
-						<div class="div_h_cells" style="width: 40px; margin-top: 12px;">
-							<b>퇴영</b>
-						</div>
-						<div class="div_h_cells" style="width: 100px; margin-top: 12px;">
-							<b>오후 1:33:12</b>
-						</div>
-					</div>
-					<div class="hCell_Name">
-						<div class="div_h_cells"><b>이름1</b></div>
-						<div class="div_h_cells"><b>이름2</b></div>
-						<div class="div_h_cells"><b>이름3</b></div>
-						<div class="div_h_cells"><b>이름4</b></div>
-					</div>
-
-					<div class="hCell_Others">
-						<div class="div_h_cells" style="width: 150px;margin-left: 3px;">
-							<b>용무</b>
-						</div>
-						<div class="div_h_cells"style="width: 450px">
-							<b>특이사항</b>
-						</div>
-					</div>
-					
-				</div>
-					<!-- document.createTextNode(TodayOfficeList_arr[index].bool); -->
+				
+				
 					
 			</div>
 		</div>
 
+		<div id="Modal_Popup">
+			<!-- 고정출입자 표찰 위치 표시 -->
+			<div id="FixedVisitor_BG" class="black_bg1"></div>
+			<div id="FixedVisitor_modal" class="modal_wrap1">
+				<div style="background-color: transparent; width: 476px; height: 21px;">
+					<input type="button" id="modal_closeBtn"  value="X" onclick="offClick()">
+				</div>
+				<table id="Modal_FixedTable" border="1" style="background-color: white;">
+						
+				</table>	
+			</div>	
+		</div>
+
+		<div id="Confirm_Info_Bg" class="black_bg1"></div>
+		<div id="Confirm_Info_modal" class="modal_wrap1">
+			<div style="background-color: transparent; width: 476px; height: 21px;">
+				<input type="button" id="modal_closeBtn"  value="X" onclick="closeModal('Confirm_Info')">
+			</div>
+			<div style="width: 200px; height: 200px; border: 1px solid black; background-color: white;">
+				 
+			</div>
+			
+		</div>	
+
+		<div id="Change_Info_Bg" class="black_bg1"></div>
+		<div id="Change_Info_modal" class="modal_wrap1">
+			<div style="background-color: transparent; width: 476px; height: 21px;">
+				<input type="button" id="modal_closeBtn"  value="X" onclick="closeModal('Change_Info')">
+			</div>
+			<div style="width: 200px; height: 200px; border: 1px solid black; background-color: wheat;"></div>
+			
+		</div>
+		
         <script src='./Visitor_part_logic1.js'></script>
 		<script src='./Visitor_part_logic2.js'></script>
 	</body>

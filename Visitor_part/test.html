@@ -2,6 +2,7 @@
     <head>
         <title>민간인 정보를 조회할 수 있는 페이지</title>
         <script src="./Visitor_part_logic1.js"></script>
+        <link rel="stylesheet" href="./Visitor_part_style.css">
     </head>
 
 
@@ -9,6 +10,27 @@
         <div id="testDiv">
 
         </div>
+        <div id="Confirm_Info_Bg" class="black_bg1" style="display: block;"></div>
+		<div id="Confirm_Info_modal" class="modal_wrap1" style="display: block;">
+			<div style="background-color: blue; width: 476px; height: 21px;">
+				<input type="button" id="modal_closeBtn"  value="X" onclick="closeModal('Confirm_Info')">
+			</div>
+			<div style="width: 550px;height: 300px;border: 1px solid black;background-color: white;">
+				<h3 style="margin: 0;">기존 저장된 정보</h3>
+                <div style="border:1px solid red; width: 550px; height: 100px; font-size: 20px; font-weight: bold;">
+                    이름: <input type="text" value="김승주/991001" style="background-color: gainsboro; border: none;margin: 5px; font-size: 20px; font-weight: bold;" readonly><br>
+                    출입형태: <input type="text" value="비고정출입자 - 출입신청됨" style="background-color: gainsboro; border: none;margin: 5px; font-size: 20px; font-weight: bold;" readonly><br>
+                    상세정보: <input type="text" value="차량정보/주소/전화번호" style="background-color: gainsboro; border: none;margin: 5px; font-size: 20px; font-weight: bold;" readonly>
+                </div>
+                <h3 style="margin: 0;">현재 정보</h3>
+                <div style="border:1px solid red; width: 550px; height: 100px; font-size: 20px; font-weight: bold;">
+                    동승자: <input type="text" value="김승주 기상민 박현명" style="background-color: gainsboro; border: none;margin: 5px; font-size: 20px; font-weight: bold;" readonly><br>
+                    용무: <input type="text" value="px납품" style="background-color: gainsboro; border: none;margin: 5px; font-size: 20px; font-weight: bold;" readonly><br>
+                    특이사항: <input type="text" value="없음" style="background-color: gainsboro; border: none;margin: 5px; font-size: 20px; font-weight: bold;" readonly>
+                </div>
+			</div>
+			
+		</div>
     </body>
 
     <script>
@@ -17,15 +39,20 @@
         //2: 미입력 데이터 업데이트        : 버튼 노란색#FCCC00사용자는 등록되어있지만 누락된 정보가 있다면 주의 표시
         
 
+        //이름/생년월일 & 상세정보 데이터가 정상적으로 입력되었을땐 정보확인0
+        //상세정보 데이터가 null값이라면 미입력 업데이트2
+        //이름/생년월일 || 상세정보 데이터가 null값이라면 민간인 신규등록1
+
         //비고정출입자 데이터가 어떤식으로 필요할지? 물어보기
         // > 기존 방식 그대로 갈지?: 어떤사람이 일주일에 몇번들어오는지에 대해서만
         // > 새로운 방식: 어떤사람이 어떤 용무나 차량정보 몇번들어오는지 + 방문날짜 및 시각도 가능
-       let VisitorData = localStorage.getItem('VisitorInfo');//[1, 이름1/991001]
-
+       let StorageData = localStorage.getItem('VisitorInfo');//[1, 이름1/991001]
+       let VisitorData = StorageData.split(",");//["이름/생년월일","Div Id"]
        let parent = document.getElementById("testDiv");
        let childtest = document.createElement('input');
-       childtest.setAttribute('type', 'button');
-       childtest.setAttribute('value', eval("'" + VisitorData + "'"));
+       
+       childtest.setAttribute('type', 'text');
+       childtest.setAttribute('value', eval("'" + VisitorData[0] + "'"));
        parent.appendChild(childtest);
     </script>
 </html>
