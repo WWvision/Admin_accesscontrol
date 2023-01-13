@@ -2,6 +2,7 @@
     <head>
         <title>민간인 정보를 조회할 수 있는 페이지</title>
         <script src="./Visitor_part_logic1.js"></script>
+        
         <link rel="stylesheet" href="./Visitor_part_style.css">
     </head>
 
@@ -10,27 +11,49 @@
         <div id="testDiv">
 
         </div>
-        <div id="Confirm_Info_Bg" class="black_bg1" style="display: block;"></div>
-		<div id="Confirm_Info_modal" class="modal_wrap1" style="display: block;">
-			<div style="background-color: blue; width: 476px; height: 21px;">
-				<input type="button" id="modal_closeBtn"  value="X" onclick="closeModal('Confirm_Info')">
+        <div id="Confirm_Info_Bg" class="black_bg" style="display: block;"></div>
+		<div id="Confirm_Info_modal" class="modal_wrap" style="display: block;">
+            <!-- 여기서부터-->
+			<div class="Modal_header">
+				<input type="button" id="modal_closeBtn"  value="X" onclick="closeModal()">
 			</div>
-			<div style="width: 550px;height: 300px;border: 1px solid black;background-color: white;">
-				<h3 style="margin: 0;">기존 저장된 정보</h3>
-                <div style="border:1px solid red; width: 550px; height: 100px; font-size: 20px; font-weight: bold;">
-                    이름: <input type="text" value="김승주/991001" style="background-color: gainsboro; border: none;margin: 5px; font-size: 20px; font-weight: bold;" readonly><br>
-                    출입형태: <input type="text" value="비고정출입자 - 출입신청됨" style="background-color: gainsboro; border: none;margin: 5px; font-size: 20px; font-weight: bold;" readonly><br>
-                    상세정보: <input type="text" value="차량정보/주소/전화번호" style="background-color: gainsboro; border: none;margin: 5px; font-size: 20px; font-weight: bold;" readonly>
+			<div class="Modal_section">
+				<h3 id="Modal_Section_Title"  style="margin: 5px;">기존 저장된 정보</h3>
+                <label class="form-label">이름:  </label> 
+                <input id="form_Name" class="form-Input" type="text" value="김승주/991001" style="left:32px" readonly><br>
+
+                <label class="form-label">출입형태:</label> 
+                <select id="Modal_SelectType" class="form-Input">
+                    <option id="SelectType1" value="1">고정출입자</option>
+                    <option id="SelectType2" value="2">비고정출입자 - 출입신청됨</option>
+                    <option id="SelectType3" value="3">비고정출입자 - 출입신청안됨</option>
+                    <option id="SelectType4" value="4">타부대/기타사항</option>
+                </select><br>
+                <!-- <input id="form_Type" class="form-Input " type="text" value="비고정출입자 - 출입신청됨" readonly><br> -->
+                <label class="form-label">상세정보:</label>
+                <input id="form_Info" class="form-Input " type="text" value="차량정보/주소/전화번호"  readonly><br>
+                <label class="form-label">인솔간부:</label>
+                <input id="form_Leader" class="form-Input " type="text" value="김상호 중위"  readonly><br>
+   
+                <h3 style="margin: 5px; margin-top: 15px;">현재 정보</h3>
+                <label class="form-label">동승자:</label> 
+                <input id="form_Together" class="form-Input " type="text" value="김승주 기상민 박현명" style="left:16px"  readonly><br> 
+                <label class="form-label">용무:</label> 
+                <input id="form_Business" class="form-Input " type="text" value="px납품" style="left:32px" readonly><br>
+                <label class="form-label">특이사항*</label>
+                <input id="form_Remark" class="form-Input " type="text" value="없음" style="left:-3px" readonly><br>
+                
+                <div style="text-align: center; margin-top: 5px;">
+                    <input type="button" id="sendBtn" value="제출하기" onclick="ModalSendData()">
                 </div>
-                <h3 style="margin: 0;">현재 정보</h3>
-                <div style="border:1px solid red; width: 550px; height: 100px; font-size: 20px; font-weight: bold;">
-                    동승자: <input type="text" value="김승주 기상민 박현명" style="background-color: gainsboro; border: none;margin: 5px; font-size: 20px; font-weight: bold;" readonly><br>
-                    용무: <input type="text" value="px납품" style="background-color: gainsboro; border: none;margin: 5px; font-size: 20px; font-weight: bold;" readonly><br>
-                    특이사항: <input type="text" value="없음" style="background-color: gainsboro; border: none;margin: 5px; font-size: 20px; font-weight: bold;" readonly>
-                </div>
-			</div>
+
+            </div>
 			
-		</div>
+                
+        </div>
+
+            
+			<!-- 요까지 -->
     </body>
 
     <script>
@@ -55,5 +78,6 @@
        childtest.setAttribute('value', eval("'" + VisitorData[0] + "'"));
        parent.appendChild(childtest);
     </script>
+    <script src="./Visitor_part_logic2.js"></script>
 </html>
 

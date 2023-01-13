@@ -1,10 +1,10 @@
 var VisitorList = [
-    { key: "김승주/991001", type: 1, value: "주소1", count: 0 },
-    { key: "김승주/881001", type: 2, value: "차량2/차량색2/주소2/전화번호2", count: 0 },
-    { key: "권세웅/771001", type: 3, value: "차량3/차량색3/주소3/전화번호3", count: 0 },
-    { key: "박훈서/661001", type: 2, value: "차량4/차량색4/주소4/전화번호4", count: 0 },
-    { key: "기상민/551001", type: 1, value:  "차량5/차량색5/주소5/전화번호5", count: 0 },
-    { key: "김승준/441001", type: 4, value: "차량6/차량색6/주소6/전화번호6", count: 0 }
+    { key: "김승주/991001", type: "1", value: "주소1", leader:"px관리관", count: 0 },
+    { key: "김승주/881001", type: "2", value: "차량2/차량색2/주소2/전화번호2", leader:"군수과장", count: 0 },
+    { key: "권세웅/771001", type: "3", value: "차량3/차량색3/주소3/전화번호3", leader:"운용장교", count: 0 },
+    { key: "박훈서/661001", type: "2", value: "차량4/차량색4/주소4/전화번호4", leader:"인사과장", count: 0 },
+    { key: "기상민/551001", type: "1", value:  "차량5/차량색5/주소5/전화번호5", leader:"교지관", count: 0 },
+    { key: "김승준/441001", type: "4", value: "차량6/차량색6/주소6/전화번호6", leader:"교지관", count: 0 }
 ];
 //1: 고정출입자  / 2: 출입신청된 민간인 / 3:출입신청이 안된 민간인 / 4: 타부대 / 
 var exp_name = new RegExp("[가-힣]{2,4}", "g");
@@ -12,13 +12,13 @@ var VisitorStorage = new Object();//정보 확인,수정,추가 페이지로 넘
 
 function VisitorType(obj){//VisitorList 출입신청 타입 문자열로 변환해주는 함수
     switch(obj.type){
-        case 1:
+        case "1":
             return "고정출입자";
-        case 2: 
+        case "2": 
             return "비고정출입자";
-        case 3: 
+        case "3": 
             return "출입신청 X";
-        case 4: 
+        case "4": 
             return "타부대/기타사항";
         default: 
             return "Error Code 404";
@@ -102,7 +102,7 @@ function selectVisitor(index){//선택된 민간인 목록에 추가
     }
     if(VisitorList[index].type == 1){
         //모달 팝업창 띄우고 해당 위치 표시
-        onClick(VisitorList[index].key);
+        onClickModal(VisitorList[index].key);
     }
     if(Active_Child < 5){
         let child = document.createElement('div');
@@ -294,7 +294,7 @@ function createContent(Obj){//민간인 입퇴영 현황을 나타내는 함수
                 switch(Obj.VisitorInfo[i][2]){//여기서 값을 비교하고 해당값이면 onclick 함수와 버튼테두리 색 변경 
                     case 0://정상
                         Inp.setAttribute('style', 'border: 1px solid #7DCD00;');
-                        Inp.setAttribute('onclick', eval("'Visitor_ConfirmInfo(`" + Obj.VisitorInfo[i][0] + "`,`" + div_id +  "`)'"));
+                        Inp.setAttribute('onclick', eval("'Visitor_ConfirmInfo(`" + Obj.VisitorInfo[i][0] + "`,`Content" + child_Count +  "`)'"));//Content0
                         break;
                     case 1://신규등록
                         Inp.setAttribute('style', 'border: 1px solid #FCCC00;');
@@ -302,7 +302,7 @@ function createContent(Obj){//민간인 입퇴영 현황을 나타내는 함수
                         break;
                     case 2://업데이트
                         Inp.setAttribute('style', 'border: 1px solid #FC4700;');
-                        Inp.setAttribute('onclick', eval("'Visitor_ConfirmInfo(`" + Obj.VisitorInfo[i][0] + "`,`" + div_id +  "`)'"));
+                        Inp.setAttribute('onclick', eval("'Visitor_ChangeInfo(`" + Obj.VisitorInfo[i][0] + "`,`" + div_id + "`,`Content" + child_Count + "`)'"));
                         break;
                     default://에러메세지
                         alert("오류났습니다!");break;

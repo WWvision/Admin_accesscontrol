@@ -50,10 +50,10 @@
 
 		<div id="Modal_Popup">
 			<!-- 고정출입자 표찰 위치 표시 -->
-			<div id="FixedVisitor_BG" class="black_bg1"></div>
-			<div id="FixedVisitor_modal" class="modal_wrap1">
+			<div id="FixedVisitor_BG" class="black_bg"></div>
+			<div id="FixedVisitor_modal" class="modal_wrap">
 				<div style="background-color: transparent; width: 476px; height: 21px;">
-					<input type="button" id="modal_closeBtn"  value="X" onclick="offClick()">
+					<input type="button" id="modal_closeBtn"  value="X" onclick="offClickModal()">
 				</div>
 				<table id="Modal_FixedTable" border="1" style="background-color: white;">
 						
@@ -61,25 +61,50 @@
 			</div>	
 		</div>
 
-		<div id="Confirm_Info_Bg" class="black_bg1"></div>
-		<div id="Confirm_Info_modal" class="modal_wrap1">
-			<div style="background-color: transparent; width: 476px; height: 21px;">
-				<input type="button" id="modal_closeBtn"  value="X" onclick="closeModal('Confirm_Info')">
+		<div id="Confirm_Info_Bg" class="black_bg"></div>
+		<div id="Confirm_Info_modal" class="modal_wrap">
+            <!-- 여기서부터-->
+			<div class="Modal_header">
+				<input type="button" id="modal_closeBtn"  value="X" onclick="closeModal()">
 			</div>
-			<div style="width: 200px; height: 200px; border: 1px solid black; background-color: white;">
-				 
+			<div class="Modal_section">
+				<h3 id="Modal_Section_Title" style="margin: 5px;">기존 저장된 정보</h3>
+                <label class="form-label">이름:  </label> 
+                <input id="form_Name" class="form-Input" type="text" value="김승주/991001" style="left:32px" readonly><br>
+                <label class="form-label">출입형태:</label> 
+                <select id="Modal_SelectType" class="form-Input">
+                    <option id="SelectType1" value="1">고정출입자</option>
+                    <option id="SelectType2" value="2">비고정출입자 - 출입신청됨</option>
+                    <option id="SelectType3" value="3">비고정출입자 - 출입신청안됨</option>
+                    <option id="SelectType4" value="4">타부대/기타사항</option>
+                </select><br>
+                <label class="form-label">상세정보:</label>
+                <input id="form_Info" class="form-Input " type="text" value="차량정보/주소/전화번호"  readonly><br>
+                <label class="form-label">인솔간부:</label>
+                <input id="form_Leader" class="form-Input " type="text" value="김상호 중위"  readonly><br>
+   
+                <h3 style="margin: 5px; margin-top: 15px;">현재 정보</h3>
+                <label class="form-label">동승자:</label> 
+                <input id="form_Together" class="form-Input " type="text" value="김승주 기상민 박현명" style="left:16px"  readonly><br> 
+                <label class="form-label">용무:</label> 
+                <input id="form_Business" class="form-Input " type="text" value="px납품" style="left:32px" readonly><br>
+                <label class="form-label">특이사항</label>
+                <input id="form_Remark" class="form-Input " type="text" value="없음" style="left:4px" readonly><br>
+				
+				<div style="text-align: center; margin-top: 5px;">
+                    <input type="button" id="sendBtn" value="제출하기" onclick="ModalSendData()">
+                </div>
 			</div>
-			
 		</div>	
 
-		<div id="Change_Info_Bg" class="black_bg1"></div>
-		<div id="Change_Info_modal" class="modal_wrap1">
+		<!-- <div id="Change_Info_Bg" class="black_bg"></div>
+		<div id="Change_Info_modal" class="modal_wrap">
 			<div style="background-color: transparent; width: 476px; height: 21px;">
 				<input type="button" id="modal_closeBtn"  value="X" onclick="closeModal('Change_Info')">
 			</div>
 			<div style="width: 200px; height: 200px; border: 1px solid black; background-color: wheat;"></div>
-			
-		</div>
+
+		</div> -->
 		
         <script src='./Visitor_part_logic1.js'></script>
 		<script src='./Visitor_part_logic2.js'></script>

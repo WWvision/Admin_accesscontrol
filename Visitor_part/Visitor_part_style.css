@@ -357,18 +357,18 @@
 }
 
 /* 모달 팝업창 */
-.modal_wrap1, .modal_wrap2, .modal_wrap3{
+.modal_wrap {
     display: none;
-    width: 500px;
-    height: 325px;
+    width: 550px;
+    height: 500px;
     position: absolute;
-    top:60%;
+    top:50%;
     left: 50%;
     margin: -250px 0 0 -250px;
     background:transparent;
     z-index: 2;
 }
-.black_bg1, .black_bg2, .black_bg3{
+.black_bg {
     display: none;
     position: absolute;
     content: "";
@@ -378,6 +378,7 @@
     top:0;
     left: 0;
     z-index: 1;
+    
 }
 #modal_closeBtn {
     float:right; 
@@ -388,4 +389,48 @@
 }
 #modal_closeBtn:hover {
     color: red;
+}
+
+
+.form-Input {
+    position: relative;
+    border: 1px solid #ced4da;
+    color: #495057;
+    border-radius: 0.3rem;
+    font-size: .925rem;
+    min-height: calc(2.1875rem + 2px);
+    padding: 0.4rem 1rem;
+    margin: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    width: 400px;
+}
+.form-Input:hover {
+    box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+  }
+
+.Modal_header {
+    width: 552px; 
+    height: 21px;
+}
+.Modal_section {
+    width: 485px;
+    height: 415px;
+    border: 1px solid black;
+    background-color: white; 
+    padding: 20px;
+}
+
+#sendBtn {
+    border: 2px solid seagreen; 
+    border-radius: 5px; 
+    width: 120px; 
+    height: 40px;
+    background-color: white;
+    font-size: 15px;
+}
+#sendBtn:hover{
+    background-color: seagreen;
+    color: white;
+    font-weight: bold;
 }
