@@ -1,0 +1,436 @@
+.Content_box {
+    width: 790px;
+    height: 860px;
+    overflow-y: auto;
+    background-color: rgba(211,211,211,0.1);
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 3px;
+    margin: 5px;
+    margin-top: 10px;
+}
+.Content_box::-webkit-scrollbar{
+    display:  none;
+}
+#TotalDiv {
+    width: 808px; 
+    overflow-y:auto;
+}
+.toggleBtn{
+    width: 798px; 
+    height: 40px;
+    margin: 5px; 
+    margin-bottom: 0;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: white;
+    border: 2px solid lightblue;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.toggleBtn:hover {
+    background-color: lightblue;
+    color: white;
+}
+#InputBox{
+    border: 1.5px solid black;
+    border-radius: 5px;
+    width: 748px;
+    height: 230px;
+    position: absolute;
+    left: 32px;
+    top: 250px;
+}
+
+#VisitorsInfo {
+    height: 150px; 
+    margin-top: 5px;
+}
+#Visitor_Input_Area {
+    width: 790px;
+    height: 410px;
+    overflow-y: auto;
+    background-color: rgba(211,211,211,0.1);
+    border: 1px solid black;
+    border-top: 0;
+    padding: 3px;
+    margin: 5px;
+    margin-top: 0;
+}
+#sendData_txt{
+    margin-top: 10px;
+    margin-left: 15px;
+    width: 617px;
+    height: 40px;
+    font-size: 20px;
+    display: inline-block;
+    border: 2px solid #9caaaf;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#sendData_btn {
+    position: absolute;
+    top: 98px;
+    left: 645px;
+    width: 135px;
+    height: 40px;
+    border: 3px solid skyblue;
+    background-color: white;
+    color: black;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 17px;
+    display: inline-block;
+    margin-left: 4px;
+}
+#SearchResult {
+    width: 690px;
+    height: 100px;
+    position: absolute;
+    left: 90px;
+    border: 2px solid grey;
+    border-top: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow-y: auto;
+}
+#SearchResult::-webkit-scrollbar {
+    display: none;
+}
+#sendData_btn:hover {
+    background-color: lightskyblue;
+    color: white;
+}
+.Result_style {
+    width: 670px;
+    box-shadow: 3px 3px 3px gray;
+    margin-top: 4px;
+    margin-left: 8px;
+}
+.result_div_style {
+    background-color: white;
+    border: none;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.result_Btn {
+    border: 2px solid lightcoral;
+    background-color: transparent;
+    font-size: 13px;
+    font-weight: bold;
+}
+.result_Btn:hover{
+    background-color: lightcoral;
+    color: white;
+}
+.result_NewVisitor {
+    width: 680px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid pink;
+    margin-top: 4px;
+    margin-left: 8px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+    
+}
+.Vst_Name {
+    margin-left: 10px; 
+    width: 120px; 
+    border: none; 
+    background-color: transparent; 
+    font-size: 17px; 
+    font-weight: bold;
+}
+.Vst_Info {
+    width: 580px; 
+    font-size: 17px;
+    margin-top: 3px;
+}
+.deleteBtn {
+    border: none; 
+    background-color: transparent; 
+    float:right;
+    font-weight: bold;
+}
+.deleteBtn:hover {
+    color: red;
+}
+.VisitorSendBox {
+    width: 748px;
+    height: 68px;
+    border-top: 2px solid #193235b0;
+    padding-top: 5px;
+}
+#VisitorBusiness {
+    width: 170px;
+    font-size: 17px;
+    margin-left: 20px;
+}
+#VisitorRemark{
+    width: 520px;
+    font-size: 17px;
+    margin-left: 8px;
+    margin-bottom: 5px;
+}
+#SubmitBtn {
+    width: 706px;
+    border: 2px solid lightblue;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 17px;
+    margin-left: 19px;
+}
+#SubmitBtn:hover {
+    background-color: lightblue;
+    color: white;
+}
+#div_title{
+    margin: 10px;
+    font-weight: bold;
+    border-bottom: 1px solid gray;
+    padding-bottom: 1px;
+}
+.Content_style{
+    margin-left: 10px; 
+    width: 768px; 
+    margin-bottom: 15px;
+    /* 메인 높이 120px / 자식요소 106px*/
+}
+.Content_TypeBar_style {
+    height: 20px; 
+    border: 1px solid black;
+    border-bottom: 0;
+    background-color: gainsboro;
+}
+.changeBtn{
+    float:right; 
+    border: none; 
+    background-color: transparent; 
+    font-weight: bold;
+}
+.changeBtn:hover{
+    color: violet;
+}
+.Content_Body {
+    border: 1px solid black; 
+    height: 95px;
+}
+.Body_TypeBtn {
+    width: 132px;
+    height: 95px; 
+    float:left; 
+    margin-left: 7px;
+    text-align: center;
+}
+.Body_NameCon {
+    width: 615px;
+    float: right;
+    padding: 5px;
+    padding-left: 0;
+    margin-left: 7px;
+}
+.Body_OtherCon {
+    width: 620px;
+    height: 45px;
+    float: left;
+    text-align: left;
+    margin-left: 7px;
+}
+.NameCon_style {
+    width: 100px;
+    float: left;
+    height: 40px;
+    margin-right: 10px;
+    /* button Style */
+    text-align: left;
+    background-color: transparent;
+    border: 1px solid black;
+}
+.Content_Bs_style {
+    width: 150px;
+    height: 30px;
+}
+.Content_Remark_style{
+    width: 450px; 
+    height: 30px;
+    margin-left: 10px;
+}
+
+.Child_Content {
+    width: 747px; 
+    height: 108px; 
+    float: right;
+    border: 1px solid black; 
+    border-top: 0;
+    background-color: rgb(240, 240, 240); 
+}
+.Child_TypeBar{
+    height: 20px;
+    background-color: gainsboro;
+}
+.Child_TypeBtn {
+    width: 132px;
+    height: 80px;
+    margin-left: 7px;
+    float: left;
+    text-align: center;
+}
+.Child_NameCon {
+    width: 526px;
+    float: left; 
+    padding: 5px;
+    padding-left: 7px;
+    padding-right: 0;
+}
+.Child_NameBtn_Div {
+    float: right; 
+    width: 70px; 
+    height: 44px; 
+    margin-right: 5px; 
+    margin-top: 3px;
+}
+.Child_NameBtn {
+    font-size: 14px; 
+    font-weight: bold; 
+    border: 1px solid black; 
+    background-color: transparent;
+}
+.Child_NameBtn:hover{
+    color: orangered;
+}
+.Child_Name_style{
+    width: 100px; 
+    height: 40px; 
+    margin-right: 5px;
+    float: left; 
+}
+.Child_OtherCon {
+    width: 600px;
+    height: 40px;
+    float: left;
+    text-align: left;
+    margin-left: 7px;
+}
+.Child_Bs_style {
+    width: 150px; 
+    height: 30px;
+}
+.Child_Remark_style{
+    width: 430px; 
+    height: 30px;
+    margin-left: 7px; 
+}
+
+
+.History_Content{
+    height: 50px;
+    margin: 8px;
+    background-color: pink;
+    border: 1px solid gray; 
+    padding: 3px;
+}
+.div_h_cells{
+    float: left;
+    height: 20px;
+    width: 70px;
+}
+.hCell_type {
+    float: left; 
+    width: 150px;
+    height: 40px;
+}
+.hCell_Name{
+    float: left;
+    width: 610px;
+    height: 25px;
+}
+.hCell_Others{
+    float: left;
+    width: 610px;
+    height: 25px;
+}
+
+/* 모달 팝업창 */
+.modal_wrap {
+    display: none;
+    width: 550px;
+    height: 500px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    margin: -250px 0 0 -250px;
+    background:transparent;
+    z-index: 2;
+}
+.black_bg {
+    display: none;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0,0, 0.5);
+    top:0;
+    left: 0;
+    z-index: 1;
+    
+}
+#modal_closeBtn {
+    float:right; 
+    font-size: 20px; 
+    font-weight: bold; 
+    background-color: transparent; 
+    border: none;
+}
+#modal_closeBtn:hover {
+    color: red;
+}
+
+
+.form-Input {
+    position: relative;
+    border: 1px solid #ced4da;
+    color: #495057;
+    border-radius: 0.3rem;
+    font-size: .925rem;
+    min-height: calc(2.1875rem + 2px);
+    padding: 0.4rem 1rem;
+    margin: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    width: 400px;
+}
+.form-Input:hover {
+    box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+  }
+
+.Modal_header {
+    width: 552px; 
+    height: 21px;
+}
+.Modal_section {
+    width: 485px;
+    height: 415px;
+    border: 1px solid black;
+    background-color: white; 
+    padding: 20px;
+}
+
+#sendBtn {
+    border: 2px solid seagreen; 
+    border-radius: 5px; 
+    width: 120px; 
+    height: 40px;
+    background-color: white;
+    font-size: 15px;
+}
+#sendBtn:hover{
+    background-color: seagreen;
+    color: white;
+    font-weight: bold;
+}
